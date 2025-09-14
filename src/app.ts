@@ -1,63 +1,47 @@
-import express, {
-  json,
-  urlencoded,
-  Express,
-  Request,
-  Response,
-  NextFunction,
-} from 'express';
-import cors from 'cors';
-import { PORT } from './config';
-import { MainRouter } from './routers/main.router';
-import { AppError } from './utils/app.error';
-import { NotFoundMiddleware } from './middlewares/not-found.middleware';
-import { ErrorHandlerMiddleware } from './middlewares/error-handler.middleware';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import authRoutes from "./routers/auth.router";
+import { errorHandler } from "./middlewares/error-handler.middleware";
+import protectedRoutes from "./routers/protected";
+import profileRoutes from "./routers/profile.router";
 
-export default class App {
-  private app: Express;
+dotenv.config();
 
-  constructor() {
-    this.app = express();
-    this.configure();
-    this.routes();
-    this.handleError();
-  }
+const app = express();
 
-  private configure(): void {
-    this.app.use(cors());
-    this.app.use(json());
-    this.app.use(urlencoded({ extended: true }));
-  }
+// Middleware
+app.use(
+  cors({
+    origin:
+      process.env.NODE_ENV === "production"
+        ? "https://your-production-domain.com"
+        : "http://localhost:3000",
+    credentials: true,
+  })
+);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-  private handleError(): void {
-    /*
-      📒 Docs:
-      This is a not found error handler.
-    */
-    this.app.use(NotFoundMiddleware.handle());
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/profile", profileRoutes);
+app.use("/api/protected", protectedRoutes);
 
-    /*
-        📒 Docs:
-        This is a centralized error-handling middleware.
-    */
-    this.app.use(ErrorHandlerMiddleware.handle());
-  }
+// Health check
+app.get("/api/health", (req, res) => {
+  res.json({ status: "OK", message: "Server is running" });
+});
 
-  private routes(): void {
-    const mainRouter = new MainRouter();
+// Error handling middleware (harus di akhir)
+app.use(errorHandler); // Tambahkan ini
 
-    this.app.get('/api', (req: Request, res: Response) => {
-      res.send(
-        `Hello, Purwadhika student 👋. Have fun working on your mini project ☺️`
-      );
-    });
+// 404 handler
+app.use("*", (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: "Route not found",
+  });
+});
 
-    this.app.use(mainRouter.getRouter());
-  }
-
-  public start(): void {
-    this.app.listen(PORT, () => {
-      console.log(`➜ [API] Local: http://localhost:${PORT}/`);
-    });
-  }
-}
+export default app;
