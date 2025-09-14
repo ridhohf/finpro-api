@@ -1,8 +1,7 @@
-import App from './app';
+import app from "./app";
 
-const main = () => {
-  const app = new App();
-  app.start();
-};
+const PORT = process.env.PORT || 3001;
 
-main();
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
