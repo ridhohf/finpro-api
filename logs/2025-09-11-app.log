@@ -1,0 +1,45 @@
+[2025-09-11 15:03:09] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/test",
+  "ip": "::1"
+}
+[2025-09-11 15:03:32] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/test-booking",
+  "ip": "::1"
+}
+[2025-09-11 15:06:11] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/test-booking",
+  "ip": "::1"
+}
+[2025-09-11 15:15:18] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/test",
+  "ip": "::1"
+}
+[2025-09-11 15:15:26] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/test",
+  "ip": "::1"
+}
+[2025-09-11 15:15:26] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/test",
+  "ip": "::1"
+}
+[2025-09-11 22:06:06] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/test",
+  "ip": "::1"
+}
+[2025-09-11 22:07:33] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/test-booking",
+  "ip": "::1"
+}
+[2025-09-11 23:01:27] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/test-simple",
+  "ip": "::1"
+}

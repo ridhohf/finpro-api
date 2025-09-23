@@ -1,0 +1,218 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum ReservationStatus {
+  PENDING_PAYMENT
+  PENDING_CONFIRMATION
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model Users {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(255)
+  email      String   @unique @db.VarChar(255)
+  password   String?  @db.VarChar(255)
+  role       String   @db.VarChar(50)
+  provider   String?  @db.VarChar(100)
+  providerId String?  @db.VarChar(255)
+  isVerified Boolean  @default(false)
+  avatar     String?  @db.VarChar(255)
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  properties         Properties[]
+  propertyCategories PropertyCategories[]
+  reservations       Reservations[]
+  reviews            Reviews[]
+  emailVerifications EmailVerifications[]
+  resetPasswords     ResetPasswords[]
+  socialLogins       SocialLogins[]
+
+  @@map("users")
+}
+
+model SocialLogins {
+  id         Int      @id @default(autoincrement())
+  userId     Int      @map("user_id")
+  provider   String   @db.VarChar(100)
+  providerId String   @map("provider_id") @db.VarChar(255)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerId])
+  @@map("social_logins")
+}
+
+model EmailVerifications {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  token     String   @db.VarChar(255)
+  expiresAt DateTime @map("expires_at")
+  used      Boolean  @default(false)
+
+  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("email_verifications")
+}
+
+model ResetPasswords {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  token     String   @db.VarChar(255)
+  expiresAt DateTime @map("expires_at")
+  used      Boolean  @default(false)
+
+  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("reset_passwords")
+}
+
+model PropertyCategories {
+  id          Int    @id @default(autoincrement())
+  tenantId    Int    @map("tenant_id")
+  name        String @db.VarChar(255)
+  description String @db.Text
+
+  tenant     Users        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  properties Properties[]
+
+  @@map("property_categories")
+}
+
+model Properties {
+  id          Int      @id @default(autoincrement())
+  tenantId    Int      @map("tenant_id")
+  categoryId  Int      @map("category_id")
+  name        String   @db.VarChar(255)
+  description String   @db.Text
+  picture     String   @db.VarChar(255)
+  address     String   @db.Text
+  city        String   @db.VarChar(100)
+  lat         Decimal? @db.Decimal(10, 7)
+  lng         Decimal? @db.Decimal(10, 7)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  tenant       Users              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  category     PropertyCategories @relation(fields: [categoryId], references: [id])
+  rooms        Rooms[]
+  reservations Reservations[]
+  reviews      Reviews[]
+  peakSeasons  PeakSeasons[]
+
+  @@map("properties")
+}
+
+model Rooms {
+  id          Int      @id @default(autoincrement())
+  propertyId  Int      @map("property_id")
+  name        String   @db.VarChar(255)
+  description String   @db.Text
+  basePrice   Decimal  @map("base_price") @db.Decimal(10, 2)
+  maxGuests   Int      @default(1) @map("max_guests")
+  picture     String?  @db.VarChar(255)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  property           Properties           @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  reservations       Reservations[]
+  roomAvailabilities RoomAvailabilities[]
+  peakSeasons        PeakSeasons[]
+
+  @@map("rooms")
+}
+
+model RoomAvailabilities {
+  id            Int      @id @default(autoincrement())
+  roomId        Int      @map("room_id")
+  date          DateTime @db.Date
+  isAvailable   Boolean  @default(true) @map("is_available")
+  priceOverride Decimal? @map("price_override") @db.Decimal(10, 2)
+
+  room Rooms @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@unique([roomId, date])
+  @@map("room_availabilities")
+}
+
+model PeakSeasons {
+  id                Int      @id @default(autoincrement())
+  roomId            Int      @map("room_id")
+  name              String   @db.VarChar(255)
+  startDate         DateTime @map("start_date") @db.Date
+  endDate           DateTime @map("end_date") @db.Date
+  priceIncreaseType String   @map("price_increase_type") @db.VarChar(20)
+  value             Decimal  @db.Decimal(10, 2)
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  room         Rooms       @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  Properties   Properties? @relation(fields: [propertiesId], references: [id])
+  propertiesId Int?
+
+  @@map("peak_seasons")
+}
+
+model Reservations {
+  id             Int               @id @default(autoincrement())
+  userId         Int               @map("user_id")
+  propertyId     Int               @map("property_id")
+  roomId         Int               @map("room_id")
+  checkIn        DateTime          @map("check_in") @db.Date
+  checkOut       DateTime          @map("check_out") @db.Date
+  duration       Int
+  totalPrice     Decimal           @map("total_price") @db.Decimal(10, 2)
+  status         ReservationStatus @default(PENDING_PAYMENT)
+  reminderSentAt DateTime?         @map("reminder_sent_at")
+  createdAt      DateTime          @default(now()) @map("created_at")
+  updatedAt      DateTime          @updatedAt @map("updated_at")
+
+  user          Users           @relation(fields: [userId], references: [id])
+  property      Properties      @relation(fields: [propertyId], references: [id])
+  room          Rooms           @relation(fields: [roomId], references: [id])
+  paymentProofs PaymentProofs[]
+  reviews       Reviews[]
+
+  @@map("reservations")
+}
+
+model PaymentProofs {
+  id             Int      @id @default(autoincrement())
+  reservationId  Int      @map("reservation_id")
+  image          String   @db.VarChar(255)
+  isValid        Boolean  @default(false) @map("is_valid")
+  rejectedReason String?  @map("rejected_reason") @db.Text
+  uploadedAt     DateTime @default(now()) @map("uploaded_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  reservation Reservations @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+
+  @@map("payment_proofs")
+}
+
+model Reviews {
+  id            Int      @id @default(autoincrement())
+  userId        Int      @map("user_id")
+  propertyId    Int      @map("property_id")
+  reservationId Int      @map("reservation_id")
+  rating        Int
+  comment       String   @db.Text
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  user        Users        @relation(fields: [userId], references: [id])
+  property    Properties   @relation(fields: [propertyId], references: [id])
+  reservation Reservations @relation(fields: [reservationId], references: [id])
+
+  @@unique([userId, reservationId])
+  @@map("reviews")
+}
