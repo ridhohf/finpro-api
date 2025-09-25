@@ -1,22 +1,19 @@
-import { SampleRouter } from './sample.router';
-import { Router } from 'express';
+import { Router } from "express";
+import authRoutes from "./auth.router";
+import profileRoutes from "./profile.router";
 
-export class MainRouter {
-  private router: Router;
-  private sampleRouter: SampleRouter;
+const router = Router();
 
-  constructor() {
-    this.router = Router();
-    this.sampleRouter = new SampleRouter();
+router.use("/auth", authRoutes);
+router.use("/profile", profileRoutes);
 
-    this.initializeRoutes();
-  }
+// Health check endpoint
+router.get("/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Server is running properly",
+    timestamp: new Date().toISOString(),
+  });
+});
 
-  private initializeRoutes(): void {
-    this.router.use('/api/samples', this.sampleRouter.getRouter());
-  }
-
-  public getRouter(): Router {
-    return this.router;
-  }
-}
+export default router;

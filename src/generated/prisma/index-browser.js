@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.7.0
- * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+ * Prisma Client JS version: 6.16.2
+ * Query Engine version: 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
  */
 Prisma.prismaVersion = {
-  client: "6.7.0",
-  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
+  client: "6.16.2",
+  engine: "1c57fdcd7e44b29b9313256c76699e91c3ac3c43"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -120,12 +120,141 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.SampleScalarFieldEnum = {
+exports.Prisma.UsersScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  code: 'code',
+  email: 'email',
+  password: 'password',
+  role: 'role',
+  provider: 'provider',
+  providerId: 'providerId',
+  isVerified: 'isVerified',
+  avatar: 'avatar',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TenantProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  companyName: 'companyName',
+  phone: 'phone',
+  address: 'address',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SocialLoginsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  provider: 'provider',
+  providerId: 'providerId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.EmailVerificationsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  token: 'token',
+  expiresAt: 'expiresAt',
+  used: 'used'
+};
+
+exports.Prisma.ResetPasswordsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  token: 'token',
+  expiresAt: 'expiresAt',
+  used: 'used'
+};
+
+exports.Prisma.PropertyCategoriesScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.PropertiesScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  categoryId: 'categoryId',
+  name: 'name',
+  description: 'description',
+  picture: 'picture',
+  address: 'address',
+  city: 'city',
+  lat: 'lat',
+  lng: 'lng',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RoomsScalarFieldEnum = {
+  id: 'id',
+  propertyId: 'propertyId',
+  name: 'name',
+  description: 'description',
+  basePrice: 'basePrice',
+  maxGuests: 'maxGuests',
+  picture: 'picture',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RoomAvailabilitiesScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  date: 'date',
+  isAvailable: 'isAvailable',
+  priceOverride: 'priceOverride'
+};
+
+exports.Prisma.PeakSeasonsScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  name: 'name',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  priceIncreaseType: 'priceIncreaseType',
+  value: 'value',
+  createdAt: 'createdAt',
+  propertiesId: 'propertiesId'
+};
+
+exports.Prisma.ReservationsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  propertyId: 'propertyId',
+  roomId: 'roomId',
+  checkIn: 'checkIn',
+  checkOut: 'checkOut',
+  duration: 'duration',
+  totalPrice: 'totalPrice',
+  status: 'status',
+  reminderSentAt: 'reminderSentAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PaymentProofsScalarFieldEnum = {
+  id: 'id',
+  reservationId: 'reservationId',
+  image: 'image',
+  isValid: 'isValid',
+  rejectedReason: 'rejectedReason',
+  uploadedAt: 'uploadedAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ReviewsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  propertyId: 'propertyId',
+  reservationId: 'reservationId',
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -133,14 +262,37 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.SampleOrderByRelevanceFieldEnum = {
-  name: 'name',
-  code: 'code'
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.ReservationStatus = exports.$Enums.ReservationStatus = {
+  PENDING_PAYMENT: 'PENDING_PAYMENT',
+  PENDING_CONFIRMATION: 'PENDING_CONFIRMATION',
+  CONFIRMED: 'CONFIRMED',
+  CANCELLED: 'CANCELLED',
+  COMPLETED: 'COMPLETED'
+};
 
 exports.Prisma.ModelName = {
-  Sample: 'Sample'
+  Users: 'Users',
+  TenantProfile: 'TenantProfile',
+  SocialLogins: 'SocialLogins',
+  EmailVerifications: 'EmailVerifications',
+  ResetPasswords: 'ResetPasswords',
+  PropertyCategories: 'PropertyCategories',
+  Properties: 'Properties',
+  Rooms: 'Rooms',
+  RoomAvailabilities: 'RoomAvailabilities',
+  PeakSeasons: 'PeakSeasons',
+  Reservations: 'Reservations',
+  PaymentProofs: 'PaymentProofs',
+  Reviews: 'Reviews'
 };
 
 /**
