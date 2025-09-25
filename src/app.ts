@@ -1,63 +1,41 @@
-import express, {
-  json,
-  urlencoded,
-  Express,
-  Request,
-  Response,
-  NextFunction,
-} from 'express';
-import cors from 'cors';
-import { PORT } from './config';
-import { MainRouter } from './routers/main.router';
-import { AppError } from './utils/app.error';
-import { NotFoundMiddleware } from './middlewares/not-found.middleware';
-import { ErrorHandlerMiddleware } from './middlewares/error-handler.middleware';
+import cors from "cors";
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
+import { config } from "./config";
+import { errorHandler } from "./middlewares/error-handler.middleware";
+import { notFoundHandler } from "./middlewares/not-found.middleware";
+import mainRouter from "./routers/main.router";
 
-export default class App {
-  private app: Express;
+const app = express();
 
-  constructor() {
-    this.app = express();
-    this.configure();
-    this.routes();
-    this.handleError();
-  }
+// Security middleware
+app.use(helmet());
+app.use(
+  cors({
+    origin: config.frontendUrl,
+    credentials: true,
+  })
+);
 
-  private configure(): void {
-    this.app.use(cors());
-    this.app.use(json());
-    this.app.use(urlencoded({ extended: true }));
-  }
-
-  private handleError(): void {
-    /*
-      📒 Docs:
-      This is a not found error handler.
-    */
-    this.app.use(NotFoundMiddleware.handle());
-
-    /*
-        📒 Docs:
-        This is a centralized error-handling middleware.
-    */
-    this.app.use(ErrorHandlerMiddleware.handle());
-  }
-
-  private routes(): void {
-    const mainRouter = new MainRouter();
-
-    this.app.get('/api', (req: Request, res: Response) => {
-      res.send(
-        `Hello, Purwadhika student 👋. Have fun working on your mini project ☺️`
-      );
-    });
-
-    this.app.use(mainRouter.getRouter());
-  }
-
-  public start(): void {
-    this.app.listen(PORT, () => {
-      console.log(`➜ [API] Local: http://localhost:${PORT}/`);
-    });
-  }
+// Logging middleware
+if (config.nodeEnv === "development") {
+  app.use(morgan("dev"));
+} else {
+  app.use(morgan("combined"));
 }
+
+// Body parsing middleware
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+
+// API routes
+app.use("/api", mainRouter);
+
+// Handle 404 errors
+app.use(notFoundHandler);
+
+// Global error handler
+app.use(errorHandler);
+
+export default app;

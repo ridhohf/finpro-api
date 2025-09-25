@@ -11,3 +11,97 @@
   "ip": "::1",
   "statusCode": 404
 }
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T04:18:47.970Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T04:18:47.985Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T04:18:47.987Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T04:18:47.988Z"}
+{"level":"info","message":"🔄 Shutting down gracefully...","service":"property-renting-auth","timestamp":"2025-09-25T04:28:29.870Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T04:28:37.084Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T04:28:37.097Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T04:28:37.098Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T04:28:37.099Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T04:29:00.427Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T04:29:00.440Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T04:29:00.441Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T04:29:00.443Z"}
+{"clientVersion":"6.16.2","errorCode":"P1001","level":"error","message":"❌ Failed to start server: Can't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:5432`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:5432`.","name":"PrismaClientInitializationError","service":"property-renting-auth","stack":"PrismaClientInitializationError: Can't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:5432`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:5432`.\n    at r (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:115:2770)","timestamp":"2025-09-25T04:30:52.132Z"}
+{"clientVersion":"6.16.2","errorCode":"P1001","level":"error","message":"❌ Failed to start server: Can't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:5432`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:5432`.","name":"PrismaClientInitializationError","service":"property-renting-auth","stack":"PrismaClientInitializationError: Can't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:5432`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:5432`.\n    at r (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:115:2770)","timestamp":"2025-09-25T04:31:15.033Z"}
+{"clientVersion":"6.16.2","errorCode":"P1001","level":"error","message":"❌ Failed to start server: Can't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:5432`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:5432`.","name":"PrismaClientInitializationError","service":"property-renting-auth","stack":"PrismaClientInitializationError: Can't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:5432`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:5432`.\n    at r (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:115:2770)","timestamp":"2025-09-25T04:33:01.617Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T04:35:07.636Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T04:35:07.649Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T04:35:07.650Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T04:35:07.652Z"}
+{"level":"info","message":"Verification email sent to john.doe@example.com","service":"property-renting-auth","timestamp":"2025-09-25T04:37:42.676Z"}
+{"level":"info","message":"User registered: john.doe@example.com as user","service":"property-renting-auth","timestamp":"2025-09-25T04:37:42.680Z"}
+{"level":"info","message":"Verification email sent to jane.smith@example.com","service":"property-renting-auth","timestamp":"2025-09-25T04:40:21.398Z"}
+{"level":"info","message":"User registered: jane.smith@example.com as tenant","service":"property-renting-auth","timestamp":"2025-09-25T04:40:21.399Z"}
+{"level":"info","message":"Verification email sent to gedigam956@anysilo.com","service":"property-renting-auth","timestamp":"2025-09-25T04:43:14.556Z"}
+{"level":"info","message":"User registered: gedigam956@anysilo.com as user","service":"property-renting-auth","timestamp":"2025-09-25T04:43:14.559Z"}
+{"level":"info","message":"Welcome email sent to gedigam956@anysilo.com","service":"property-renting-auth","timestamp":"2025-09-25T04:46:14.747Z"}
+{"level":"info","message":"User verified and password set: gedigam956@anysilo.com","service":"property-renting-auth","timestamp":"2025-09-25T04:46:14.749Z"}
+{"level":"info","message":"User logged in: gedigam956@anysilo.com","service":"property-renting-auth","timestamp":"2025-09-25T04:47:18.277Z"}
+{"level":"info","message":"Password reset email sent to gedigam956@anysilo.com","service":"property-renting-auth","timestamp":"2025-09-25T04:49:36.002Z"}
+{"level":"info","message":"Password reset requested for: gedigam956@anysilo.com","service":"property-renting-auth","timestamp":"2025-09-25T04:49:36.003Z"}
+{"level":"info","message":"Password reset completed for: gedigam956@anysilo.com","service":"property-renting-auth","timestamp":"2025-09-25T04:53:02.119Z"}
+{"level":"info","message":"🔄 Shutting down gracefully...","service":"property-renting-auth","timestamp":"2025-09-25T04:58:17.107Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T13:50:48.784Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T13:50:48.797Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T13:50:48.799Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T13:50:48.800Z"}
+{"level":"info","message":"User logged in: gedigam956@anysilo.com","service":"property-renting-auth","timestamp":"2025-09-25T14:02:49.846Z"}
+{"level":"info","message":"Password reset email sent to gedigam956@anysilo.com","service":"property-renting-auth","timestamp":"2025-09-25T14:03:36.454Z"}
+{"level":"info","message":"Password reset requested for: gedigam956@anysilo.com","service":"property-renting-auth","timestamp":"2025-09-25T14:03:36.455Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T14:16:37.600Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T14:16:37.613Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T14:16:37.615Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T14:16:37.617Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T14:16:41.487Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T14:16:41.499Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T14:16:41.500Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T14:16:41.502Z"}
+{"level":"info","message":"🔄 Shutting down gracefully...","service":"property-renting-auth","timestamp":"2025-09-25T14:16:51.408Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T14:16:58.488Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T14:16:58.500Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T14:16:58.501Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T14:16:58.502Z"}
+{"level":"info","message":"Verification email sent to tedid79570@bitmens.com","service":"property-renting-auth","timestamp":"2025-09-25T14:17:50.712Z"}
+{"level":"info","message":"User registered: tedid79570@bitmens.com as user","service":"property-renting-auth","timestamp":"2025-09-25T14:17:50.714Z"}
+{"level":"info","message":"Verification email sent to hefovol483@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:19:04.312Z"}
+{"level":"info","message":"User registered: hefovol483@auslank.com as user","service":"property-renting-auth","timestamp":"2025-09-25T14:19:04.313Z"}
+{"level":"info","message":"Welcome email sent to hefovol483@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:25:42.686Z"}
+{"level":"info","message":"User verified and password set: hefovol483@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:25:42.688Z"}
+{"level":"info","message":"User logged in: hefovol483@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:27:12.472Z"}
+{"level":"info","message":"Password reset email sent to hefovol483@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:29:50.002Z"}
+{"level":"info","message":"Password reset requested for: hefovol483@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:29:50.003Z"}
+{"level":"info","message":"Password reset completed for: hefovol483@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:30:26.739Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T14:35:38.042Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T14:35:38.054Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T14:35:38.056Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T14:35:38.057Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T14:35:59.133Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T14:35:59.144Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T14:35:59.145Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T14:35:59.146Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T14:36:06.302Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T14:36:06.311Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T14:36:06.312Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T14:36:06.313Z"}
+{"level":"info","message":"Verification email sent to nojij60174@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:39:34.636Z"}
+{"level":"info","message":"User registered: nojij60174@auslank.com as user","service":"property-renting-auth","timestamp":"2025-09-25T14:39:34.638Z"}
+{"level":"info","message":"Welcome email sent to nojij60174@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:40:10.418Z"}
+{"level":"info","message":"User verified and password set: nojij60174@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:40:10.420Z"}
+{"level":"info","message":"User logged in: nojij60174@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:40:35.697Z"}
+{"level":"info","message":"Password reset email sent to nojij60174@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:41:03.164Z"}
+{"level":"info","message":"Password reset requested for: nojij60174@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:41:03.165Z"}
+{"level":"info","message":"Password reset completed for: nojij60174@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:41:45.762Z"}
+{"level":"info","message":"User logged in: nojij60174@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T14:42:02.322Z"}
+{"level":"info","message":"🔄 Shutting down gracefully...","service":"property-renting-auth","timestamp":"2025-09-25T14:42:30.661Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-25T17:39:04.988Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-25T17:39:04.998Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-25T17:39:04.999Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-25T17:39:05.000Z"}
+{"level":"info","message":"User logged in: nojij60174@auslank.com","service":"property-renting-auth","timestamp":"2025-09-25T17:40:04.578Z"}
+{"level":"info","message":"Avatar updated for user ID: 6","service":"property-renting-auth","timestamp":"2025-09-25T17:42:25.166Z"}
+{"level":"info","message":"Password updated for user ID: 6","service":"property-renting-auth","timestamp":"2025-09-25T17:43:21.507Z"}
+{"level":"info","message":"Password updated for user ID: 6","service":"property-renting-auth","timestamp":"2025-09-25T17:43:51.956Z"}
+{"level":"info","message":"🔄 Shutting down gracefully...","service":"property-renting-auth","timestamp":"2025-09-25T17:45:36.132Z"}

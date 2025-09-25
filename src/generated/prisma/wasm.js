@@ -5,13 +5,28 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 
 const {
+  PrismaClientKnownRequestError,
+  PrismaClientUnknownRequestError,
+  PrismaClientRustPanicError,
+  PrismaClientInitializationError,
+  PrismaClientValidationError,
+  getPrismaClient,
+  sqltag,
+  empty,
+  join,
+  raw,
+  skip,
   Decimal,
+  Debug,
   objectEnumValues,
   makeStrictEnum,
+  Extensions,
+  warnOnce,
+  defineDmmfProperty,
   Public,
   getRuntime,
-  skip
-} = require('./runtime/index-browser.js')
+  createParam,
+} = require('./runtime/wasm-engine-edge.js')
 
 
 const Prisma = {}
@@ -20,79 +35,35 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.7.0
- * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+ * Prisma Client JS version: 6.16.2
+ * Query Engine version: 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
  */
 Prisma.prismaVersion = {
-  client: "6.7.0",
-  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
+  client: "6.16.2",
+  engine: "1c57fdcd7e44b29b9313256c76699e91c3ac3c43"
 }
 
-Prisma.PrismaClientKnownRequestError = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`PrismaClientKnownRequestError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)};
-Prisma.PrismaClientUnknownRequestError = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`PrismaClientUnknownRequestError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.PrismaClientRustPanicError = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`PrismaClientRustPanicError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.PrismaClientInitializationError = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`PrismaClientInitializationError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.PrismaClientValidationError = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`PrismaClientValidationError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
+Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
+Prisma.PrismaClientUnknownRequestError = PrismaClientUnknownRequestError
+Prisma.PrismaClientRustPanicError = PrismaClientRustPanicError
+Prisma.PrismaClientInitializationError = PrismaClientInitializationError
+Prisma.PrismaClientValidationError = PrismaClientValidationError
 Prisma.Decimal = Decimal
 
 /**
  * Re-export of sql-template-tag
  */
-Prisma.sql = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`sqltag is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.empty = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`empty is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.join = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`join is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.raw = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`raw is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
+Prisma.sql = sqltag
+Prisma.empty = empty
+Prisma.join = join
+Prisma.raw = raw
 Prisma.validator = Public.validator
 
 /**
 * Extensions
 */
-Prisma.getExtensionContext = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`Extensions.getExtensionContext is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.defineExtension = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`Extensions.defineExtension is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
+Prisma.getExtensionContext = Extensions.getExtensionContext
+Prisma.defineExtension = Extensions.defineExtension
 
 /**
  * Shorthand utilities for JSON filtering
@@ -109,10 +80,11 @@ Prisma.NullTypes = {
 
 
 
+
+
 /**
  * Enums
  */
-
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
@@ -120,12 +92,141 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.SampleScalarFieldEnum = {
+exports.Prisma.UsersScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  code: 'code',
+  email: 'email',
+  password: 'password',
+  role: 'role',
+  provider: 'provider',
+  providerId: 'providerId',
+  isVerified: 'isVerified',
+  avatar: 'avatar',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TenantProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  companyName: 'companyName',
+  phone: 'phone',
+  address: 'address',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SocialLoginsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  provider: 'provider',
+  providerId: 'providerId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.EmailVerificationsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  token: 'token',
+  expiresAt: 'expiresAt',
+  used: 'used'
+};
+
+exports.Prisma.ResetPasswordsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  token: 'token',
+  expiresAt: 'expiresAt',
+  used: 'used'
+};
+
+exports.Prisma.PropertyCategoriesScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.PropertiesScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  categoryId: 'categoryId',
+  name: 'name',
+  description: 'description',
+  picture: 'picture',
+  address: 'address',
+  city: 'city',
+  lat: 'lat',
+  lng: 'lng',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RoomsScalarFieldEnum = {
+  id: 'id',
+  propertyId: 'propertyId',
+  name: 'name',
+  description: 'description',
+  basePrice: 'basePrice',
+  maxGuests: 'maxGuests',
+  picture: 'picture',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RoomAvailabilitiesScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  date: 'date',
+  isAvailable: 'isAvailable',
+  priceOverride: 'priceOverride'
+};
+
+exports.Prisma.PeakSeasonsScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  name: 'name',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  priceIncreaseType: 'priceIncreaseType',
+  value: 'value',
+  createdAt: 'createdAt',
+  propertiesId: 'propertiesId'
+};
+
+exports.Prisma.ReservationsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  propertyId: 'propertyId',
+  roomId: 'roomId',
+  checkIn: 'checkIn',
+  checkOut: 'checkOut',
+  duration: 'duration',
+  totalPrice: 'totalPrice',
+  status: 'status',
+  reminderSentAt: 'reminderSentAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PaymentProofsScalarFieldEnum = {
+  id: 'id',
+  reservationId: 'reservationId',
+  image: 'image',
+  isValid: 'isValid',
+  rejectedReason: 'rejectedReason',
+  uploadedAt: 'uploadedAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ReviewsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  propertyId: 'propertyId',
+  reservationId: 'reservationId',
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -133,43 +234,115 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.SampleOrderByRelevanceFieldEnum = {
-  name: 'name',
-  code: 'code'
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.ReservationStatus = exports.$Enums.ReservationStatus = {
+  PENDING_PAYMENT: 'PENDING_PAYMENT',
+  PENDING_CONFIRMATION: 'PENDING_CONFIRMATION',
+  CONFIRMED: 'CONFIRMED',
+  CANCELLED: 'CANCELLED',
+  COMPLETED: 'COMPLETED'
+};
 
 exports.Prisma.ModelName = {
-  Sample: 'Sample'
+  Users: 'Users',
+  TenantProfile: 'TenantProfile',
+  SocialLogins: 'SocialLogins',
+  EmailVerifications: 'EmailVerifications',
+  ResetPasswords: 'ResetPasswords',
+  PropertyCategories: 'PropertyCategories',
+  Properties: 'Properties',
+  Rooms: 'Rooms',
+  RoomAvailabilities: 'RoomAvailabilities',
+  PeakSeasons: 'PeakSeasons',
+  Reservations: 'Reservations',
+  PaymentProofs: 'PaymentProofs',
+  Reviews: 'Reviews'
 };
-
 /**
- * This is a stub Prisma Client that will error at runtime if called.
+ * Create the Client
  */
-class PrismaClient {
-  constructor() {
-    return new Proxy(this, {
-      get(target, prop) {
-        let message
-        const runtime = getRuntime()
-        if (runtime.isEdge) {
-          message = `PrismaClient is not configured to run in ${runtime.prettyName}. In order to run Prisma Client on edge runtime, either:
-- Use Prisma Accelerate: https://pris.ly/d/accelerate
-- Use Driver Adapters: https://pris.ly/d/driver-adapters
-`;
-        } else {
-          message = 'PrismaClient is unable to run in this browser environment, or has been bundled for the browser (running in `' + runtime.prettyName + '`).'
-        }
-
-        message += `
-If this is unexpected, please open an issue: https://pris.ly/prisma-prisma-bug-report`
-
-        throw new Error(message)
+const config = {
+  "generator": {
+    "name": "client",
+    "provider": {
+      "fromEnvVar": null,
+      "value": "prisma-client-js"
+    },
+    "output": {
+      "value": "D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma",
+      "fromEnvVar": null
+    },
+    "config": {
+      "engineType": "library"
+    },
+    "binaryTargets": [
+      {
+        "fromEnvVar": null,
+        "value": "windows",
+        "native": true
       }
-    })
+    ],
+    "previewFeatures": [],
+    "sourceFilePath": "D:\\Ridho\\finpro\\finpro-api\\prisma\\schema.prisma",
+    "isCustomOutput": true
+  },
+  "relativeEnvPaths": {
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../../.env"
+  },
+  "relativePath": "../../../prisma",
+  "clientVersion": "6.16.2",
+  "engineVersion": "1c57fdcd7e44b29b9313256c76699e91c3ac3c43",
+  "datasourceNames": [
+    "db"
+  ],
+  "activeProvider": "postgresql",
+  "postinstall": false,
+  "inlineDatasources": {
+    "db": {
+      "url": {
+        "fromEnvVar": "DATABASE_URL",
+        "value": null
+      }
+    }
+  },
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nenum ReservationStatus {\n  PENDING_PAYMENT\n  PENDING_CONFIRMATION\n  CONFIRMED\n  CANCELLED\n  COMPLETED\n}\n\nmodel Users {\n  id         Int      @id @default(autoincrement())\n  name       String   @db.VarChar(255)\n  email      String   @unique @db.VarChar(255)\n  password   String?  @db.VarChar(255)\n  role       String   @db.VarChar(50)\n  provider   String?  @db.VarChar(100)\n  providerId String?  @db.VarChar(255)\n  isVerified Boolean  @default(false)\n  avatar     String?  @db.VarChar(255)\n  createdAt  DateTime @default(now()) @map(\"created_at\")\n  updatedAt  DateTime @updatedAt @map(\"updated_at\")\n\n  // Relations\n  tenantProfile      TenantProfile?\n  properties         Properties[]\n  propertyCategories PropertyCategories[]\n  reservations       Reservations[]\n  reviews            Reviews[]\n  emailVerifications EmailVerifications[]\n  resetPasswords     ResetPasswords[]\n  socialLogins       SocialLogins[]\n\n  @@map(\"users\")\n}\n\nmodel TenantProfile {\n  id          Int      @id @default(autoincrement())\n  userId      Int      @unique\n  companyName String   @db.VarChar(255)\n  phone       String?  @db.VarChar(20)\n  address     String?  @db.Text\n  createdAt   DateTime @default(now()) @map(\"created_at\")\n  updatedAt   DateTime @updatedAt @map(\"updated_at\")\n\n  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@map(\"tenant_profiles\")\n}\n\nmodel SocialLogins {\n  id         Int      @id @default(autoincrement())\n  userId     Int      @map(\"user_id\")\n  provider   String   @db.VarChar(100)\n  providerId String   @map(\"provider_id\") @db.VarChar(255)\n  createdAt  DateTime @default(now()) @map(\"created_at\")\n\n  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([provider, providerId])\n  @@map(\"social_logins\")\n}\n\nmodel EmailVerifications {\n  id        Int      @id @default(autoincrement())\n  userId    Int      @map(\"user_id\")\n  token     String   @db.VarChar(255)\n  expiresAt DateTime @map(\"expires_at\")\n  used      Boolean  @default(false)\n\n  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@map(\"email_verifications\")\n}\n\nmodel ResetPasswords {\n  id        Int      @id @default(autoincrement())\n  userId    Int      @map(\"user_id\")\n  token     String   @db.VarChar(255)\n  expiresAt DateTime @map(\"expires_at\")\n  used      Boolean  @default(false)\n\n  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@map(\"reset_passwords\")\n}\n\nmodel PropertyCategories {\n  id          Int    @id @default(autoincrement())\n  tenantId    Int    @map(\"tenant_id\")\n  name        String @db.VarChar(255)\n  description String @db.Text\n\n  tenant     Users        @relation(fields: [tenantId], references: [id], onDelete: Cascade)\n  properties Properties[]\n\n  @@map(\"property_categories\")\n}\n\nmodel Properties {\n  id          Int      @id @default(autoincrement())\n  tenantId    Int      @map(\"tenant_id\")\n  categoryId  Int      @map(\"category_id\")\n  name        String   @db.VarChar(255)\n  description String   @db.Text\n  picture     String   @db.VarChar(255)\n  address     String   @db.Text\n  city        String   @db.VarChar(100)\n  lat         Decimal? @db.Decimal(10, 7)\n  lng         Decimal? @db.Decimal(10, 7)\n  createdAt   DateTime @default(now()) @map(\"created_at\")\n  updatedAt   DateTime @updatedAt @map(\"updated_at\")\n\n  tenant       Users              @relation(fields: [tenantId], references: [id], onDelete: Cascade)\n  category     PropertyCategories @relation(fields: [categoryId], references: [id])\n  rooms        Rooms[]\n  reservations Reservations[]\n  reviews      Reviews[]\n  peakSeasons  PeakSeasons[]\n\n  @@map(\"properties\")\n}\n\nmodel Rooms {\n  id          Int      @id @default(autoincrement())\n  propertyId  Int      @map(\"property_id\")\n  name        String   @db.VarChar(255)\n  description String   @db.Text\n  basePrice   Decimal  @map(\"base_price\") @db.Decimal(10, 2)\n  maxGuests   Int      @default(1) @map(\"max_guests\")\n  picture     String?  @db.VarChar(255)\n  createdAt   DateTime @default(now()) @map(\"created_at\")\n  updatedAt   DateTime @updatedAt @map(\"updated_at\")\n\n  property           Properties           @relation(fields: [propertyId], references: [id], onDelete: Cascade)\n  reservations       Reservations[]\n  roomAvailabilities RoomAvailabilities[]\n  peakSeasons        PeakSeasons[]\n\n  @@map(\"rooms\")\n}\n\nmodel RoomAvailabilities {\n  id            Int      @id @default(autoincrement())\n  roomId        Int      @map(\"room_id\")\n  date          DateTime @db.Date\n  isAvailable   Boolean  @default(true) @map(\"is_available\")\n  priceOverride Decimal? @map(\"price_override\") @db.Decimal(10, 2)\n\n  room Rooms @relation(fields: [roomId], references: [id], onDelete: Cascade)\n\n  @@unique([roomId, date])\n  @@map(\"room_availabilities\")\n}\n\nmodel PeakSeasons {\n  id                Int      @id @default(autoincrement())\n  roomId            Int      @map(\"room_id\")\n  name              String   @db.VarChar(255)\n  startDate         DateTime @map(\"start_date\") @db.Date\n  endDate           DateTime @map(\"end_date\") @db.Date\n  priceIncreaseType String   @map(\"price_increase_type\") @db.VarChar(20)\n  value             Decimal  @db.Decimal(10, 2)\n  createdAt         DateTime @default(now()) @map(\"created_at\")\n\n  room         Rooms       @relation(fields: [roomId], references: [id], onDelete: Cascade)\n  Properties   Properties? @relation(fields: [propertiesId], references: [id])\n  propertiesId Int?\n\n  @@map(\"peak_seasons\")\n}\n\nmodel Reservations {\n  id             Int               @id @default(autoincrement())\n  userId         Int               @map(\"user_id\")\n  propertyId     Int               @map(\"property_id\")\n  roomId         Int               @map(\"room_id\")\n  checkIn        DateTime          @map(\"check_in\") @db.Date\n  checkOut       DateTime          @map(\"check_out\") @db.Date\n  duration       Int\n  totalPrice     Decimal           @map(\"total_price\") @db.Decimal(10, 2)\n  status         ReservationStatus @default(PENDING_PAYMENT)\n  reminderSentAt DateTime?         @map(\"reminder_sent_at\")\n  createdAt      DateTime          @default(now()) @map(\"created_at\")\n  updatedAt      DateTime          @updatedAt @map(\"updated_at\")\n\n  user          Users           @relation(fields: [userId], references: [id])\n  property      Properties      @relation(fields: [propertyId], references: [id])\n  room          Rooms           @relation(fields: [roomId], references: [id])\n  paymentProofs PaymentProofs[]\n  reviews       Reviews[]\n\n  @@map(\"reservations\")\n}\n\nmodel PaymentProofs {\n  id             Int      @id @default(autoincrement())\n  reservationId  Int      @map(\"reservation_id\")\n  image          String   @db.VarChar(255)\n  isValid        Boolean  @default(false) @map(\"is_valid\")\n  rejectedReason String?  @map(\"rejected_reason\") @db.Text\n  uploadedAt     DateTime @default(now()) @map(\"uploaded_at\")\n  updatedAt      DateTime @updatedAt @map(\"updated_at\")\n\n  reservation Reservations @relation(fields: [reservationId], references: [id], onDelete: Cascade)\n\n  @@map(\"payment_proofs\")\n}\n\nmodel Reviews {\n  id            Int      @id @default(autoincrement())\n  userId        Int      @map(\"user_id\")\n  propertyId    Int      @map(\"property_id\")\n  reservationId Int      @map(\"reservation_id\")\n  rating        Int\n  comment       String   @db.Text\n  createdAt     DateTime @default(now()) @map(\"created_at\")\n\n  user        Users        @relation(fields: [userId], references: [id])\n  property    Properties   @relation(fields: [propertyId], references: [id])\n  reservation Reservations @relation(fields: [reservationId], references: [id])\n\n  @@unique([userId, reservationId])\n  @@map(\"reviews\")\n}\n",
+  "inlineSchemaHash": "2e048250a0eba8b2701541fc75416b67af99d718f83dfd1405c7140f184e4e96",
+  "copyEngine": true
+}
+config.dirname = '/'
+
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Users\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"provider\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"providerId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isVerified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"avatar\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"tenantProfile\",\"kind\":\"object\",\"type\":\"TenantProfile\",\"relationName\":\"TenantProfileToUsers\"},{\"name\":\"properties\",\"kind\":\"object\",\"type\":\"Properties\",\"relationName\":\"PropertiesToUsers\"},{\"name\":\"propertyCategories\",\"kind\":\"object\",\"type\":\"PropertyCategories\",\"relationName\":\"PropertyCategoriesToUsers\"},{\"name\":\"reservations\",\"kind\":\"object\",\"type\":\"Reservations\",\"relationName\":\"ReservationsToUsers\"},{\"name\":\"reviews\",\"kind\":\"object\",\"type\":\"Reviews\",\"relationName\":\"ReviewsToUsers\"},{\"name\":\"emailVerifications\",\"kind\":\"object\",\"type\":\"EmailVerifications\",\"relationName\":\"EmailVerificationsToUsers\"},{\"name\":\"resetPasswords\",\"kind\":\"object\",\"type\":\"ResetPasswords\",\"relationName\":\"ResetPasswordsToUsers\"},{\"name\":\"socialLogins\",\"kind\":\"object\",\"type\":\"SocialLogins\",\"relationName\":\"SocialLoginsToUsers\"}],\"dbName\":\"users\"},\"TenantProfile\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"companyName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"TenantProfileToUsers\"}],\"dbName\":\"tenant_profiles\"},\"SocialLogins\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"user_id\"},{\"name\":\"provider\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"providerId\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"provider_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"SocialLoginsToUsers\"}],\"dbName\":\"social_logins\"},\"EmailVerifications\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"user_id\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"expires_at\"},{\"name\":\"used\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"EmailVerificationsToUsers\"}],\"dbName\":\"email_verifications\"},\"ResetPasswords\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"user_id\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"expires_at\"},{\"name\":\"used\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"ResetPasswordsToUsers\"}],\"dbName\":\"reset_passwords\"},\"PropertyCategories\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"tenantId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"tenant_id\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tenant\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"PropertyCategoriesToUsers\"},{\"name\":\"properties\",\"kind\":\"object\",\"type\":\"Properties\",\"relationName\":\"PropertiesToPropertyCategories\"}],\"dbName\":\"property_categories\"},\"Properties\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"tenantId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"tenant_id\"},{\"name\":\"categoryId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"category_id\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"picture\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"city\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lat\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"lng\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"tenant\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"PropertiesToUsers\"},{\"name\":\"category\",\"kind\":\"object\",\"type\":\"PropertyCategories\",\"relationName\":\"PropertiesToPropertyCategories\"},{\"name\":\"rooms\",\"kind\":\"object\",\"type\":\"Rooms\",\"relationName\":\"PropertiesToRooms\"},{\"name\":\"reservations\",\"kind\":\"object\",\"type\":\"Reservations\",\"relationName\":\"PropertiesToReservations\"},{\"name\":\"reviews\",\"kind\":\"object\",\"type\":\"Reviews\",\"relationName\":\"PropertiesToReviews\"},{\"name\":\"peakSeasons\",\"kind\":\"object\",\"type\":\"PeakSeasons\",\"relationName\":\"PeakSeasonsToProperties\"}],\"dbName\":\"properties\"},\"Rooms\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"propertyId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"property_id\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"basePrice\",\"kind\":\"scalar\",\"type\":\"Decimal\",\"dbName\":\"base_price\"},{\"name\":\"maxGuests\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"max_guests\"},{\"name\":\"picture\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"property\",\"kind\":\"object\",\"type\":\"Properties\",\"relationName\":\"PropertiesToRooms\"},{\"name\":\"reservations\",\"kind\":\"object\",\"type\":\"Reservations\",\"relationName\":\"ReservationsToRooms\"},{\"name\":\"roomAvailabilities\",\"kind\":\"object\",\"type\":\"RoomAvailabilities\",\"relationName\":\"RoomAvailabilitiesToRooms\"},{\"name\":\"peakSeasons\",\"kind\":\"object\",\"type\":\"PeakSeasons\",\"relationName\":\"PeakSeasonsToRooms\"}],\"dbName\":\"rooms\"},\"RoomAvailabilities\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"roomId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"room_id\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"isAvailable\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"is_available\"},{\"name\":\"priceOverride\",\"kind\":\"scalar\",\"type\":\"Decimal\",\"dbName\":\"price_override\"},{\"name\":\"room\",\"kind\":\"object\",\"type\":\"Rooms\",\"relationName\":\"RoomAvailabilitiesToRooms\"}],\"dbName\":\"room_availabilities\"},\"PeakSeasons\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"roomId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"room_id\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"startDate\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"start_date\"},{\"name\":\"endDate\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"end_date\"},{\"name\":\"priceIncreaseType\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"price_increase_type\"},{\"name\":\"value\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"room\",\"kind\":\"object\",\"type\":\"Rooms\",\"relationName\":\"PeakSeasonsToRooms\"},{\"name\":\"Properties\",\"kind\":\"object\",\"type\":\"Properties\",\"relationName\":\"PeakSeasonsToProperties\"},{\"name\":\"propertiesId\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":\"peak_seasons\"},\"Reservations\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"user_id\"},{\"name\":\"propertyId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"property_id\"},{\"name\":\"roomId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"room_id\"},{\"name\":\"checkIn\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"check_in\"},{\"name\":\"checkOut\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"check_out\"},{\"name\":\"duration\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"totalPrice\",\"kind\":\"scalar\",\"type\":\"Decimal\",\"dbName\":\"total_price\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"ReservationStatus\"},{\"name\":\"reminderSentAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"reminder_sent_at\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"ReservationsToUsers\"},{\"name\":\"property\",\"kind\":\"object\",\"type\":\"Properties\",\"relationName\":\"PropertiesToReservations\"},{\"name\":\"room\",\"kind\":\"object\",\"type\":\"Rooms\",\"relationName\":\"ReservationsToRooms\"},{\"name\":\"paymentProofs\",\"kind\":\"object\",\"type\":\"PaymentProofs\",\"relationName\":\"PaymentProofsToReservations\"},{\"name\":\"reviews\",\"kind\":\"object\",\"type\":\"Reviews\",\"relationName\":\"ReservationsToReviews\"}],\"dbName\":\"reservations\"},\"PaymentProofs\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"reservationId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"reservation_id\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isValid\",\"kind\":\"scalar\",\"type\":\"Boolean\",\"dbName\":\"is_valid\"},{\"name\":\"rejectedReason\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"rejected_reason\"},{\"name\":\"uploadedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"uploaded_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"reservation\",\"kind\":\"object\",\"type\":\"Reservations\",\"relationName\":\"PaymentProofsToReservations\"}],\"dbName\":\"payment_proofs\"},\"Reviews\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"user_id\"},{\"name\":\"propertyId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"property_id\"},{\"name\":\"reservationId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"reservation_id\"},{\"name\":\"rating\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"comment\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"Users\",\"relationName\":\"ReviewsToUsers\"},{\"name\":\"property\",\"kind\":\"object\",\"type\":\"Properties\",\"relationName\":\"PropertiesToReviews\"},{\"name\":\"reservation\",\"kind\":\"object\",\"type\":\"Reservations\",\"relationName\":\"ReservationsToReviews\"}],\"dbName\":\"reviews\"}},\"enums\":{},\"types\":{}}")
+defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
+config.engineWasm = {
+  getRuntime: async () => require('./query_engine_bg.js'),
+  getQueryEngineWasmModule: async () => {
+    const loader = (await import('#wasm-engine-loader')).default
+    const engine = (await loader).default
+    return engine
   }
 }
+config.compilerWasm = undefined
 
+config.injectableEdgeEnv = () => ({
+  parsed: {
+    DATABASE_URL: typeof globalThis !== 'undefined' && globalThis['DATABASE_URL'] || typeof process !== 'undefined' && process.env && process.env.DATABASE_URL || undefined
+  }
+})
+
+if (typeof globalThis !== 'undefined' && globalThis['DEBUG'] || typeof process !== 'undefined' && process.env && process.env.DEBUG || undefined) {
+  Debug.enable(typeof globalThis !== 'undefined' && globalThis['DEBUG'] || typeof process !== 'undefined' && process.env && process.env.DEBUG || undefined)
+}
+
+const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
-
 Object.assign(exports, Prisma)
+
