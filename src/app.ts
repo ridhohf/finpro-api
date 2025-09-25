@@ -75,8 +75,6 @@ export default class App {
     });
 
     // Transaction Status Management Endpoints
-
-    // Tenant confirm payment proof
     this.app.put(
       '/api/transactions/:id/confirm',
       async (req: Request, res: Response) => {
@@ -90,14 +88,11 @@ export default class App {
           const { PrismaClient } = require('./generated/prisma');
           const prisma = new PrismaClient();
 
-          // Check if transaction exists and has correct status
           const transaction = await prisma.reservations.findUnique({
             where: { id: transactionId },
             include: {
               paymentProofs: true,
-              property: {
-                select: { tenantId: true },
-              },
+              property: { select: { tenantId: true } },
             },
           });
 
@@ -126,13 +121,11 @@ export default class App {
             });
           }
 
-          // Update payment proof as valid
           await prisma.paymentProofs.updateMany({
             where: { reservationId: transactionId },
             data: { isValid: true },
           });
 
-          // Update transaction status to CONFIRMED
           const updatedTransaction = await prisma.reservations.update({
             where: { id: transactionId },
             data: { status: 'CONFIRMED' },
@@ -160,13 +153,12 @@ export default class App {
       }
     );
 
-    // Tenant reject payment proof
     this.app.put(
       '/api/transactions/:id/reject',
       async (req: Request, res: Response) => {
         try {
           const { id } = req.params;
-          const { reason } = req.body; // Optional rejection reason
+          const { reason } = req.body;
           const transactionId = parseInt(id);
 
           console.log('=== Reject payment endpoint hit ===');
@@ -176,14 +168,11 @@ export default class App {
           const { PrismaClient } = require('./generated/prisma');
           const prisma = new PrismaClient();
 
-          // Check if transaction exists and has correct status
           const transaction = await prisma.reservations.findUnique({
             where: { id: transactionId },
             include: {
               paymentProofs: true,
-              property: {
-                select: { tenantId: true },
-              },
+              property: { select: { tenantId: true } },
             },
           });
 
@@ -212,7 +201,6 @@ export default class App {
             });
           }
 
-          // Update payment proof as invalid with rejection reason
           await prisma.paymentProofs.updateMany({
             where: { reservationId: transactionId },
             data: {
@@ -221,7 +209,6 @@ export default class App {
             },
           });
 
-          // Update transaction status back to PENDING_PAYMENT
           const updatedTransaction = await prisma.reservations.update({
             where: { id: transactionId },
             data: { status: 'PENDING_PAYMENT' },
@@ -250,13 +237,12 @@ export default class App {
       }
     );
 
-    // Cancel transaction
     this.app.put(
       '/api/transactions/:id/cancel',
       async (req: Request, res: Response) => {
         try {
           const { id } = req.params;
-          const { reason } = req.body; // Optional cancellation reason
+          const { reason } = req.body;
           const transactionId = parseInt(id);
 
           console.log('=== Cancel transaction endpoint hit ===');
@@ -266,7 +252,6 @@ export default class App {
           const { PrismaClient } = require('./generated/prisma');
           const prisma = new PrismaClient();
 
-          // Check if transaction exists
           const transaction = await prisma.reservations.findUnique({
             where: { id: transactionId },
           });
@@ -279,7 +264,6 @@ export default class App {
             });
           }
 
-          // Check if transaction can be cancelled
           const cancellableStatuses = [
             'PENDING_PAYMENT',
             'PENDING_CONFIRMATION',
@@ -292,13 +276,11 @@ export default class App {
             });
           }
 
-          // Update transaction status to CANCELLED
           const updatedTransaction = await prisma.reservations.update({
             where: { id: transactionId },
             data: { status: 'CANCELLED' },
           });
 
-          // Optional: Mark payment proofs as invalid if they exist
           await prisma.paymentProofs.updateMany({
             where: { reservationId: transactionId },
             data: {
@@ -321,6 +303,288 @@ export default class App {
           });
         } catch (error) {
           console.error('Error cancelling transaction:', error);
+          res.status(500).json({
+            success: false,
+            error:
+              error instanceof Error ? error.message : 'Something went wrong',
+          });
+        }
+      }
+    );
+
+    // Review System Endpoints
+    this.app.post(
+      '/api/transactions/:id/review',
+      async (req: Request, res: Response) => {
+        try {
+          const { id } = req.params;
+          const { rating, comment } = req.body;
+          const transactionId = parseInt(id);
+
+          console.log('=== Submit review endpoint hit ===');
+          console.log('Transaction ID:', transactionId);
+          console.log('Review data:', { rating, comment });
+
+          if (!rating || !comment) {
+            return res.status(400).json({
+              success: false,
+              message: 'Rating and comment are required',
+            });
+          }
+
+          if (rating < 1 || rating > 5) {
+            return res.status(400).json({
+              success: false,
+              message: 'Rating must be between 1 and 5',
+            });
+          }
+
+          const { PrismaClient } = require('./generated/prisma');
+          const prisma = new PrismaClient();
+
+          const transaction = await prisma.reservations.findUnique({
+            where: { id: transactionId },
+            include: {
+              property: true,
+              user: { select: { id: true, name: true } },
+            },
+          });
+
+          if (!transaction) {
+            await prisma.$disconnect();
+            return res.status(404).json({
+              success: false,
+              message: 'Transaction not found',
+            });
+          }
+
+          if (transaction.status !== 'CONFIRMED') {
+            await prisma.$disconnect();
+            return res.status(400).json({
+              success: false,
+              message: 'Reviews can only be submitted for confirmed bookings',
+            });
+          }
+
+          const checkOutDate = new Date(transaction.checkOut);
+          const today = new Date();
+
+          if (today < checkOutDate) {
+            await prisma.$disconnect();
+            return res.status(400).json({
+              success: false,
+              message: 'Reviews can only be submitted after checkout date',
+            });
+          }
+
+          const existingReview = await prisma.reviews.findFirst({
+            where: {
+              reservationId: transactionId,
+              userId: transaction.userId,
+            },
+          });
+
+          if (existingReview) {
+            await prisma.$disconnect();
+            return res.status(400).json({
+              success: false,
+              message: 'Review has already been submitted for this booking',
+            });
+          }
+
+          const review = await prisma.reviews.create({
+            data: {
+              userId: transaction.userId,
+              propertyId: transaction.propertyId,
+              reservationId: transactionId,
+              rating: parseInt(rating),
+              comment: comment.trim(),
+            },
+            include: {
+              user: { select: { name: true } },
+              property: { select: { name: true } },
+            },
+          });
+
+          await prisma.$disconnect();
+
+          res.status(201).json({
+            success: true,
+            message: 'Review submitted successfully',
+            data: {
+              review: {
+                id: review.id,
+                rating: review.rating,
+                comment: review.comment,
+                reviewDate: review.createdAt,
+                user: review.user.name,
+                property: review.property.name,
+                transactionId: transactionId,
+              },
+            },
+          });
+        } catch (error) {
+          console.error('Error submitting review:', error);
+          res.status(500).json({
+            success: false,
+            error:
+              error instanceof Error ? error.message : 'Something went wrong',
+          });
+        }
+      }
+    );
+
+    this.app.put(
+      '/api/reviews/:id/reply',
+      async (req: Request, res: Response) => {
+        try {
+          const { id } = req.params;
+          const { reply } = req.body;
+          const reviewId = parseInt(id);
+
+          console.log('=== Reply to review endpoint hit ===');
+          console.log('Review ID:', reviewId);
+          console.log('Reply:', reply);
+
+          if (!reply || reply.trim().length === 0) {
+            return res.status(400).json({
+              success: false,
+              message: 'Reply message is required',
+            });
+          }
+
+          const { PrismaClient } = require('./generated/prisma');
+          const prisma = new PrismaClient();
+
+          const review = await prisma.reviews.findUnique({
+            where: { id: reviewId },
+            include: {
+              property: {
+                select: {
+                  name: true,
+                  tenantId: true,
+                  tenant: { select: { name: true } },
+                },
+              },
+              user: { select: { name: true } },
+            },
+          });
+
+          if (!review) {
+            await prisma.$disconnect();
+            return res.status(404).json({
+              success: false,
+              message: 'Review not found',
+            });
+          }
+
+          if (review.tenantReply) {
+            await prisma.$disconnect();
+            return res.status(400).json({
+              success: false,
+              message: 'Reply has already been submitted for this review',
+            });
+          }
+
+          const updatedReview = await prisma.reviews.update({
+            where: { id: reviewId },
+            data: {
+              tenantReply: reply.trim(),
+              updatedAt: new Date(),
+            },
+            include: {
+              user: { select: { name: true } },
+              property: {
+                select: {
+                  name: true,
+                  tenant: { select: { name: true } },
+                },
+              },
+            },
+          });
+
+          await prisma.$disconnect();
+
+          res.json({
+            success: true,
+            message: 'Reply submitted successfully',
+            data: {
+              review: {
+                id: updatedReview.id,
+                rating: updatedReview.rating,
+                comment: updatedReview.comment,
+                reviewDate: updatedReview.createdAt,
+                tenantReply: updatedReview.tenantReply,
+                replyDate: updatedReview.updatedAt,
+                user: updatedReview.user.name,
+                property: updatedReview.property.name,
+                tenant: updatedReview.property.tenant.name,
+              },
+            },
+          });
+        } catch (error) {
+          console.error('Error replying to review:', error);
+          res.status(500).json({
+            success: false,
+            error:
+              error instanceof Error ? error.message : 'Something went wrong',
+          });
+        }
+      }
+    );
+
+    this.app.get(
+      '/api/properties/:id/reviews',
+      async (req: Request, res: Response) => {
+        try {
+          const { id } = req.params;
+          const propertyId = parseInt(id);
+
+          console.log('=== Get property reviews endpoint hit ===');
+          console.log('Property ID:', propertyId);
+
+          const { PrismaClient } = require('./generated/prisma');
+          const prisma = new PrismaClient();
+
+          const reviews = await prisma.reviews.findMany({
+            where: { propertyId: propertyId },
+            include: {
+              user: { select: { name: true } },
+              property: { select: { name: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+          });
+
+          await prisma.$disconnect();
+
+          const averageRating =
+            reviews.length > 0
+              ? reviews.reduce(
+                  (sum: number, review: any) => sum + review.rating,
+                  0
+                ) / reviews.length
+              : 0;
+
+          res.json({
+            success: true,
+            message: 'Property reviews retrieved successfully',
+            data: {
+              propertyId: propertyId,
+              averageRating: Math.round(averageRating * 10) / 10,
+              totalReviews: reviews.length,
+              reviews: reviews.map((review: any) => ({
+                id: review.id,
+                rating: review.rating,
+                comment: review.comment,
+                reviewDate: review.createdAt,
+                tenantReply: review.tenantReply,
+                replyDate: review.updatedAt,
+                user: review.user.name,
+              })),
+            },
+          });
+        } catch (error) {
+          console.error('Error getting property reviews:', error);
           res.status(500).json({
             success: false,
             error:
@@ -362,11 +626,7 @@ export default class App {
         res.json({
           success: true,
           message: 'Data retrieved successfully',
-          data: {
-            users,
-            properties,
-            rooms,
-          },
+          data: { users, properties, rooms },
         });
       } catch (error) {
         console.error('Error checking data:', error);
@@ -473,13 +733,9 @@ export default class App {
         const { roomId, checkIn, checkOut, duration } = req.body;
         console.log('Parsed data:', { roomId, checkIn, checkOut, duration });
 
-        // Import Prisma client
-        console.log('Importing Prisma client...');
         const { PrismaClient } = require('./generated/prisma');
         const prisma = new PrismaClient();
-        console.log('Prisma client created');
 
-        // Get first available user with role 'user'
         const user = await prisma.users.findFirst({
           where: { role: 'user' },
         });
@@ -491,7 +747,6 @@ export default class App {
           });
         }
 
-        // Get first available property
         const property = await prisma.properties.findFirst();
 
         if (!property) {
@@ -517,7 +772,6 @@ export default class App {
         console.log('Reservation created:', reservation);
 
         await prisma.$disconnect();
-        console.log('Prisma disconnected');
 
         res.status(201).json({
           success: true,
@@ -594,14 +848,10 @@ export default class App {
                   city: true,
                   description: true,
                   picture: true,
-                  tenant: {
-                    select: { name: true, email: true },
-                  },
+                  tenant: { select: { name: true, email: true } },
                 },
               },
-              user: {
-                select: { name: true, email: true },
-              },
+              user: { select: { name: true, email: true } },
               paymentProofs: {
                 select: {
                   id: true,
@@ -661,7 +911,6 @@ export default class App {
           const { PrismaClient } = require('./generated/prisma');
           const prisma = new PrismaClient();
 
-          // Check if transaction exists and has correct status
           const transaction = await prisma.reservations.findUnique({
             where: { id: transactionId },
           });
@@ -681,12 +930,10 @@ export default class App {
             });
           }
 
-          // Check if payment is still within 1 hour limit (as per requirement)
           const createdAt = new Date(transaction.createdAt);
           const oneHourLater = new Date(createdAt.getTime() + 60 * 60 * 1000);
 
           if (new Date() > oneHourLater) {
-            // Auto-cancel expired transaction
             await prisma.reservations.update({
               where: { id: transactionId },
               data: { status: 'CANCELLED' },
@@ -699,21 +946,18 @@ export default class App {
             });
           }
 
-          // Delete existing payment proof if any
           await prisma.paymentProofs.deleteMany({
             where: { reservationId: transactionId },
           });
 
-          // Create new payment proof record
           const paymentProof = await prisma.paymentProofs.create({
             data: {
               reservationId: transactionId,
-              image: req.file.path, // Cloudinary URL
-              isValid: false, // Will be validated by tenant
+              image: req.file.path,
+              isValid: false,
             },
           });
 
-          // Update transaction status to PENDING_CONFIRMATION
           await prisma.reservations.update({
             where: { id: transactionId },
             data: { status: 'PENDING_CONFIRMATION' },
@@ -734,7 +978,6 @@ export default class App {
           console.error('=== ERROR in payment proof upload ===');
           console.error('Error details:', error);
 
-          // Handle specific multer errors
           if (
             error instanceof Error &&
             error.message.includes(
