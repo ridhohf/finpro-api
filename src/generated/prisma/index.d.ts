@@ -2091,14 +2091,12 @@ export namespace Prisma {
     rooms: number
     reservations: number
     reviews: number
-    peakSeasons: number
   }
 
   export type PropertiesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     rooms?: boolean | PropertiesCountOutputTypeCountRoomsArgs
     reservations?: boolean | PropertiesCountOutputTypeCountReservationsArgs
     reviews?: boolean | PropertiesCountOutputTypeCountReviewsArgs
-    peakSeasons?: boolean | PropertiesCountOutputTypeCountPeakSeasonsArgs
   }
 
   // Custom InputTypes
@@ -2131,13 +2129,6 @@ export namespace Prisma {
    */
   export type PropertiesCountOutputTypeCountReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReviewsWhereInput
-  }
-
-  /**
-   * PropertiesCountOutputType without action
-   */
-  export type PropertiesCountOutputTypeCountPeakSeasonsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PeakSeasonsWhereInput
   }
 
 
@@ -9164,7 +9155,6 @@ export namespace Prisma {
     categoryId: number | null
     name: string | null
     description: string | null
-    picture: string | null
     address: string | null
     city: string | null
     lat: Decimal | null
@@ -9179,7 +9169,6 @@ export namespace Prisma {
     categoryId: number | null
     name: string | null
     description: string | null
-    picture: string | null
     address: string | null
     city: string | null
     lat: Decimal | null
@@ -9227,7 +9216,6 @@ export namespace Prisma {
     categoryId?: true
     name?: true
     description?: true
-    picture?: true
     address?: true
     city?: true
     lat?: true
@@ -9242,7 +9230,6 @@ export namespace Prisma {
     categoryId?: true
     name?: true
     description?: true
-    picture?: true
     address?: true
     city?: true
     lat?: true
@@ -9359,7 +9346,7 @@ export namespace Prisma {
     categoryId: number
     name: string
     description: string
-    picture: string
+    picture: JsonValue
     address: string
     city: string
     lat: Decimal | null
@@ -9405,7 +9392,6 @@ export namespace Prisma {
     rooms?: boolean | Properties$roomsArgs<ExtArgs>
     reservations?: boolean | Properties$reservationsArgs<ExtArgs>
     reviews?: boolean | Properties$reviewsArgs<ExtArgs>
-    peakSeasons?: boolean | Properties$peakSeasonsArgs<ExtArgs>
     _count?: boolean | PropertiesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["properties"]>
 
@@ -9465,7 +9451,6 @@ export namespace Prisma {
     rooms?: boolean | Properties$roomsArgs<ExtArgs>
     reservations?: boolean | Properties$reservationsArgs<ExtArgs>
     reviews?: boolean | Properties$reviewsArgs<ExtArgs>
-    peakSeasons?: boolean | Properties$peakSeasonsArgs<ExtArgs>
     _count?: boolean | PropertiesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PropertiesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9485,7 +9470,6 @@ export namespace Prisma {
       rooms: Prisma.$RoomsPayload<ExtArgs>[]
       reservations: Prisma.$ReservationsPayload<ExtArgs>[]
       reviews: Prisma.$ReviewsPayload<ExtArgs>[]
-      peakSeasons: Prisma.$PeakSeasonsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -9493,7 +9477,7 @@ export namespace Prisma {
       categoryId: number
       name: string
       description: string
-      picture: string
+      picture: Prisma.JsonValue
       address: string
       city: string
       lat: Prisma.Decimal | null
@@ -9899,7 +9883,6 @@ export namespace Prisma {
     rooms<T extends Properties$roomsArgs<ExtArgs> = {}>(args?: Subset<T, Properties$roomsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reservations<T extends Properties$reservationsArgs<ExtArgs> = {}>(args?: Subset<T, Properties$reservationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reviews<T extends Properties$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Properties$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    peakSeasons<T extends Properties$peakSeasonsArgs<ExtArgs> = {}>(args?: Subset<T, Properties$peakSeasonsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PeakSeasonsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9934,7 +9917,7 @@ export namespace Prisma {
     readonly categoryId: FieldRef<"Properties", 'Int'>
     readonly name: FieldRef<"Properties", 'String'>
     readonly description: FieldRef<"Properties", 'String'>
-    readonly picture: FieldRef<"Properties", 'String'>
+    readonly picture: FieldRef<"Properties", 'Json'>
     readonly address: FieldRef<"Properties", 'String'>
     readonly city: FieldRef<"Properties", 'String'>
     readonly lat: FieldRef<"Properties", 'Decimal'>
@@ -10409,30 +10392,6 @@ export namespace Prisma {
   }
 
   /**
-   * Properties.peakSeasons
-   */
-  export type Properties$peakSeasonsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PeakSeasons
-     */
-    select?: PeakSeasonsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PeakSeasons
-     */
-    omit?: PeakSeasonsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PeakSeasonsInclude<ExtArgs> | null
-    where?: PeakSeasonsWhereInput
-    orderBy?: PeakSeasonsOrderByWithRelationInput | PeakSeasonsOrderByWithRelationInput[]
-    cursor?: PeakSeasonsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PeakSeasonsScalarFieldEnum | PeakSeasonsScalarFieldEnum[]
-  }
-
-  /**
    * Properties without action
    */
   export type PropertiesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10484,7 +10443,6 @@ export namespace Prisma {
     description: string | null
     basePrice: Decimal | null
     maxGuests: number | null
-    picture: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -10496,7 +10454,6 @@ export namespace Prisma {
     description: string | null
     basePrice: Decimal | null
     maxGuests: number | null
-    picture: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -10536,7 +10493,6 @@ export namespace Prisma {
     description?: true
     basePrice?: true
     maxGuests?: true
-    picture?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -10548,7 +10504,6 @@ export namespace Prisma {
     description?: true
     basePrice?: true
     maxGuests?: true
-    picture?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -10659,7 +10614,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal
     maxGuests: number
-    picture: string | null
+    picture: JsonValue
     createdAt: Date
     updatedAt: Date
     _count: RoomsCountAggregateOutputType | null
@@ -10768,7 +10723,7 @@ export namespace Prisma {
       description: string
       basePrice: Prisma.Decimal
       maxGuests: number
-      picture: string | null
+      picture: Prisma.JsonValue
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["rooms"]>
@@ -11204,7 +11159,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Rooms", 'String'>
     readonly basePrice: FieldRef<"Rooms", 'Decimal'>
     readonly maxGuests: FieldRef<"Rooms", 'Int'>
-    readonly picture: FieldRef<"Rooms", 'String'>
+    readonly picture: FieldRef<"Rooms", 'Json'>
     readonly createdAt: FieldRef<"Rooms", 'DateTime'>
     readonly updatedAt: FieldRef<"Rooms", 'DateTime'>
   }
@@ -12809,14 +12764,12 @@ export namespace Prisma {
     id: number | null
     roomId: number | null
     value: Decimal | null
-    propertiesId: number | null
   }
 
   export type PeakSeasonsSumAggregateOutputType = {
     id: number | null
     roomId: number | null
     value: Decimal | null
-    propertiesId: number | null
   }
 
   export type PeakSeasonsMinAggregateOutputType = {
@@ -12828,7 +12781,6 @@ export namespace Prisma {
     priceIncreaseType: string | null
     value: Decimal | null
     createdAt: Date | null
-    propertiesId: number | null
   }
 
   export type PeakSeasonsMaxAggregateOutputType = {
@@ -12840,7 +12792,6 @@ export namespace Prisma {
     priceIncreaseType: string | null
     value: Decimal | null
     createdAt: Date | null
-    propertiesId: number | null
   }
 
   export type PeakSeasonsCountAggregateOutputType = {
@@ -12852,7 +12803,6 @@ export namespace Prisma {
     priceIncreaseType: number
     value: number
     createdAt: number
-    propertiesId: number
     _all: number
   }
 
@@ -12861,14 +12811,12 @@ export namespace Prisma {
     id?: true
     roomId?: true
     value?: true
-    propertiesId?: true
   }
 
   export type PeakSeasonsSumAggregateInputType = {
     id?: true
     roomId?: true
     value?: true
-    propertiesId?: true
   }
 
   export type PeakSeasonsMinAggregateInputType = {
@@ -12880,7 +12828,6 @@ export namespace Prisma {
     priceIncreaseType?: true
     value?: true
     createdAt?: true
-    propertiesId?: true
   }
 
   export type PeakSeasonsMaxAggregateInputType = {
@@ -12892,7 +12839,6 @@ export namespace Prisma {
     priceIncreaseType?: true
     value?: true
     createdAt?: true
-    propertiesId?: true
   }
 
   export type PeakSeasonsCountAggregateInputType = {
@@ -12904,7 +12850,6 @@ export namespace Prisma {
     priceIncreaseType?: true
     value?: true
     createdAt?: true
-    propertiesId?: true
     _all?: true
   }
 
@@ -13003,7 +12948,6 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal
     createdAt: Date
-    propertiesId: number | null
     _count: PeakSeasonsCountAggregateOutputType | null
     _avg: PeakSeasonsAvgAggregateOutputType | null
     _sum: PeakSeasonsSumAggregateOutputType | null
@@ -13034,9 +12978,7 @@ export namespace Prisma {
     priceIncreaseType?: boolean
     value?: boolean
     createdAt?: boolean
-    propertiesId?: boolean
     room?: boolean | RoomsDefaultArgs<ExtArgs>
-    Properties?: boolean | PeakSeasons$PropertiesArgs<ExtArgs>
   }, ExtArgs["result"]["peakSeasons"]>
 
   export type PeakSeasonsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13048,9 +12990,7 @@ export namespace Prisma {
     priceIncreaseType?: boolean
     value?: boolean
     createdAt?: boolean
-    propertiesId?: boolean
     room?: boolean | RoomsDefaultArgs<ExtArgs>
-    Properties?: boolean | PeakSeasons$PropertiesArgs<ExtArgs>
   }, ExtArgs["result"]["peakSeasons"]>
 
   export type PeakSeasonsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13062,9 +13002,7 @@ export namespace Prisma {
     priceIncreaseType?: boolean
     value?: boolean
     createdAt?: boolean
-    propertiesId?: boolean
     room?: boolean | RoomsDefaultArgs<ExtArgs>
-    Properties?: boolean | PeakSeasons$PropertiesArgs<ExtArgs>
   }, ExtArgs["result"]["peakSeasons"]>
 
   export type PeakSeasonsSelectScalar = {
@@ -13076,28 +13014,23 @@ export namespace Prisma {
     priceIncreaseType?: boolean
     value?: boolean
     createdAt?: boolean
-    propertiesId?: boolean
   }
 
-  export type PeakSeasonsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "roomId" | "name" | "startDate" | "endDate" | "priceIncreaseType" | "value" | "createdAt" | "propertiesId", ExtArgs["result"]["peakSeasons"]>
+  export type PeakSeasonsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "roomId" | "name" | "startDate" | "endDate" | "priceIncreaseType" | "value" | "createdAt", ExtArgs["result"]["peakSeasons"]>
   export type PeakSeasonsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     room?: boolean | RoomsDefaultArgs<ExtArgs>
-    Properties?: boolean | PeakSeasons$PropertiesArgs<ExtArgs>
   }
   export type PeakSeasonsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     room?: boolean | RoomsDefaultArgs<ExtArgs>
-    Properties?: boolean | PeakSeasons$PropertiesArgs<ExtArgs>
   }
   export type PeakSeasonsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     room?: boolean | RoomsDefaultArgs<ExtArgs>
-    Properties?: boolean | PeakSeasons$PropertiesArgs<ExtArgs>
   }
 
   export type $PeakSeasonsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PeakSeasons"
     objects: {
       room: Prisma.$RoomsPayload<ExtArgs>
-      Properties: Prisma.$PropertiesPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -13108,7 +13041,6 @@ export namespace Prisma {
       priceIncreaseType: string
       value: Prisma.Decimal
       createdAt: Date
-      propertiesId: number | null
     }, ExtArgs["result"]["peakSeasons"]>
     composites: {}
   }
@@ -13504,7 +13436,6 @@ export namespace Prisma {
   export interface Prisma__PeakSeasonsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     room<T extends RoomsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoomsDefaultArgs<ExtArgs>>): Prisma__RoomsClient<$Result.GetResult<Prisma.$RoomsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Properties<T extends PeakSeasons$PropertiesArgs<ExtArgs> = {}>(args?: Subset<T, PeakSeasons$PropertiesArgs<ExtArgs>>): Prisma__PropertiesClient<$Result.GetResult<Prisma.$PropertiesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13542,7 +13473,6 @@ export namespace Prisma {
     readonly priceIncreaseType: FieldRef<"PeakSeasons", 'String'>
     readonly value: FieldRef<"PeakSeasons", 'Decimal'>
     readonly createdAt: FieldRef<"PeakSeasons", 'DateTime'>
-    readonly propertiesId: FieldRef<"PeakSeasons", 'Int'>
   }
     
 
@@ -13936,25 +13866,6 @@ export namespace Prisma {
      * Limit how many PeakSeasons to delete.
      */
     limit?: number
-  }
-
-  /**
-   * PeakSeasons.Properties
-   */
-  export type PeakSeasons$PropertiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Properties
-     */
-    select?: PropertiesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Properties
-     */
-    omit?: PropertiesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PropertiesInclude<ExtArgs> | null
-    where?: PropertiesWhereInput
   }
 
   /**
@@ -17664,8 +17575,7 @@ export namespace Prisma {
     endDate: 'endDate',
     priceIncreaseType: 'priceIncreaseType',
     value: 'value',
-    createdAt: 'createdAt',
-    propertiesId: 'propertiesId'
+    createdAt: 'createdAt'
   };
 
   export type PeakSeasonsScalarFieldEnum = (typeof PeakSeasonsScalarFieldEnum)[keyof typeof PeakSeasonsScalarFieldEnum]
@@ -17723,6 +17633,13 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -17737,6 +17654,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -17790,6 +17716,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -18249,7 +18189,7 @@ export namespace Prisma {
     categoryId?: IntFilter<"Properties"> | number
     name?: StringFilter<"Properties"> | string
     description?: StringFilter<"Properties"> | string
-    picture?: StringFilter<"Properties"> | string
+    picture?: JsonFilter<"Properties">
     address?: StringFilter<"Properties"> | string
     city?: StringFilter<"Properties"> | string
     lat?: DecimalNullableFilter<"Properties"> | Decimal | DecimalJsLike | number | string | null
@@ -18261,7 +18201,6 @@ export namespace Prisma {
     rooms?: RoomsListRelationFilter
     reservations?: ReservationsListRelationFilter
     reviews?: ReviewsListRelationFilter
-    peakSeasons?: PeakSeasonsListRelationFilter
   }
 
   export type PropertiesOrderByWithRelationInput = {
@@ -18282,7 +18221,6 @@ export namespace Prisma {
     rooms?: RoomsOrderByRelationAggregateInput
     reservations?: ReservationsOrderByRelationAggregateInput
     reviews?: ReviewsOrderByRelationAggregateInput
-    peakSeasons?: PeakSeasonsOrderByRelationAggregateInput
   }
 
   export type PropertiesWhereUniqueInput = Prisma.AtLeast<{
@@ -18294,7 +18232,7 @@ export namespace Prisma {
     categoryId?: IntFilter<"Properties"> | number
     name?: StringFilter<"Properties"> | string
     description?: StringFilter<"Properties"> | string
-    picture?: StringFilter<"Properties"> | string
+    picture?: JsonFilter<"Properties">
     address?: StringFilter<"Properties"> | string
     city?: StringFilter<"Properties"> | string
     lat?: DecimalNullableFilter<"Properties"> | Decimal | DecimalJsLike | number | string | null
@@ -18306,7 +18244,6 @@ export namespace Prisma {
     rooms?: RoomsListRelationFilter
     reservations?: ReservationsListRelationFilter
     reviews?: ReviewsListRelationFilter
-    peakSeasons?: PeakSeasonsListRelationFilter
   }, "id">
 
   export type PropertiesOrderByWithAggregationInput = {
@@ -18338,7 +18275,7 @@ export namespace Prisma {
     categoryId?: IntWithAggregatesFilter<"Properties"> | number
     name?: StringWithAggregatesFilter<"Properties"> | string
     description?: StringWithAggregatesFilter<"Properties"> | string
-    picture?: StringWithAggregatesFilter<"Properties"> | string
+    picture?: JsonWithAggregatesFilter<"Properties">
     address?: StringWithAggregatesFilter<"Properties"> | string
     city?: StringWithAggregatesFilter<"Properties"> | string
     lat?: DecimalNullableWithAggregatesFilter<"Properties"> | Decimal | DecimalJsLike | number | string | null
@@ -18357,7 +18294,7 @@ export namespace Prisma {
     description?: StringFilter<"Rooms"> | string
     basePrice?: DecimalFilter<"Rooms"> | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFilter<"Rooms"> | number
-    picture?: StringNullableFilter<"Rooms"> | string | null
+    picture?: JsonFilter<"Rooms">
     createdAt?: DateTimeFilter<"Rooms"> | Date | string
     updatedAt?: DateTimeFilter<"Rooms"> | Date | string
     property?: XOR<PropertiesScalarRelationFilter, PropertiesWhereInput>
@@ -18373,7 +18310,7 @@ export namespace Prisma {
     description?: SortOrder
     basePrice?: SortOrder
     maxGuests?: SortOrder
-    picture?: SortOrderInput | SortOrder
+    picture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     property?: PropertiesOrderByWithRelationInput
@@ -18392,7 +18329,7 @@ export namespace Prisma {
     description?: StringFilter<"Rooms"> | string
     basePrice?: DecimalFilter<"Rooms"> | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFilter<"Rooms"> | number
-    picture?: StringNullableFilter<"Rooms"> | string | null
+    picture?: JsonFilter<"Rooms">
     createdAt?: DateTimeFilter<"Rooms"> | Date | string
     updatedAt?: DateTimeFilter<"Rooms"> | Date | string
     property?: XOR<PropertiesScalarRelationFilter, PropertiesWhereInput>
@@ -18408,7 +18345,7 @@ export namespace Prisma {
     description?: SortOrder
     basePrice?: SortOrder
     maxGuests?: SortOrder
-    picture?: SortOrderInput | SortOrder
+    picture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: RoomsCountOrderByAggregateInput
@@ -18428,7 +18365,7 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Rooms"> | string
     basePrice?: DecimalWithAggregatesFilter<"Rooms"> | Decimal | DecimalJsLike | number | string
     maxGuests?: IntWithAggregatesFilter<"Rooms"> | number
-    picture?: StringNullableWithAggregatesFilter<"Rooms"> | string | null
+    picture?: JsonWithAggregatesFilter<"Rooms">
     createdAt?: DateTimeWithAggregatesFilter<"Rooms"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Rooms"> | Date | string
   }
@@ -18503,9 +18440,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFilter<"PeakSeasons"> | string
     value?: DecimalFilter<"PeakSeasons"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"PeakSeasons"> | Date | string
-    propertiesId?: IntNullableFilter<"PeakSeasons"> | number | null
     room?: XOR<RoomsScalarRelationFilter, RoomsWhereInput>
-    Properties?: XOR<PropertiesNullableScalarRelationFilter, PropertiesWhereInput> | null
   }
 
   export type PeakSeasonsOrderByWithRelationInput = {
@@ -18517,9 +18452,7 @@ export namespace Prisma {
     priceIncreaseType?: SortOrder
     value?: SortOrder
     createdAt?: SortOrder
-    propertiesId?: SortOrderInput | SortOrder
     room?: RoomsOrderByWithRelationInput
-    Properties?: PropertiesOrderByWithRelationInput
   }
 
   export type PeakSeasonsWhereUniqueInput = Prisma.AtLeast<{
@@ -18534,9 +18467,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFilter<"PeakSeasons"> | string
     value?: DecimalFilter<"PeakSeasons"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"PeakSeasons"> | Date | string
-    propertiesId?: IntNullableFilter<"PeakSeasons"> | number | null
     room?: XOR<RoomsScalarRelationFilter, RoomsWhereInput>
-    Properties?: XOR<PropertiesNullableScalarRelationFilter, PropertiesWhereInput> | null
   }, "id">
 
   export type PeakSeasonsOrderByWithAggregationInput = {
@@ -18548,7 +18479,6 @@ export namespace Prisma {
     priceIncreaseType?: SortOrder
     value?: SortOrder
     createdAt?: SortOrder
-    propertiesId?: SortOrderInput | SortOrder
     _count?: PeakSeasonsCountOrderByAggregateInput
     _avg?: PeakSeasonsAvgOrderByAggregateInput
     _max?: PeakSeasonsMaxOrderByAggregateInput
@@ -18568,7 +18498,6 @@ export namespace Prisma {
     priceIncreaseType?: StringWithAggregatesFilter<"PeakSeasons"> | string
     value?: DecimalWithAggregatesFilter<"PeakSeasons"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeWithAggregatesFilter<"PeakSeasons"> | Date | string
-    propertiesId?: IntNullableWithAggregatesFilter<"PeakSeasons"> | number | null
   }
 
   export type ReservationsWhereInput = {
@@ -19217,7 +19146,7 @@ export namespace Prisma {
   export type PropertiesCreateInput = {
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -19229,7 +19158,6 @@ export namespace Prisma {
     rooms?: RoomsCreateNestedManyWithoutPropertyInput
     reservations?: ReservationsCreateNestedManyWithoutPropertyInput
     reviews?: ReviewsCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesUncheckedCreateInput = {
@@ -19238,7 +19166,7 @@ export namespace Prisma {
     categoryId: number
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -19248,13 +19176,12 @@ export namespace Prisma {
     rooms?: RoomsUncheckedCreateNestedManyWithoutPropertyInput
     reservations?: ReservationsUncheckedCreateNestedManyWithoutPropertyInput
     reviews?: ReviewsUncheckedCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsUncheckedCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -19266,7 +19193,6 @@ export namespace Prisma {
     rooms?: RoomsUpdateManyWithoutPropertyNestedInput
     reservations?: ReservationsUpdateManyWithoutPropertyNestedInput
     reviews?: ReviewsUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUpdateManyWithoutPropertiesNestedInput
   }
 
   export type PropertiesUncheckedUpdateInput = {
@@ -19275,7 +19201,7 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -19285,7 +19211,6 @@ export namespace Prisma {
     rooms?: RoomsUncheckedUpdateManyWithoutPropertyNestedInput
     reservations?: ReservationsUncheckedUpdateManyWithoutPropertyNestedInput
     reviews?: ReviewsUncheckedUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUncheckedUpdateManyWithoutPropertiesNestedInput
   }
 
   export type PropertiesCreateManyInput = {
@@ -19294,7 +19219,7 @@ export namespace Prisma {
     categoryId: number
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -19306,7 +19231,7 @@ export namespace Prisma {
   export type PropertiesUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -19321,7 +19246,7 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -19335,7 +19260,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     property: PropertiesCreateNestedOneWithoutRoomsInput
@@ -19351,7 +19276,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     reservations?: ReservationsUncheckedCreateNestedManyWithoutRoomInput
@@ -19364,7 +19289,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     property?: PropertiesUpdateOneRequiredWithoutRoomsNestedInput
@@ -19380,7 +19305,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservations?: ReservationsUncheckedUpdateManyWithoutRoomNestedInput
@@ -19395,7 +19320,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -19405,7 +19330,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19417,7 +19342,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19482,7 +19407,6 @@ export namespace Prisma {
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     room: RoomsCreateNestedOneWithoutPeakSeasonsInput
-    Properties?: PropertiesCreateNestedOneWithoutPeakSeasonsInput
   }
 
   export type PeakSeasonsUncheckedCreateInput = {
@@ -19494,7 +19418,6 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
-    propertiesId?: number | null
   }
 
   export type PeakSeasonsUpdateInput = {
@@ -19505,7 +19428,6 @@ export namespace Prisma {
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     room?: RoomsUpdateOneRequiredWithoutPeakSeasonsNestedInput
-    Properties?: PropertiesUpdateOneWithoutPeakSeasonsNestedInput
   }
 
   export type PeakSeasonsUncheckedUpdateInput = {
@@ -19517,7 +19439,6 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    propertiesId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PeakSeasonsCreateManyInput = {
@@ -19529,7 +19450,6 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
-    propertiesId?: number | null
   }
 
   export type PeakSeasonsUpdateManyMutationInput = {
@@ -19550,7 +19470,6 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    propertiesId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ReservationsCreateInput = {
@@ -20233,6 +20152,29 @@ export namespace Prisma {
     id?: SortOrder
     tenantId?: SortOrder
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type DecimalNullableFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
@@ -20256,17 +20198,7 @@ export namespace Prisma {
     none?: RoomsWhereInput
   }
 
-  export type PeakSeasonsListRelationFilter = {
-    every?: PeakSeasonsWhereInput
-    some?: PeakSeasonsWhereInput
-    none?: PeakSeasonsWhereInput
-  }
-
   export type RoomsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type PeakSeasonsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20299,7 +20231,6 @@ export namespace Prisma {
     categoryId?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    picture?: SortOrder
     address?: SortOrder
     city?: SortOrder
     lat?: SortOrder
@@ -20314,7 +20245,6 @@ export namespace Prisma {
     categoryId?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    picture?: SortOrder
     address?: SortOrder
     city?: SortOrder
     lat?: SortOrder
@@ -20329,6 +20259,32 @@ export namespace Prisma {
     categoryId?: SortOrder
     lat?: SortOrder
     lng?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -20369,7 +20325,17 @@ export namespace Prisma {
     none?: RoomAvailabilitiesWhereInput
   }
 
+  export type PeakSeasonsListRelationFilter = {
+    every?: PeakSeasonsWhereInput
+    some?: PeakSeasonsWhereInput
+    none?: PeakSeasonsWhereInput
+  }
+
   export type RoomAvailabilitiesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PeakSeasonsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20399,7 +20365,6 @@ export namespace Prisma {
     description?: SortOrder
     basePrice?: SortOrder
     maxGuests?: SortOrder
-    picture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -20411,7 +20376,6 @@ export namespace Prisma {
     description?: SortOrder
     basePrice?: SortOrder
     maxGuests?: SortOrder
-    picture?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -20485,22 +20449,6 @@ export namespace Prisma {
     priceOverride?: SortOrder
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type PropertiesNullableScalarRelationFilter = {
-    is?: PropertiesWhereInput | null
-    isNot?: PropertiesWhereInput | null
-  }
-
   export type PeakSeasonsCountOrderByAggregateInput = {
     id?: SortOrder
     roomId?: SortOrder
@@ -20510,14 +20458,12 @@ export namespace Prisma {
     priceIncreaseType?: SortOrder
     value?: SortOrder
     createdAt?: SortOrder
-    propertiesId?: SortOrder
   }
 
   export type PeakSeasonsAvgOrderByAggregateInput = {
     id?: SortOrder
     roomId?: SortOrder
     value?: SortOrder
-    propertiesId?: SortOrder
   }
 
   export type PeakSeasonsMaxOrderByAggregateInput = {
@@ -20529,7 +20475,6 @@ export namespace Prisma {
     priceIncreaseType?: SortOrder
     value?: SortOrder
     createdAt?: SortOrder
-    propertiesId?: SortOrder
   }
 
   export type PeakSeasonsMinOrderByAggregateInput = {
@@ -20541,30 +20486,12 @@ export namespace Prisma {
     priceIncreaseType?: SortOrder
     value?: SortOrder
     createdAt?: SortOrder
-    propertiesId?: SortOrder
   }
 
   export type PeakSeasonsSumOrderByAggregateInput = {
     id?: SortOrder
     roomId?: SortOrder
     value?: SortOrder
-    propertiesId?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type EnumReservationStatusFilter<$PrismaModel = never> = {
@@ -21273,13 +21200,6 @@ export namespace Prisma {
     connect?: ReviewsWhereUniqueInput | ReviewsWhereUniqueInput[]
   }
 
-  export type PeakSeasonsCreateNestedManyWithoutPropertiesInput = {
-    create?: XOR<PeakSeasonsCreateWithoutPropertiesInput, PeakSeasonsUncheckedCreateWithoutPropertiesInput> | PeakSeasonsCreateWithoutPropertiesInput[] | PeakSeasonsUncheckedCreateWithoutPropertiesInput[]
-    connectOrCreate?: PeakSeasonsCreateOrConnectWithoutPropertiesInput | PeakSeasonsCreateOrConnectWithoutPropertiesInput[]
-    createMany?: PeakSeasonsCreateManyPropertiesInputEnvelope
-    connect?: PeakSeasonsWhereUniqueInput | PeakSeasonsWhereUniqueInput[]
-  }
-
   export type RoomsUncheckedCreateNestedManyWithoutPropertyInput = {
     create?: XOR<RoomsCreateWithoutPropertyInput, RoomsUncheckedCreateWithoutPropertyInput> | RoomsCreateWithoutPropertyInput[] | RoomsUncheckedCreateWithoutPropertyInput[]
     connectOrCreate?: RoomsCreateOrConnectWithoutPropertyInput | RoomsCreateOrConnectWithoutPropertyInput[]
@@ -21299,13 +21219,6 @@ export namespace Prisma {
     connectOrCreate?: ReviewsCreateOrConnectWithoutPropertyInput | ReviewsCreateOrConnectWithoutPropertyInput[]
     createMany?: ReviewsCreateManyPropertyInputEnvelope
     connect?: ReviewsWhereUniqueInput | ReviewsWhereUniqueInput[]
-  }
-
-  export type PeakSeasonsUncheckedCreateNestedManyWithoutPropertiesInput = {
-    create?: XOR<PeakSeasonsCreateWithoutPropertiesInput, PeakSeasonsUncheckedCreateWithoutPropertiesInput> | PeakSeasonsCreateWithoutPropertiesInput[] | PeakSeasonsUncheckedCreateWithoutPropertiesInput[]
-    connectOrCreate?: PeakSeasonsCreateOrConnectWithoutPropertiesInput | PeakSeasonsCreateOrConnectWithoutPropertiesInput[]
-    createMany?: PeakSeasonsCreateManyPropertiesInputEnvelope
-    connect?: PeakSeasonsWhereUniqueInput | PeakSeasonsWhereUniqueInput[]
   }
 
   export type NullableDecimalFieldUpdateOperationsInput = {
@@ -21374,20 +21287,6 @@ export namespace Prisma {
     deleteMany?: ReviewsScalarWhereInput | ReviewsScalarWhereInput[]
   }
 
-  export type PeakSeasonsUpdateManyWithoutPropertiesNestedInput = {
-    create?: XOR<PeakSeasonsCreateWithoutPropertiesInput, PeakSeasonsUncheckedCreateWithoutPropertiesInput> | PeakSeasonsCreateWithoutPropertiesInput[] | PeakSeasonsUncheckedCreateWithoutPropertiesInput[]
-    connectOrCreate?: PeakSeasonsCreateOrConnectWithoutPropertiesInput | PeakSeasonsCreateOrConnectWithoutPropertiesInput[]
-    upsert?: PeakSeasonsUpsertWithWhereUniqueWithoutPropertiesInput | PeakSeasonsUpsertWithWhereUniqueWithoutPropertiesInput[]
-    createMany?: PeakSeasonsCreateManyPropertiesInputEnvelope
-    set?: PeakSeasonsWhereUniqueInput | PeakSeasonsWhereUniqueInput[]
-    disconnect?: PeakSeasonsWhereUniqueInput | PeakSeasonsWhereUniqueInput[]
-    delete?: PeakSeasonsWhereUniqueInput | PeakSeasonsWhereUniqueInput[]
-    connect?: PeakSeasonsWhereUniqueInput | PeakSeasonsWhereUniqueInput[]
-    update?: PeakSeasonsUpdateWithWhereUniqueWithoutPropertiesInput | PeakSeasonsUpdateWithWhereUniqueWithoutPropertiesInput[]
-    updateMany?: PeakSeasonsUpdateManyWithWhereWithoutPropertiesInput | PeakSeasonsUpdateManyWithWhereWithoutPropertiesInput[]
-    deleteMany?: PeakSeasonsScalarWhereInput | PeakSeasonsScalarWhereInput[]
-  }
-
   export type RoomsUncheckedUpdateManyWithoutPropertyNestedInput = {
     create?: XOR<RoomsCreateWithoutPropertyInput, RoomsUncheckedCreateWithoutPropertyInput> | RoomsCreateWithoutPropertyInput[] | RoomsUncheckedCreateWithoutPropertyInput[]
     connectOrCreate?: RoomsCreateOrConnectWithoutPropertyInput | RoomsCreateOrConnectWithoutPropertyInput[]
@@ -21428,20 +21327,6 @@ export namespace Prisma {
     update?: ReviewsUpdateWithWhereUniqueWithoutPropertyInput | ReviewsUpdateWithWhereUniqueWithoutPropertyInput[]
     updateMany?: ReviewsUpdateManyWithWhereWithoutPropertyInput | ReviewsUpdateManyWithWhereWithoutPropertyInput[]
     deleteMany?: ReviewsScalarWhereInput | ReviewsScalarWhereInput[]
-  }
-
-  export type PeakSeasonsUncheckedUpdateManyWithoutPropertiesNestedInput = {
-    create?: XOR<PeakSeasonsCreateWithoutPropertiesInput, PeakSeasonsUncheckedCreateWithoutPropertiesInput> | PeakSeasonsCreateWithoutPropertiesInput[] | PeakSeasonsUncheckedCreateWithoutPropertiesInput[]
-    connectOrCreate?: PeakSeasonsCreateOrConnectWithoutPropertiesInput | PeakSeasonsCreateOrConnectWithoutPropertiesInput[]
-    upsert?: PeakSeasonsUpsertWithWhereUniqueWithoutPropertiesInput | PeakSeasonsUpsertWithWhereUniqueWithoutPropertiesInput[]
-    createMany?: PeakSeasonsCreateManyPropertiesInputEnvelope
-    set?: PeakSeasonsWhereUniqueInput | PeakSeasonsWhereUniqueInput[]
-    disconnect?: PeakSeasonsWhereUniqueInput | PeakSeasonsWhereUniqueInput[]
-    delete?: PeakSeasonsWhereUniqueInput | PeakSeasonsWhereUniqueInput[]
-    connect?: PeakSeasonsWhereUniqueInput | PeakSeasonsWhereUniqueInput[]
-    update?: PeakSeasonsUpdateWithWhereUniqueWithoutPropertiesInput | PeakSeasonsUpdateWithWhereUniqueWithoutPropertiesInput[]
-    updateMany?: PeakSeasonsUpdateManyWithWhereWithoutPropertiesInput | PeakSeasonsUpdateManyWithWhereWithoutPropertiesInput[]
-    deleteMany?: PeakSeasonsScalarWhereInput | PeakSeasonsScalarWhereInput[]
   }
 
   export type PropertiesCreateNestedOneWithoutRoomsInput = {
@@ -21612,36 +21497,12 @@ export namespace Prisma {
     connect?: RoomsWhereUniqueInput
   }
 
-  export type PropertiesCreateNestedOneWithoutPeakSeasonsInput = {
-    create?: XOR<PropertiesCreateWithoutPeakSeasonsInput, PropertiesUncheckedCreateWithoutPeakSeasonsInput>
-    connectOrCreate?: PropertiesCreateOrConnectWithoutPeakSeasonsInput
-    connect?: PropertiesWhereUniqueInput
-  }
-
   export type RoomsUpdateOneRequiredWithoutPeakSeasonsNestedInput = {
     create?: XOR<RoomsCreateWithoutPeakSeasonsInput, RoomsUncheckedCreateWithoutPeakSeasonsInput>
     connectOrCreate?: RoomsCreateOrConnectWithoutPeakSeasonsInput
     upsert?: RoomsUpsertWithoutPeakSeasonsInput
     connect?: RoomsWhereUniqueInput
     update?: XOR<XOR<RoomsUpdateToOneWithWhereWithoutPeakSeasonsInput, RoomsUpdateWithoutPeakSeasonsInput>, RoomsUncheckedUpdateWithoutPeakSeasonsInput>
-  }
-
-  export type PropertiesUpdateOneWithoutPeakSeasonsNestedInput = {
-    create?: XOR<PropertiesCreateWithoutPeakSeasonsInput, PropertiesUncheckedCreateWithoutPeakSeasonsInput>
-    connectOrCreate?: PropertiesCreateOrConnectWithoutPeakSeasonsInput
-    upsert?: PropertiesUpsertWithoutPeakSeasonsInput
-    disconnect?: PropertiesWhereInput | boolean
-    delete?: PropertiesWhereInput | boolean
-    connect?: PropertiesWhereUniqueInput
-    update?: XOR<XOR<PropertiesUpdateToOneWithWhereWithoutPeakSeasonsInput, PropertiesUpdateWithoutPeakSeasonsInput>, PropertiesUncheckedUpdateWithoutPeakSeasonsInput>
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type UsersCreateNestedOneWithoutReservationsInput = {
@@ -21993,6 +21854,29 @@ export namespace Prisma {
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
@@ -22035,33 +21919,6 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedEnumReservationStatusFilter<$PrismaModel = never> = {
@@ -22131,7 +21988,7 @@ export namespace Prisma {
   export type PropertiesCreateWithoutTenantInput = {
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -22142,7 +21999,6 @@ export namespace Prisma {
     rooms?: RoomsCreateNestedManyWithoutPropertyInput
     reservations?: ReservationsCreateNestedManyWithoutPropertyInput
     reviews?: ReviewsCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesUncheckedCreateWithoutTenantInput = {
@@ -22150,7 +22006,7 @@ export namespace Prisma {
     categoryId: number
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -22160,7 +22016,6 @@ export namespace Prisma {
     rooms?: RoomsUncheckedCreateNestedManyWithoutPropertyInput
     reservations?: ReservationsUncheckedCreateNestedManyWithoutPropertyInput
     reviews?: ReviewsUncheckedCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsUncheckedCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesCreateOrConnectWithoutTenantInput = {
@@ -22386,7 +22241,7 @@ export namespace Prisma {
     categoryId?: IntFilter<"Properties"> | number
     name?: StringFilter<"Properties"> | string
     description?: StringFilter<"Properties"> | string
-    picture?: StringFilter<"Properties"> | string
+    picture?: JsonFilter<"Properties">
     address?: StringFilter<"Properties"> | string
     city?: StringFilter<"Properties"> | string
     lat?: DecimalNullableFilter<"Properties"> | Decimal | DecimalJsLike | number | string | null
@@ -23006,7 +22861,7 @@ export namespace Prisma {
   export type PropertiesCreateWithoutCategoryInput = {
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -23017,7 +22872,6 @@ export namespace Prisma {
     rooms?: RoomsCreateNestedManyWithoutPropertyInput
     reservations?: ReservationsCreateNestedManyWithoutPropertyInput
     reviews?: ReviewsCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesUncheckedCreateWithoutCategoryInput = {
@@ -23025,7 +22879,7 @@ export namespace Prisma {
     tenantId: number
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -23035,7 +22889,6 @@ export namespace Prisma {
     rooms?: RoomsUncheckedCreateNestedManyWithoutPropertyInput
     reservations?: ReservationsUncheckedCreateNestedManyWithoutPropertyInput
     reviews?: ReviewsUncheckedCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsUncheckedCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesCreateOrConnectWithoutCategoryInput = {
@@ -23185,7 +23038,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     reservations?: ReservationsCreateNestedManyWithoutRoomInput
@@ -23199,7 +23052,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     reservations?: ReservationsUncheckedCreateNestedManyWithoutRoomInput
@@ -23282,37 +23135,6 @@ export namespace Prisma {
 
   export type ReviewsCreateManyPropertyInputEnvelope = {
     data: ReviewsCreateManyPropertyInput | ReviewsCreateManyPropertyInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PeakSeasonsCreateWithoutPropertiesInput = {
-    name: string
-    startDate: Date | string
-    endDate: Date | string
-    priceIncreaseType: string
-    value: Decimal | DecimalJsLike | number | string
-    createdAt?: Date | string
-    room: RoomsCreateNestedOneWithoutPeakSeasonsInput
-  }
-
-  export type PeakSeasonsUncheckedCreateWithoutPropertiesInput = {
-    id?: number
-    roomId: number
-    name: string
-    startDate: Date | string
-    endDate: Date | string
-    priceIncreaseType: string
-    value: Decimal | DecimalJsLike | number | string
-    createdAt?: Date | string
-  }
-
-  export type PeakSeasonsCreateOrConnectWithoutPropertiesInput = {
-    where: PeakSeasonsWhereUniqueInput
-    create: XOR<PeakSeasonsCreateWithoutPropertiesInput, PeakSeasonsUncheckedCreateWithoutPropertiesInput>
-  }
-
-  export type PeakSeasonsCreateManyPropertiesInputEnvelope = {
-    data: PeakSeasonsCreateManyPropertiesInput | PeakSeasonsCreateManyPropertiesInput[]
     skipDuplicates?: boolean
   }
 
@@ -23418,7 +23240,7 @@ export namespace Prisma {
     description?: StringFilter<"Rooms"> | string
     basePrice?: DecimalFilter<"Rooms"> | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFilter<"Rooms"> | number
-    picture?: StringNullableFilter<"Rooms"> | string | null
+    picture?: JsonFilter<"Rooms">
     createdAt?: DateTimeFilter<"Rooms"> | Date | string
     updatedAt?: DateTimeFilter<"Rooms"> | Date | string
   }
@@ -23455,41 +23277,10 @@ export namespace Prisma {
     data: XOR<ReviewsUpdateManyMutationInput, ReviewsUncheckedUpdateManyWithoutPropertyInput>
   }
 
-  export type PeakSeasonsUpsertWithWhereUniqueWithoutPropertiesInput = {
-    where: PeakSeasonsWhereUniqueInput
-    update: XOR<PeakSeasonsUpdateWithoutPropertiesInput, PeakSeasonsUncheckedUpdateWithoutPropertiesInput>
-    create: XOR<PeakSeasonsCreateWithoutPropertiesInput, PeakSeasonsUncheckedCreateWithoutPropertiesInput>
-  }
-
-  export type PeakSeasonsUpdateWithWhereUniqueWithoutPropertiesInput = {
-    where: PeakSeasonsWhereUniqueInput
-    data: XOR<PeakSeasonsUpdateWithoutPropertiesInput, PeakSeasonsUncheckedUpdateWithoutPropertiesInput>
-  }
-
-  export type PeakSeasonsUpdateManyWithWhereWithoutPropertiesInput = {
-    where: PeakSeasonsScalarWhereInput
-    data: XOR<PeakSeasonsUpdateManyMutationInput, PeakSeasonsUncheckedUpdateManyWithoutPropertiesInput>
-  }
-
-  export type PeakSeasonsScalarWhereInput = {
-    AND?: PeakSeasonsScalarWhereInput | PeakSeasonsScalarWhereInput[]
-    OR?: PeakSeasonsScalarWhereInput[]
-    NOT?: PeakSeasonsScalarWhereInput | PeakSeasonsScalarWhereInput[]
-    id?: IntFilter<"PeakSeasons"> | number
-    roomId?: IntFilter<"PeakSeasons"> | number
-    name?: StringFilter<"PeakSeasons"> | string
-    startDate?: DateTimeFilter<"PeakSeasons"> | Date | string
-    endDate?: DateTimeFilter<"PeakSeasons"> | Date | string
-    priceIncreaseType?: StringFilter<"PeakSeasons"> | string
-    value?: DecimalFilter<"PeakSeasons"> | Decimal | DecimalJsLike | number | string
-    createdAt?: DateTimeFilter<"PeakSeasons"> | Date | string
-    propertiesId?: IntNullableFilter<"PeakSeasons"> | number | null
-  }
-
   export type PropertiesCreateWithoutRoomsInput = {
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -23500,7 +23291,6 @@ export namespace Prisma {
     category: PropertyCategoriesCreateNestedOneWithoutPropertiesInput
     reservations?: ReservationsCreateNestedManyWithoutPropertyInput
     reviews?: ReviewsCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesUncheckedCreateWithoutRoomsInput = {
@@ -23509,7 +23299,7 @@ export namespace Prisma {
     categoryId: number
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -23518,7 +23308,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     reservations?: ReservationsUncheckedCreateNestedManyWithoutPropertyInput
     reviews?: ReviewsUncheckedCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsUncheckedCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesCreateOrConnectWithoutRoomsInput = {
@@ -23597,7 +23386,6 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
-    Properties?: PropertiesCreateNestedOneWithoutPeakSeasonsInput
   }
 
   export type PeakSeasonsUncheckedCreateWithoutRoomInput = {
@@ -23608,7 +23396,6 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
-    propertiesId?: number | null
   }
 
   export type PeakSeasonsCreateOrConnectWithoutRoomInput = {
@@ -23635,7 +23422,7 @@ export namespace Prisma {
   export type PropertiesUpdateWithoutRoomsInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -23646,7 +23433,6 @@ export namespace Prisma {
     category?: PropertyCategoriesUpdateOneRequiredWithoutPropertiesNestedInput
     reservations?: ReservationsUpdateManyWithoutPropertyNestedInput
     reviews?: ReviewsUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUpdateManyWithoutPropertiesNestedInput
   }
 
   export type PropertiesUncheckedUpdateWithoutRoomsInput = {
@@ -23655,7 +23441,7 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -23664,7 +23450,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservations?: ReservationsUncheckedUpdateManyWithoutPropertyNestedInput
     reviews?: ReviewsUncheckedUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUncheckedUpdateManyWithoutPropertiesNestedInput
   }
 
   export type ReservationsUpsertWithWhereUniqueWithoutRoomInput = {
@@ -23726,12 +23511,26 @@ export namespace Prisma {
     data: XOR<PeakSeasonsUpdateManyMutationInput, PeakSeasonsUncheckedUpdateManyWithoutRoomInput>
   }
 
+  export type PeakSeasonsScalarWhereInput = {
+    AND?: PeakSeasonsScalarWhereInput | PeakSeasonsScalarWhereInput[]
+    OR?: PeakSeasonsScalarWhereInput[]
+    NOT?: PeakSeasonsScalarWhereInput | PeakSeasonsScalarWhereInput[]
+    id?: IntFilter<"PeakSeasons"> | number
+    roomId?: IntFilter<"PeakSeasons"> | number
+    name?: StringFilter<"PeakSeasons"> | string
+    startDate?: DateTimeFilter<"PeakSeasons"> | Date | string
+    endDate?: DateTimeFilter<"PeakSeasons"> | Date | string
+    priceIncreaseType?: StringFilter<"PeakSeasons"> | string
+    value?: DecimalFilter<"PeakSeasons"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"PeakSeasons"> | Date | string
+  }
+
   export type RoomsCreateWithoutRoomAvailabilitiesInput = {
     name: string
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     property: PropertiesCreateNestedOneWithoutRoomsInput
@@ -23746,7 +23545,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     reservations?: ReservationsUncheckedCreateNestedManyWithoutRoomInput
@@ -23774,7 +23573,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     property?: PropertiesUpdateOneRequiredWithoutRoomsNestedInput
@@ -23789,7 +23588,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservations?: ReservationsUncheckedUpdateManyWithoutRoomNestedInput
@@ -23801,7 +23600,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     property: PropertiesCreateNestedOneWithoutRoomsInput
@@ -23816,7 +23615,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     reservations?: ReservationsUncheckedCreateNestedManyWithoutRoomInput
@@ -23826,46 +23625,6 @@ export namespace Prisma {
   export type RoomsCreateOrConnectWithoutPeakSeasonsInput = {
     where: RoomsWhereUniqueInput
     create: XOR<RoomsCreateWithoutPeakSeasonsInput, RoomsUncheckedCreateWithoutPeakSeasonsInput>
-  }
-
-  export type PropertiesCreateWithoutPeakSeasonsInput = {
-    name: string
-    description: string
-    picture: string
-    address: string
-    city: string
-    lat?: Decimal | DecimalJsLike | number | string | null
-    lng?: Decimal | DecimalJsLike | number | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    tenant: UsersCreateNestedOneWithoutPropertiesInput
-    category: PropertyCategoriesCreateNestedOneWithoutPropertiesInput
-    rooms?: RoomsCreateNestedManyWithoutPropertyInput
-    reservations?: ReservationsCreateNestedManyWithoutPropertyInput
-    reviews?: ReviewsCreateNestedManyWithoutPropertyInput
-  }
-
-  export type PropertiesUncheckedCreateWithoutPeakSeasonsInput = {
-    id?: number
-    tenantId: number
-    categoryId: number
-    name: string
-    description: string
-    picture: string
-    address: string
-    city: string
-    lat?: Decimal | DecimalJsLike | number | string | null
-    lng?: Decimal | DecimalJsLike | number | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    rooms?: RoomsUncheckedCreateNestedManyWithoutPropertyInput
-    reservations?: ReservationsUncheckedCreateNestedManyWithoutPropertyInput
-    reviews?: ReviewsUncheckedCreateNestedManyWithoutPropertyInput
-  }
-
-  export type PropertiesCreateOrConnectWithoutPeakSeasonsInput = {
-    where: PropertiesWhereUniqueInput
-    create: XOR<PropertiesCreateWithoutPeakSeasonsInput, PropertiesUncheckedCreateWithoutPeakSeasonsInput>
   }
 
   export type RoomsUpsertWithoutPeakSeasonsInput = {
@@ -23884,7 +23643,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     property?: PropertiesUpdateOneRequiredWithoutRoomsNestedInput
@@ -23899,57 +23658,11 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservations?: ReservationsUncheckedUpdateManyWithoutRoomNestedInput
     roomAvailabilities?: RoomAvailabilitiesUncheckedUpdateManyWithoutRoomNestedInput
-  }
-
-  export type PropertiesUpsertWithoutPeakSeasonsInput = {
-    update: XOR<PropertiesUpdateWithoutPeakSeasonsInput, PropertiesUncheckedUpdateWithoutPeakSeasonsInput>
-    create: XOR<PropertiesCreateWithoutPeakSeasonsInput, PropertiesUncheckedCreateWithoutPeakSeasonsInput>
-    where?: PropertiesWhereInput
-  }
-
-  export type PropertiesUpdateToOneWithWhereWithoutPeakSeasonsInput = {
-    where?: PropertiesWhereInput
-    data: XOR<PropertiesUpdateWithoutPeakSeasonsInput, PropertiesUncheckedUpdateWithoutPeakSeasonsInput>
-  }
-
-  export type PropertiesUpdateWithoutPeakSeasonsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    lng?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tenant?: UsersUpdateOneRequiredWithoutPropertiesNestedInput
-    category?: PropertyCategoriesUpdateOneRequiredWithoutPropertiesNestedInput
-    rooms?: RoomsUpdateManyWithoutPropertyNestedInput
-    reservations?: ReservationsUpdateManyWithoutPropertyNestedInput
-    reviews?: ReviewsUpdateManyWithoutPropertyNestedInput
-  }
-
-  export type PropertiesUncheckedUpdateWithoutPeakSeasonsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    tenantId?: IntFieldUpdateOperationsInput | number
-    categoryId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    lng?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    rooms?: RoomsUncheckedUpdateManyWithoutPropertyNestedInput
-    reservations?: ReservationsUncheckedUpdateManyWithoutPropertyNestedInput
-    reviews?: ReviewsUncheckedUpdateManyWithoutPropertyNestedInput
   }
 
   export type UsersCreateWithoutReservationsInput = {
@@ -24001,7 +23714,7 @@ export namespace Prisma {
   export type PropertiesCreateWithoutReservationsInput = {
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -24012,7 +23725,6 @@ export namespace Prisma {
     category: PropertyCategoriesCreateNestedOneWithoutPropertiesInput
     rooms?: RoomsCreateNestedManyWithoutPropertyInput
     reviews?: ReviewsCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesUncheckedCreateWithoutReservationsInput = {
@@ -24021,7 +23733,7 @@ export namespace Prisma {
     categoryId: number
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -24030,7 +23742,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     rooms?: RoomsUncheckedCreateNestedManyWithoutPropertyInput
     reviews?: ReviewsUncheckedCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsUncheckedCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesCreateOrConnectWithoutReservationsInput = {
@@ -24043,7 +23754,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     property: PropertiesCreateNestedOneWithoutRoomsInput
@@ -24058,7 +23769,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     roomAvailabilities?: RoomAvailabilitiesUncheckedCreateNestedManyWithoutRoomInput
@@ -24190,7 +23901,7 @@ export namespace Prisma {
   export type PropertiesUpdateWithoutReservationsInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -24201,7 +23912,6 @@ export namespace Prisma {
     category?: PropertyCategoriesUpdateOneRequiredWithoutPropertiesNestedInput
     rooms?: RoomsUpdateManyWithoutPropertyNestedInput
     reviews?: ReviewsUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUpdateManyWithoutPropertiesNestedInput
   }
 
   export type PropertiesUncheckedUpdateWithoutReservationsInput = {
@@ -24210,7 +23920,7 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -24219,7 +23929,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rooms?: RoomsUncheckedUpdateManyWithoutPropertyNestedInput
     reviews?: ReviewsUncheckedUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUncheckedUpdateManyWithoutPropertiesNestedInput
   }
 
   export type RoomsUpsertWithoutReservationsInput = {
@@ -24238,7 +23947,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     property?: PropertiesUpdateOneRequiredWithoutRoomsNestedInput
@@ -24253,7 +23962,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     roomAvailabilities?: RoomAvailabilitiesUncheckedUpdateManyWithoutRoomNestedInput
@@ -24432,7 +24141,7 @@ export namespace Prisma {
   export type PropertiesCreateWithoutReviewsInput = {
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -24443,7 +24152,6 @@ export namespace Prisma {
     category: PropertyCategoriesCreateNestedOneWithoutPropertiesInput
     rooms?: RoomsCreateNestedManyWithoutPropertyInput
     reservations?: ReservationsCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesUncheckedCreateWithoutReviewsInput = {
@@ -24452,7 +24160,7 @@ export namespace Prisma {
     categoryId: number
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -24461,7 +24169,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     rooms?: RoomsUncheckedCreateNestedManyWithoutPropertyInput
     reservations?: ReservationsUncheckedCreateNestedManyWithoutPropertyInput
-    peakSeasons?: PeakSeasonsUncheckedCreateNestedManyWithoutPropertiesInput
   }
 
   export type PropertiesCreateOrConnectWithoutReviewsInput = {
@@ -24571,7 +24278,7 @@ export namespace Prisma {
   export type PropertiesUpdateWithoutReviewsInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -24582,7 +24289,6 @@ export namespace Prisma {
     category?: PropertyCategoriesUpdateOneRequiredWithoutPropertiesNestedInput
     rooms?: RoomsUpdateManyWithoutPropertyNestedInput
     reservations?: ReservationsUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUpdateManyWithoutPropertiesNestedInput
   }
 
   export type PropertiesUncheckedUpdateWithoutReviewsInput = {
@@ -24591,7 +24297,7 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -24600,7 +24306,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rooms?: RoomsUncheckedUpdateManyWithoutPropertyNestedInput
     reservations?: ReservationsUncheckedUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUncheckedUpdateManyWithoutPropertiesNestedInput
   }
 
   export type ReservationsUpsertWithoutReviewsInput = {
@@ -24650,7 +24355,7 @@ export namespace Prisma {
     categoryId: number
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -24712,7 +24417,7 @@ export namespace Prisma {
   export type PropertiesUpdateWithoutTenantInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -24723,7 +24428,6 @@ export namespace Prisma {
     rooms?: RoomsUpdateManyWithoutPropertyNestedInput
     reservations?: ReservationsUpdateManyWithoutPropertyNestedInput
     reviews?: ReviewsUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUpdateManyWithoutPropertiesNestedInput
   }
 
   export type PropertiesUncheckedUpdateWithoutTenantInput = {
@@ -24731,7 +24435,7 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -24741,7 +24445,6 @@ export namespace Prisma {
     rooms?: RoomsUncheckedUpdateManyWithoutPropertyNestedInput
     reservations?: ReservationsUncheckedUpdateManyWithoutPropertyNestedInput
     reviews?: ReviewsUncheckedUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUncheckedUpdateManyWithoutPropertiesNestedInput
   }
 
   export type PropertiesUncheckedUpdateManyWithoutTenantInput = {
@@ -24749,7 +24452,7 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -24913,7 +24616,7 @@ export namespace Prisma {
     tenantId: number
     name: string
     description: string
-    picture: string
+    picture: JsonNullValueInput | InputJsonValue
     address: string
     city: string
     lat?: Decimal | DecimalJsLike | number | string | null
@@ -24925,7 +24628,7 @@ export namespace Prisma {
   export type PropertiesUpdateWithoutCategoryInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -24936,7 +24639,6 @@ export namespace Prisma {
     rooms?: RoomsUpdateManyWithoutPropertyNestedInput
     reservations?: ReservationsUpdateManyWithoutPropertyNestedInput
     reviews?: ReviewsUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUpdateManyWithoutPropertiesNestedInput
   }
 
   export type PropertiesUncheckedUpdateWithoutCategoryInput = {
@@ -24944,7 +24646,7 @@ export namespace Prisma {
     tenantId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -24954,7 +24656,6 @@ export namespace Prisma {
     rooms?: RoomsUncheckedUpdateManyWithoutPropertyNestedInput
     reservations?: ReservationsUncheckedUpdateManyWithoutPropertyNestedInput
     reviews?: ReviewsUncheckedUpdateManyWithoutPropertyNestedInput
-    peakSeasons?: PeakSeasonsUncheckedUpdateManyWithoutPropertiesNestedInput
   }
 
   export type PropertiesUncheckedUpdateManyWithoutCategoryInput = {
@@ -24962,7 +24663,7 @@ export namespace Prisma {
     tenantId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    picture?: StringFieldUpdateOperationsInput | string
+    picture?: JsonNullValueInput | InputJsonValue
     address?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     lat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -24977,7 +24678,7 @@ export namespace Prisma {
     description: string
     basePrice: Decimal | DecimalJsLike | number | string
     maxGuests?: number
-    picture?: string | null
+    picture: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -25005,23 +24706,12 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type PeakSeasonsCreateManyPropertiesInput = {
-    id?: number
-    roomId: number
-    name: string
-    startDate: Date | string
-    endDate: Date | string
-    priceIncreaseType: string
-    value: Decimal | DecimalJsLike | number | string
-    createdAt?: Date | string
-  }
-
   export type RoomsUpdateWithoutPropertyInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservations?: ReservationsUpdateManyWithoutRoomNestedInput
@@ -25035,7 +24725,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reservations?: ReservationsUncheckedUpdateManyWithoutRoomNestedInput
@@ -25049,7 +24739,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     basePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     maxGuests?: IntFieldUpdateOperationsInput | number
-    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -25125,38 +24815,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PeakSeasonsUpdateWithoutPropertiesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priceIncreaseType?: StringFieldUpdateOperationsInput | string
-    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    room?: RoomsUpdateOneRequiredWithoutPeakSeasonsNestedInput
-  }
-
-  export type PeakSeasonsUncheckedUpdateWithoutPropertiesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    roomId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priceIncreaseType?: StringFieldUpdateOperationsInput | string
-    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PeakSeasonsUncheckedUpdateManyWithoutPropertiesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    roomId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priceIncreaseType?: StringFieldUpdateOperationsInput | string
-    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type ReservationsCreateManyRoomInput = {
     id?: number
     userId: number
@@ -25186,7 +24844,6 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
-    propertiesId?: number | null
   }
 
   export type ReservationsUpdateWithoutRoomInput = {
@@ -25261,7 +24918,6 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Properties?: PropertiesUpdateOneWithoutPeakSeasonsNestedInput
   }
 
   export type PeakSeasonsUncheckedUpdateWithoutRoomInput = {
@@ -25272,7 +24928,6 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    propertiesId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PeakSeasonsUncheckedUpdateManyWithoutRoomInput = {
@@ -25283,7 +24938,6 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    propertiesId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PaymentProofsCreateManyReservationInput = {
