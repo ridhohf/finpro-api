@@ -218,8 +218,7 @@ exports.Prisma.PeakSeasonsScalarFieldEnum = {
   endDate: 'endDate',
   priceIncreaseType: 'priceIncreaseType',
   value: 'value',
-  createdAt: 'createdAt',
-  propertiesId: 'propertiesId'
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.ReservationsScalarFieldEnum = {
@@ -262,6 +261,10 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -270,6 +273,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.ReservationStatus = exports.$Enums.ReservationStatus = {
   PENDING_PAYMENT: 'PENDING_PAYMENT',

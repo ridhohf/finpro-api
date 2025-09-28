@@ -35,6 +35,9 @@ export const config = {
   cloudinaryApiKey: process.env.CLOUDINARY_API_KEY!,
   cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET!,
 
+  // OpenCage API
+  openCageApiKey: process.env.OPENCAGE_API_KEY!,
+
   // Security
   bcryptSaltRounds: 12,
   verificationTokenExpiry: 60 * 60 * 1000, // 1 hour

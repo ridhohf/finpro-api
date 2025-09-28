@@ -44,13 +44,13 @@ model Users {
 }
 
 model TenantProfile {
-  id           Int      @id @default(autoincrement())
-  userId       Int      @unique
-  companyName  String   @db.VarChar(255)
-  phone        String?  @db.VarChar(20)
-  address      String?  @db.Text
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
+  id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  companyName String   @db.VarChar(255)
+  phone       String?  @db.VarChar(20)
+  address     String?  @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
   user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -112,7 +112,7 @@ model Properties {
   categoryId  Int      @map("category_id")
   name        String   @db.VarChar(255)
   description String   @db.Text
-  picture     String   @db.VarChar(255)
+  picture     Json   
   address     String   @db.Text
   city        String   @db.VarChar(100)
   lat         Decimal? @db.Decimal(10, 7)
@@ -125,7 +125,6 @@ model Properties {
   rooms        Rooms[]
   reservations Reservations[]
   reviews      Reviews[]
-  peakSeasons  PeakSeasons[]
 
   @@map("properties")
 }
@@ -137,7 +136,7 @@ model Rooms {
   description String   @db.Text
   basePrice   Decimal  @map("base_price") @db.Decimal(10, 2)
   maxGuests   Int      @default(1) @map("max_guests")
-  picture     String?  @db.VarChar(255)
+  picture     Json  
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
@@ -172,9 +171,7 @@ model PeakSeasons {
   value             Decimal  @db.Decimal(10, 2)
   createdAt         DateTime @default(now()) @map("created_at")
 
-  room         Rooms       @relation(fields: [roomId], references: [id], onDelete: Cascade)
-  Properties   Properties? @relation(fields: [propertiesId], references: [id])
-  propertiesId Int?
+  room Rooms @relation(fields: [roomId], references: [id], onDelete: Cascade)
 
   @@map("peak_seasons")
 }
