@@ -1,24 +1,27 @@
 import { Request, Response, NextFunction } from "express";
-import { AppError } from "../utils/app.error";
-import AuthService from "../services/auth.service";
+import { AuthService } from "../services/auth.service";
 
 export class AuthController {
+  private authService = new AuthService();
+
   constructor() {
     this.register = this.register.bind(this);
-    this.verifyEmailAndSetPassword = this.verifyEmailAndSetPassword.bind(this);
-    this.login = this.login.bind(this);
     this.socialLogin = this.socialLogin.bind(this);
-    this.requestPasswordReset = this.requestPasswordReset.bind(this);
-    this.resetPassword = this.resetPassword.bind(this);
-    this.refreshToken = this.refreshToken.bind(this);
+    this.verifyEmail = this.verifyEmail.bind(this);
+    this.login = this.login.bind(this);
     this.resendVerification = this.resendVerification.bind(this);
+    this.resetPassword = this.resetPassword.bind(this);
+    this.confirmResetPassword = this.confirmResetPassword.bind(this);
+    this.getProfile = this.getProfile.bind(this);
+    this.updateProfile = this.updateProfile.bind(this);
+    this.updatePassword = this.updatePassword.bind(this);
   }
 
   async register(req: Request, res: Response, next: NextFunction) {
     try {
       const { name, email, role, companyName, phone, address } = req.body;
 
-      const result = await AuthService.register({
+      const result = await this.authService.register({
         name,
         email,
         role,
@@ -30,28 +33,107 @@ export class AuthController {
       res.status(201).json({
         success: true,
         message: result.message,
-        data: {
-          userId: result.userId,
-        },
       });
     } catch (error) {
       next(error);
     }
   }
 
-  async verifyEmailAndSetPassword(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
+  async socialLogin(req: Request, res: Response, next: NextFunction) {
     try {
-      const { token } = req.params;
-      const { password } = req.body;
+      const { provider, providerId, email, name, role, avatar } = req.body;
 
-      if (!token) throw new AppError("Verification token is required", 400);
-      if (!password) throw new AppError("Password is required", 400);
+      const result = await this.authService.socialLogin({
+        provider,
+        providerId,
+        email,
+        name,
+        role,
+        avatar,
+      });
 
-      const result = await AuthService.verifyEmailAndSetPassword(
+      res.status(200).json({
+        success: true,
+        message: "Login successful",
+        data: result,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async verifyEmail(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { token, password } = req.body;
+
+      const result = await this.authService.verifyEmail({
+        token,
+        password,
+      });
+
+      res.status(200).json({
+        success: true,
+        message: result.message,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async login(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email, password } = req.body;
+
+      const result = await this.authService.login({
+        email,
+        password,
+      });
+
+      res.status(200).json({
+        success: true,
+        message: "Login successful",
+        data: result,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async resendVerification(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email } = req.body;
+
+      const result = await this.authService.resendVerification(email);
+
+      res.status(200).json({
+        success: true,
+        message: result.message,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async resetPassword(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email } = req.body;
+
+      const result = await this.authService.resetPassword(email);
+
+      res.status(200).json({
+        success: true,
+        message: result.message,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async confirmResetPassword(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { token, password } = req.body;
+
+      const result = await this.authService.confirmResetPassword(
         token,
         password
       );
@@ -65,100 +147,45 @@ export class AuthController {
     }
   }
 
-  async login(req: Request, res: Response, next: NextFunction) {
+  async getProfile(req: Request, res: Response, next: NextFunction) {
     try {
-      const { email, password, role } = req.body;
+      const userId = req.user!.id;
 
-      const result = await AuthService.login({ email, password, role });
+      const user = await this.authService.getProfile(userId);
 
       res.status(200).json({
         success: true,
-        message: "Login successful",
-        data: {
-          accessToken: result.accessToken,
-          refreshToken: result.refreshToken,
-          user: result.user,
-        },
+        message: "Profile retrieved successfully",
+        data: user,
       });
     } catch (error) {
       next(error);
     }
   }
 
-  async socialLogin(req: Request, res: Response, next: NextFunction) {
+  async updateProfile(req: Request, res: Response, next: NextFunction) {
     try {
-      const { email, name, provider, providerId, avatar, role } = req.body;
+      const userId = req.user!.id;
+      const { name, email, phone, address, companyName } = req.body;
+      const avatar = req.file;
 
-      const result = await AuthService.socialLogin({
-        email,
-        name,
-        provider,
-        providerId,
-        avatar,
-        role,
-      });
-
-      res.status(200).json({
-        success: true,
-        message: "Social login successful",
-        data: {
-          accessToken: result.accessToken,
-          refreshToken: result.refreshToken,
-          user: result.user,
+      const result = await this.authService.updateProfile(
+        userId,
+        {
+          name,
+          email,
+          phone,
+          address,
+          companyName,
         },
-      });
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async requestPasswordReset(req: Request, res: Response, next: NextFunction) {
-    try {
-      const { email } = req.body;
-
-      const result = await AuthService.requestPasswordReset(email);
+        avatar
+      );
 
       res.status(200).json({
         success: true,
         message: result.message,
-      });
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async resetPassword(req: Request, res: Response, next: NextFunction) {
-    try {
-      const { token } = req.params;
-      const { password } = req.body;
-
-      if (!token) throw new AppError("Reset token is required", 400);
-      if (!password) throw new AppError("New password is required", 400);
-
-      const result = await AuthService.resetPassword(token, password);
-
-      res.status(200).json({
-        success: true,
-        message: result.message,
-      });
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async refreshToken(req: Request, res: Response, next: NextFunction) {
-    try {
-      const { refreshToken } = req.body;
-
-      if (!refreshToken) throw new AppError("Refresh token is required", 400);
-
-      const result = await AuthService.refreshToken(refreshToken);
-
-      res.status(200).json({
-        success: true,
-        message: "Token refreshed successfully",
         data: {
-          accessToken: result.accessToken,
+          emailChanged: result.emailChanged,
         },
       });
     } catch (error) {
@@ -166,13 +193,16 @@ export class AuthController {
     }
   }
 
-  async resendVerification(req: Request, res: Response, next: NextFunction) {
+  async updatePassword(req: Request, res: Response, next: NextFunction) {
     try {
-      const { email } = req.body;
+      const userId = req.user!.id;
+      const { oldPassword, newPassword } = req.body;
 
-      if (!email) throw new AppError("Email is required", 400);
-
-      const result = await AuthService.resendVerification(email);
+      const result = await this.authService.updatePassword(
+        userId,
+        oldPassword,
+        newPassword
+      );
 
       res.status(200).json({
         success: true,

@@ -177,3 +177,115 @@
 {"level":"info","message":"Welcome email sent to yavil71183@bitmens.com","service":"property-renting-auth","timestamp":"2025-09-29T04:52:33.248Z"}
 {"level":"info","message":"User verified and password set: yavil71183@bitmens.com","service":"property-renting-auth","timestamp":"2025-09-29T04:52:33.248Z"}
 {"level":"info","message":"🔄 Shutting down gracefully...","service":"property-renting-auth","timestamp":"2025-09-29T05:17:27.519Z"}
+[2025-09-29 21:35:55] ERROR: POST /api/auth/register - Internal server error. Please try again later!  {
+  "name": "SyntaxError",
+  "stack": "SyntaxError: Expected double-quoted property name in JSON at position 83 (line 5 column 1)\n    at JSON.parse (<anonymous>)\n    at parse (D:\\Ridho\\finpro\\finpro-api\\node_modules\\body-parser\\lib\\types\\json.js:77:19)\n    at D:\\Ridho\\finpro\\finpro-api\\node_modules\\body-parser\\lib\\read.js:123:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)\n    at invokeCallback (D:\\Ridho\\finpro\\finpro-api\\node_modules\\raw-body\\index.js:238:16)\n    at done (D:\\Ridho\\finpro\\finpro-api\\node_modules\\raw-body\\index.js:227:7)\n    at IncomingMessage.onEnd (D:\\Ridho\\finpro\\finpro-api\\node_modules\\raw-body\\index.js:287:7)\n    at IncomingMessage.emit (node:events:518:28)\n    at IncomingMessage.emit (node:domain:489:12)\n    at endReadableNT (node:internal/streams/readable:1698:12)",
+  "path": "/api/auth/register",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 400
+}
+[2025-09-29 21:41:01] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "Error",
+  "stack": "Error: JWT_SECRET_KEY is not defined\n    at Function.generateToken (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\jwt.util.ts:13:13)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:268:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-29 21:42:00] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "Error",
+  "stack": "Error: JWT_SECRET_KEY is not defined\n    at Function.generateToken (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\jwt.util.ts:13:13)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:268:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-29 21:42:39] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "Error",
+  "stack": "Error: JWT_SECRET_KEY is not defined\n    at Function.generateToken (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\jwt.util.ts:13:13)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:268:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-29 21:43:27] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "Error",
+  "stack": "Error: JWT_SECRET_KEY is not defined\n    at Function.generateToken (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\jwt.util.ts:13:13)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:268:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-29 21:47:10] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "Error",
+  "stack": "Error: JWT_SECRET_KEY is not defined\n    at Function.generateToken (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\jwt.util.ts:13:13)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:268:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-29 21:48:25] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "Error",
+  "stack": "Error: JWT_SECRET_KEY is not defined\n    at Function.generateToken (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\jwt.util.ts:13:13)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:268:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-29 21:57:52] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "Error",
+  "stack": "Error: JWT_SECRET_KEY is not defined\n    at Function.generateToken (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\jwt.util.ts:13:13)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:268:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-29 22:01:50] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "Error",
+  "stack": "Error: JWT_SECRET_KEY is not defined\n    at Function.generateToken (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\jwt.util.ts:13:13)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:268:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-29 22:03:50] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "Error",
+  "stack": "Error: JWT_SECRET_KEY is not defined\n    at Function.generateToken (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\jwt.util.ts:13:13)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:268:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-29 22:09:24] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "Error",
+  "stack": "Error: JWT_SECRET_KEY is not defined\n    at Function.generateToken (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\jwt.util.ts:13:13)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:275:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-29 22:15:42] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "Error",
+  "stack": "Error: JWT_SECRET_KEY is not defined\n    at Function.generateToken (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\jwt.util.ts:13:13)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:277:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-29 22:25:07] ERROR: POST /api/auth/resend-verification - Email already verified  {
+  "name": "AppError",
+  "stack": "AppError: Email already verified\n    at new AppError (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\app.error.ts:14:11)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:300:13)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/resend-verification",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 400
+}
+[2025-09-29 22:29:24] ERROR: POST /api/auth/login - Invalid email or password  {
+  "name": "AppError",
+  "stack": "AppError: Invalid email or password\n    at new AppError (D:\\Ridho\\finpro\\finpro-api\\src\\utils\\app.error.ts:14:11)\n    at AuthService.<anonymous> (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:264:13)\n    at Generator.next (<anonymous>)\n    at fulfilled (D:\\Ridho\\finpro\\finpro-api\\src\\services\\auth.service.ts:5:58)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 401
+}

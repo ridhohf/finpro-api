@@ -1,41 +1,73 @@
+import express, {
+  json,
+  urlencoded,
+  Express,
+  Request,
+  Response,
+  NextFunction,
+} from "express";
 import cors from "cors";
-import express from "express";
-import helmet from "helmet";
-import morgan from "morgan";
-import { config } from "./config";
-import { errorHandler } from "./middlewares/error-handler.middleware";
-import { notFoundHandler } from "./middlewares/not-found.middleware";
-import mainRouter from "./routers/main.router";
+import { PORT } from "./config";
+import { MainRouter } from "./routers/main.router";
+import { NotFoundMiddleware } from "./middlewares/not-found.middleware";
+import { ErrorHandlerMiddleware } from "./middlewares/error-handler.middleware";
+import { EmailUtil } from "./utils/email.util";
+import { CloudinaryUtil } from "./utils/cloudinary.util";
 
-const app = express();
+export default class App {
+  private app: Express;
 
-// Security middleware
-app.use(helmet());
-app.use(
-  cors({
-    origin: config.frontendUrl,
-    credentials: true,
-  })
-);
+  constructor() {
+    this.app = express();
+    this.initializeServices();
+    this.configure();
+    this.routes();
+    this.handleError();
+  }
 
-// Logging middleware
-if (config.nodeEnv === "development") {
-  app.use(morgan("dev"));
-} else {
-  app.use(morgan("combined"));
+  private initializeServices(): void {
+    // Initialize email service
+    EmailUtil.initialize();
+
+    // Initialize cloudinary
+    CloudinaryUtil.initialize();
+  }
+
+  private configure(): void {
+    this.app.use(cors());
+    this.app.use(json());
+    this.app.use(urlencoded({ extended: true }));
+  }
+
+  private handleError(): void {
+    /*
+      🔒 Docs:
+      This is a not found error handler.
+    */
+    this.app.use(NotFoundMiddleware.handle());
+
+    /*
+        🔒 Docs:
+        This is a centralized error-handling middleware.
+    */
+    this.app.use(ErrorHandlerMiddleware.handle());
+  }
+
+  private routes(): void {
+    const mainRouter = new MainRouter();
+
+    this.app.get("/api", (req: Request, res: Response) => {
+      res.send(
+        `Hello, Purwadhika student 👋. Have fun working on your mini project ☺️`
+      );
+    });
+
+    this.app.use(mainRouter.getRouter());
+  }
+
+  public start(): void {
+    this.app.listen(PORT, () => {
+      console.log(`➜ [API] Local: http://localhost:${PORT}/`);
+    });
+  }
 }
-
-// Body parsing middleware
-app.use(express.json({ limit: "10mb" }));
-app.use(express.urlencoded({ extended: true, limit: "10mb" }));
-
-// API routes
-app.use("/api", mainRouter);
-
-// Handle 404 errors
-app.use(notFoundHandler);
-
-// Global error handler
-app.use(errorHandler);
-
-export default app;
