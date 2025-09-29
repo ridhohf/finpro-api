@@ -24,8 +24,8 @@ model Users {
   password   String?  @db.VarChar(255)
   role       String   @db.VarChar(50)
   provider   String?  @db.VarChar(100)
-  providerId String?  @db.VarChar(255)
-  isVerified Boolean  @default(false)
+  providerId String?  @map("provider_id") @db.VarChar(255)
+  isVerified Boolean  @default(false) @map("is_verified")
   avatar     String?  @db.VarChar(255)
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
@@ -40,13 +40,15 @@ model Users {
   resetPasswords     ResetPasswords[]
   socialLogins       SocialLogins[]
 
+  @@index([email])
+  @@index([role])
   @@map("users")
 }
 
 model TenantProfile {
   id          Int      @id @default(autoincrement())
-  userId      Int      @unique
-  companyName String   @db.VarChar(255)
+  userId      Int      @unique @map("user_id")
+  companyName String   @map("company_name") @db.VarChar(255)
   phone       String?  @db.VarChar(20)
   address     String?  @db.Text
   createdAt   DateTime @default(now()) @map("created_at")
@@ -67,6 +69,7 @@ model SocialLogins {
   user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerId])
+  @@index([userId])
   @@map("social_logins")
 }
 
@@ -76,9 +79,12 @@ model EmailVerifications {
   token     String   @db.VarChar(255)
   expiresAt DateTime @map("expires_at")
   used      Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
 
   user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId])
+  @@index([token])
   @@map("email_verifications")
 }
 
@@ -88,21 +94,27 @@ model ResetPasswords {
   token     String   @db.VarChar(255)
   expiresAt DateTime @map("expires_at")
   used      Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
 
   user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId])
+  @@index([token])
   @@map("reset_passwords")
 }
 
 model PropertyCategories {
-  id          Int    @id @default(autoincrement())
-  tenantId    Int    @map("tenant_id")
-  name        String @db.VarChar(255)
-  description String @db.Text
+  id          Int      @id @default(autoincrement())
+  tenantId    Int      @map("tenant_id")
+  name        String   @db.VarChar(255)
+  description String   @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
   tenant     Users        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   properties Properties[]
 
+  @@index([tenantId])
   @@map("property_categories")
 }
 
@@ -112,7 +124,7 @@ model Properties {
   categoryId  Int      @map("category_id")
   name        String   @db.VarChar(255)
   description String   @db.Text
-  picture     Json
+  picture     Json /// Array of image URLs
   address     String   @db.Text
   city        String   @db.VarChar(100)
   lat         Decimal? @db.Decimal(10, 7)
@@ -126,6 +138,10 @@ model Properties {
   reservations Reservations[]
   reviews      Reviews[]
 
+  @@index([tenantId])
+  @@index([categoryId])
+  @@index([city])
+  @@index([tenantId, createdAt])
   @@map("properties")
 }
 
@@ -136,7 +152,7 @@ model Rooms {
   description String   @db.Text
   basePrice   Decimal  @map("base_price") @db.Decimal(10, 2)
   maxGuests   Int      @default(1) @map("max_guests")
-  picture     Json
+  picture     Json /// Array of image URLs
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
@@ -145,6 +161,7 @@ model Rooms {
   roomAvailabilities RoomAvailabilities[]
   peakSeasons        PeakSeasons[]
 
+  @@index([propertyId])
   @@map("rooms")
 }
 
@@ -154,10 +171,13 @@ model RoomAvailabilities {
   date          DateTime @db.Date
   isAvailable   Boolean  @default(true) @map("is_available")
   priceOverride Decimal? @map("price_override") @db.Decimal(10, 2)
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
 
   room Rooms @relation(fields: [roomId], references: [id], onDelete: Cascade)
 
   @@unique([roomId, date])
+  @@index([roomId, date])
   @@map("room_availabilities")
 }
 
@@ -170,9 +190,12 @@ model PeakSeasons {
   priceIncreaseType String   @map("price_increase_type") @db.VarChar(20)
   value             Decimal  @db.Decimal(10, 2)
   createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
 
   room Rooms @relation(fields: [roomId], references: [id], onDelete: Cascade)
 
+  @@index([roomId])
+  @@index([roomId, startDate, endDate])
   @@map("peak_seasons")
 }
 
@@ -196,6 +219,13 @@ model Reservations {
   paymentProofs PaymentProofs[]
   reviews       Reviews[]
 
+  @@index([userId])
+  @@index([propertyId])
+  @@index([roomId])
+  @@index([userId, status])
+  @@index([propertyId, status])
+  @@index([checkIn, checkOut])
+  @@index([status, createdAt])
   @@map("reservations")
 }
 
@@ -210,22 +240,28 @@ model PaymentProofs {
 
   reservation Reservations @relation(fields: [reservationId], references: [id], onDelete: Cascade)
 
+  @@index([reservationId])
   @@map("payment_proofs")
 }
 
 model Reviews {
-  id            Int      @id @default(autoincrement())
-  userId        Int      @map("user_id")
-  propertyId    Int      @map("property_id")
-  reservationId Int      @map("reservation_id")
-  rating        Int
-  comment       String   @db.Text
-  createdAt     DateTime @default(now()) @map("created_at")
+  id            Int       @id @default(autoincrement())
+  userId        Int       @map("user_id")
+  propertyId    Int       @map("property_id")
+  reservationId Int       @map("reservation_id")
+  rating        Int       @db.SmallInt
+  comment       String    @db.Text
+  tenantReply   String?   @map("tenant_reply") @db.Text
+  repliedAt     DateTime? @map("replied_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
 
   user        Users        @relation(fields: [userId], references: [id])
   property    Properties   @relation(fields: [propertyId], references: [id])
   reservation Reservations @relation(fields: [reservationId], references: [id])
 
   @@unique([userId, reservationId])
+  @@index([propertyId])
+  @@index([userId])
   @@map("reviews")
 }

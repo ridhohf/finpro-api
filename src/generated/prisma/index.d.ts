@@ -5844,6 +5844,7 @@ export namespace Prisma {
     token: string | null
     expiresAt: Date | null
     used: boolean | null
+    createdAt: Date | null
   }
 
   export type EmailVerificationsMaxAggregateOutputType = {
@@ -5852,6 +5853,7 @@ export namespace Prisma {
     token: string | null
     expiresAt: Date | null
     used: boolean | null
+    createdAt: Date | null
   }
 
   export type EmailVerificationsCountAggregateOutputType = {
@@ -5860,6 +5862,7 @@ export namespace Prisma {
     token: number
     expiresAt: number
     used: number
+    createdAt: number
     _all: number
   }
 
@@ -5880,6 +5883,7 @@ export namespace Prisma {
     token?: true
     expiresAt?: true
     used?: true
+    createdAt?: true
   }
 
   export type EmailVerificationsMaxAggregateInputType = {
@@ -5888,6 +5892,7 @@ export namespace Prisma {
     token?: true
     expiresAt?: true
     used?: true
+    createdAt?: true
   }
 
   export type EmailVerificationsCountAggregateInputType = {
@@ -5896,6 +5901,7 @@ export namespace Prisma {
     token?: true
     expiresAt?: true
     used?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -5991,6 +5997,7 @@ export namespace Prisma {
     token: string
     expiresAt: Date
     used: boolean
+    createdAt: Date
     _count: EmailVerificationsCountAggregateOutputType | null
     _avg: EmailVerificationsAvgAggregateOutputType | null
     _sum: EmailVerificationsSumAggregateOutputType | null
@@ -6018,6 +6025,7 @@ export namespace Prisma {
     token?: boolean
     expiresAt?: boolean
     used?: boolean
+    createdAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["emailVerifications"]>
 
@@ -6027,6 +6035,7 @@ export namespace Prisma {
     token?: boolean
     expiresAt?: boolean
     used?: boolean
+    createdAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["emailVerifications"]>
 
@@ -6036,6 +6045,7 @@ export namespace Prisma {
     token?: boolean
     expiresAt?: boolean
     used?: boolean
+    createdAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["emailVerifications"]>
 
@@ -6045,9 +6055,10 @@ export namespace Prisma {
     token?: boolean
     expiresAt?: boolean
     used?: boolean
+    createdAt?: boolean
   }
 
-  export type EmailVerificationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "token" | "expiresAt" | "used", ExtArgs["result"]["emailVerifications"]>
+  export type EmailVerificationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "token" | "expiresAt" | "used" | "createdAt", ExtArgs["result"]["emailVerifications"]>
   export type EmailVerificationsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
   }
@@ -6069,6 +6080,7 @@ export namespace Prisma {
       token: string
       expiresAt: Date
       used: boolean
+      createdAt: Date
     }, ExtArgs["result"]["emailVerifications"]>
     composites: {}
   }
@@ -6498,6 +6510,7 @@ export namespace Prisma {
     readonly token: FieldRef<"EmailVerifications", 'String'>
     readonly expiresAt: FieldRef<"EmailVerifications", 'DateTime'>
     readonly used: FieldRef<"EmailVerifications", 'Boolean'>
+    readonly createdAt: FieldRef<"EmailVerifications", 'DateTime'>
   }
     
 
@@ -6940,6 +6953,7 @@ export namespace Prisma {
     token: string | null
     expiresAt: Date | null
     used: boolean | null
+    createdAt: Date | null
   }
 
   export type ResetPasswordsMaxAggregateOutputType = {
@@ -6948,6 +6962,7 @@ export namespace Prisma {
     token: string | null
     expiresAt: Date | null
     used: boolean | null
+    createdAt: Date | null
   }
 
   export type ResetPasswordsCountAggregateOutputType = {
@@ -6956,6 +6971,7 @@ export namespace Prisma {
     token: number
     expiresAt: number
     used: number
+    createdAt: number
     _all: number
   }
 
@@ -6976,6 +6992,7 @@ export namespace Prisma {
     token?: true
     expiresAt?: true
     used?: true
+    createdAt?: true
   }
 
   export type ResetPasswordsMaxAggregateInputType = {
@@ -6984,6 +7001,7 @@ export namespace Prisma {
     token?: true
     expiresAt?: true
     used?: true
+    createdAt?: true
   }
 
   export type ResetPasswordsCountAggregateInputType = {
@@ -6992,6 +7010,7 @@ export namespace Prisma {
     token?: true
     expiresAt?: true
     used?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -7087,6 +7106,7 @@ export namespace Prisma {
     token: string
     expiresAt: Date
     used: boolean
+    createdAt: Date
     _count: ResetPasswordsCountAggregateOutputType | null
     _avg: ResetPasswordsAvgAggregateOutputType | null
     _sum: ResetPasswordsSumAggregateOutputType | null
@@ -7114,6 +7134,7 @@ export namespace Prisma {
     token?: boolean
     expiresAt?: boolean
     used?: boolean
+    createdAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["resetPasswords"]>
 
@@ -7123,6 +7144,7 @@ export namespace Prisma {
     token?: boolean
     expiresAt?: boolean
     used?: boolean
+    createdAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["resetPasswords"]>
 
@@ -7132,6 +7154,7 @@ export namespace Prisma {
     token?: boolean
     expiresAt?: boolean
     used?: boolean
+    createdAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["resetPasswords"]>
 
@@ -7141,9 +7164,10 @@ export namespace Prisma {
     token?: boolean
     expiresAt?: boolean
     used?: boolean
+    createdAt?: boolean
   }
 
-  export type ResetPasswordsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "token" | "expiresAt" | "used", ExtArgs["result"]["resetPasswords"]>
+  export type ResetPasswordsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "token" | "expiresAt" | "used" | "createdAt", ExtArgs["result"]["resetPasswords"]>
   export type ResetPasswordsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
   }
@@ -7165,6 +7189,7 @@ export namespace Prisma {
       token: string
       expiresAt: Date
       used: boolean
+      createdAt: Date
     }, ExtArgs["result"]["resetPasswords"]>
     composites: {}
   }
@@ -7594,6 +7619,7 @@ export namespace Prisma {
     readonly token: FieldRef<"ResetPasswords", 'String'>
     readonly expiresAt: FieldRef<"ResetPasswords", 'DateTime'>
     readonly used: FieldRef<"ResetPasswords", 'Boolean'>
+    readonly createdAt: FieldRef<"ResetPasswords", 'DateTime'>
   }
     
 
@@ -8035,6 +8061,8 @@ export namespace Prisma {
     tenantId: number | null
     name: string | null
     description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type PropertyCategoriesMaxAggregateOutputType = {
@@ -8042,6 +8070,8 @@ export namespace Prisma {
     tenantId: number | null
     name: string | null
     description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type PropertyCategoriesCountAggregateOutputType = {
@@ -8049,6 +8079,8 @@ export namespace Prisma {
     tenantId: number
     name: number
     description: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -8068,6 +8100,8 @@ export namespace Prisma {
     tenantId?: true
     name?: true
     description?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type PropertyCategoriesMaxAggregateInputType = {
@@ -8075,6 +8109,8 @@ export namespace Prisma {
     tenantId?: true
     name?: true
     description?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type PropertyCategoriesCountAggregateInputType = {
@@ -8082,6 +8118,8 @@ export namespace Prisma {
     tenantId?: true
     name?: true
     description?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -8176,6 +8214,8 @@ export namespace Prisma {
     tenantId: number
     name: string
     description: string
+    createdAt: Date
+    updatedAt: Date
     _count: PropertyCategoriesCountAggregateOutputType | null
     _avg: PropertyCategoriesAvgAggregateOutputType | null
     _sum: PropertyCategoriesSumAggregateOutputType | null
@@ -8202,6 +8242,8 @@ export namespace Prisma {
     tenantId?: boolean
     name?: boolean
     description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     tenant?: boolean | UsersDefaultArgs<ExtArgs>
     properties?: boolean | PropertyCategories$propertiesArgs<ExtArgs>
     _count?: boolean | PropertyCategoriesCountOutputTypeDefaultArgs<ExtArgs>
@@ -8212,6 +8254,8 @@ export namespace Prisma {
     tenantId?: boolean
     name?: boolean
     description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     tenant?: boolean | UsersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["propertyCategories"]>
 
@@ -8220,6 +8264,8 @@ export namespace Prisma {
     tenantId?: boolean
     name?: boolean
     description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     tenant?: boolean | UsersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["propertyCategories"]>
 
@@ -8228,9 +8274,11 @@ export namespace Prisma {
     tenantId?: boolean
     name?: boolean
     description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type PropertyCategoriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "name" | "description", ExtArgs["result"]["propertyCategories"]>
+  export type PropertyCategoriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "name" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["propertyCategories"]>
   export type PropertyCategoriesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tenant?: boolean | UsersDefaultArgs<ExtArgs>
     properties?: boolean | PropertyCategories$propertiesArgs<ExtArgs>
@@ -8254,6 +8302,8 @@ export namespace Prisma {
       tenantId: number
       name: string
       description: string
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["propertyCategories"]>
     composites: {}
   }
@@ -8683,6 +8733,8 @@ export namespace Prisma {
     readonly tenantId: FieldRef<"PropertyCategories", 'Int'>
     readonly name: FieldRef<"PropertyCategories", 'String'>
     readonly description: FieldRef<"PropertyCategories", 'String'>
+    readonly createdAt: FieldRef<"PropertyCategories", 'DateTime'>
+    readonly updatedAt: FieldRef<"PropertyCategories", 'DateTime'>
   }
     
 
@@ -9477,6 +9529,9 @@ export namespace Prisma {
       categoryId: number
       name: string
       description: string
+      /**
+       * Array of image URLs
+       */
       picture: Prisma.JsonValue
       address: string
       city: string
@@ -10723,6 +10778,9 @@ export namespace Prisma {
       description: string
       basePrice: Prisma.Decimal
       maxGuests: number
+      /**
+       * Array of image URLs
+       */
       picture: Prisma.JsonValue
       createdAt: Date
       updatedAt: Date
@@ -11678,6 +11736,8 @@ export namespace Prisma {
     date: Date | null
     isAvailable: boolean | null
     priceOverride: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type RoomAvailabilitiesMaxAggregateOutputType = {
@@ -11686,6 +11746,8 @@ export namespace Prisma {
     date: Date | null
     isAvailable: boolean | null
     priceOverride: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type RoomAvailabilitiesCountAggregateOutputType = {
@@ -11694,6 +11756,8 @@ export namespace Prisma {
     date: number
     isAvailable: number
     priceOverride: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -11716,6 +11780,8 @@ export namespace Prisma {
     date?: true
     isAvailable?: true
     priceOverride?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type RoomAvailabilitiesMaxAggregateInputType = {
@@ -11724,6 +11790,8 @@ export namespace Prisma {
     date?: true
     isAvailable?: true
     priceOverride?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type RoomAvailabilitiesCountAggregateInputType = {
@@ -11732,6 +11800,8 @@ export namespace Prisma {
     date?: true
     isAvailable?: true
     priceOverride?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -11827,6 +11897,8 @@ export namespace Prisma {
     date: Date
     isAvailable: boolean
     priceOverride: Decimal | null
+    createdAt: Date
+    updatedAt: Date
     _count: RoomAvailabilitiesCountAggregateOutputType | null
     _avg: RoomAvailabilitiesAvgAggregateOutputType | null
     _sum: RoomAvailabilitiesSumAggregateOutputType | null
@@ -11854,6 +11926,8 @@ export namespace Prisma {
     date?: boolean
     isAvailable?: boolean
     priceOverride?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     room?: boolean | RoomsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["roomAvailabilities"]>
 
@@ -11863,6 +11937,8 @@ export namespace Prisma {
     date?: boolean
     isAvailable?: boolean
     priceOverride?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     room?: boolean | RoomsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["roomAvailabilities"]>
 
@@ -11872,6 +11948,8 @@ export namespace Prisma {
     date?: boolean
     isAvailable?: boolean
     priceOverride?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     room?: boolean | RoomsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["roomAvailabilities"]>
 
@@ -11881,9 +11959,11 @@ export namespace Prisma {
     date?: boolean
     isAvailable?: boolean
     priceOverride?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type RoomAvailabilitiesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "roomId" | "date" | "isAvailable" | "priceOverride", ExtArgs["result"]["roomAvailabilities"]>
+  export type RoomAvailabilitiesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "roomId" | "date" | "isAvailable" | "priceOverride" | "createdAt" | "updatedAt", ExtArgs["result"]["roomAvailabilities"]>
   export type RoomAvailabilitiesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     room?: boolean | RoomsDefaultArgs<ExtArgs>
   }
@@ -11905,6 +11985,8 @@ export namespace Prisma {
       date: Date
       isAvailable: boolean
       priceOverride: Prisma.Decimal | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["roomAvailabilities"]>
     composites: {}
   }
@@ -12334,6 +12416,8 @@ export namespace Prisma {
     readonly date: FieldRef<"RoomAvailabilities", 'DateTime'>
     readonly isAvailable: FieldRef<"RoomAvailabilities", 'Boolean'>
     readonly priceOverride: FieldRef<"RoomAvailabilities", 'Decimal'>
+    readonly createdAt: FieldRef<"RoomAvailabilities", 'DateTime'>
+    readonly updatedAt: FieldRef<"RoomAvailabilities", 'DateTime'>
   }
     
 
@@ -12781,6 +12865,7 @@ export namespace Prisma {
     priceIncreaseType: string | null
     value: Decimal | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type PeakSeasonsMaxAggregateOutputType = {
@@ -12792,6 +12877,7 @@ export namespace Prisma {
     priceIncreaseType: string | null
     value: Decimal | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type PeakSeasonsCountAggregateOutputType = {
@@ -12803,6 +12889,7 @@ export namespace Prisma {
     priceIncreaseType: number
     value: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -12828,6 +12915,7 @@ export namespace Prisma {
     priceIncreaseType?: true
     value?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type PeakSeasonsMaxAggregateInputType = {
@@ -12839,6 +12927,7 @@ export namespace Prisma {
     priceIncreaseType?: true
     value?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type PeakSeasonsCountAggregateInputType = {
@@ -12850,6 +12939,7 @@ export namespace Prisma {
     priceIncreaseType?: true
     value?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -12948,6 +13038,7 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal
     createdAt: Date
+    updatedAt: Date
     _count: PeakSeasonsCountAggregateOutputType | null
     _avg: PeakSeasonsAvgAggregateOutputType | null
     _sum: PeakSeasonsSumAggregateOutputType | null
@@ -12978,6 +13069,7 @@ export namespace Prisma {
     priceIncreaseType?: boolean
     value?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     room?: boolean | RoomsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["peakSeasons"]>
 
@@ -12990,6 +13082,7 @@ export namespace Prisma {
     priceIncreaseType?: boolean
     value?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     room?: boolean | RoomsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["peakSeasons"]>
 
@@ -13002,6 +13095,7 @@ export namespace Prisma {
     priceIncreaseType?: boolean
     value?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     room?: boolean | RoomsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["peakSeasons"]>
 
@@ -13014,9 +13108,10 @@ export namespace Prisma {
     priceIncreaseType?: boolean
     value?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type PeakSeasonsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "roomId" | "name" | "startDate" | "endDate" | "priceIncreaseType" | "value" | "createdAt", ExtArgs["result"]["peakSeasons"]>
+  export type PeakSeasonsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "roomId" | "name" | "startDate" | "endDate" | "priceIncreaseType" | "value" | "createdAt" | "updatedAt", ExtArgs["result"]["peakSeasons"]>
   export type PeakSeasonsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     room?: boolean | RoomsDefaultArgs<ExtArgs>
   }
@@ -13041,6 +13136,7 @@ export namespace Prisma {
       priceIncreaseType: string
       value: Prisma.Decimal
       createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["peakSeasons"]>
     composites: {}
   }
@@ -13473,6 +13569,7 @@ export namespace Prisma {
     readonly priceIncreaseType: FieldRef<"PeakSeasons", 'String'>
     readonly value: FieldRef<"PeakSeasons", 'Decimal'>
     readonly createdAt: FieldRef<"PeakSeasons", 'DateTime'>
+    readonly updatedAt: FieldRef<"PeakSeasons", 'DateTime'>
   }
     
 
@@ -16321,7 +16418,10 @@ export namespace Prisma {
     reservationId: number | null
     rating: number | null
     comment: string | null
+    tenantReply: string | null
+    repliedAt: Date | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ReviewsMaxAggregateOutputType = {
@@ -16331,7 +16431,10 @@ export namespace Prisma {
     reservationId: number | null
     rating: number | null
     comment: string | null
+    tenantReply: string | null
+    repliedAt: Date | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ReviewsCountAggregateOutputType = {
@@ -16341,7 +16444,10 @@ export namespace Prisma {
     reservationId: number
     rating: number
     comment: number
+    tenantReply: number
+    repliedAt: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -16369,7 +16475,10 @@ export namespace Prisma {
     reservationId?: true
     rating?: true
     comment?: true
+    tenantReply?: true
+    repliedAt?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type ReviewsMaxAggregateInputType = {
@@ -16379,7 +16488,10 @@ export namespace Prisma {
     reservationId?: true
     rating?: true
     comment?: true
+    tenantReply?: true
+    repliedAt?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type ReviewsCountAggregateInputType = {
@@ -16389,7 +16501,10 @@ export namespace Prisma {
     reservationId?: true
     rating?: true
     comment?: true
+    tenantReply?: true
+    repliedAt?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -16486,7 +16601,10 @@ export namespace Prisma {
     reservationId: number
     rating: number
     comment: string
+    tenantReply: string | null
+    repliedAt: Date | null
     createdAt: Date
+    updatedAt: Date
     _count: ReviewsCountAggregateOutputType | null
     _avg: ReviewsAvgAggregateOutputType | null
     _sum: ReviewsSumAggregateOutputType | null
@@ -16515,7 +16633,10 @@ export namespace Prisma {
     reservationId?: boolean
     rating?: boolean
     comment?: boolean
+    tenantReply?: boolean
+    repliedAt?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
     property?: boolean | PropertiesDefaultArgs<ExtArgs>
     reservation?: boolean | ReservationsDefaultArgs<ExtArgs>
@@ -16528,7 +16649,10 @@ export namespace Prisma {
     reservationId?: boolean
     rating?: boolean
     comment?: boolean
+    tenantReply?: boolean
+    repliedAt?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
     property?: boolean | PropertiesDefaultArgs<ExtArgs>
     reservation?: boolean | ReservationsDefaultArgs<ExtArgs>
@@ -16541,7 +16665,10 @@ export namespace Prisma {
     reservationId?: boolean
     rating?: boolean
     comment?: boolean
+    tenantReply?: boolean
+    repliedAt?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
     property?: boolean | PropertiesDefaultArgs<ExtArgs>
     reservation?: boolean | ReservationsDefaultArgs<ExtArgs>
@@ -16554,10 +16681,13 @@ export namespace Prisma {
     reservationId?: boolean
     rating?: boolean
     comment?: boolean
+    tenantReply?: boolean
+    repliedAt?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ReviewsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "propertyId" | "reservationId" | "rating" | "comment" | "createdAt", ExtArgs["result"]["reviews"]>
+  export type ReviewsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "propertyId" | "reservationId" | "rating" | "comment" | "tenantReply" | "repliedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["reviews"]>
   export type ReviewsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     property?: boolean | PropertiesDefaultArgs<ExtArgs>
@@ -16588,7 +16718,10 @@ export namespace Prisma {
       reservationId: number
       rating: number
       comment: string
+      tenantReply: string | null
+      repliedAt: Date | null
       createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["reviews"]>
     composites: {}
   }
@@ -17021,7 +17154,10 @@ export namespace Prisma {
     readonly reservationId: FieldRef<"Reviews", 'Int'>
     readonly rating: FieldRef<"Reviews", 'Int'>
     readonly comment: FieldRef<"Reviews", 'String'>
+    readonly tenantReply: FieldRef<"Reviews", 'String'>
+    readonly repliedAt: FieldRef<"Reviews", 'DateTime'>
     readonly createdAt: FieldRef<"Reviews", 'DateTime'>
+    readonly updatedAt: FieldRef<"Reviews", 'DateTime'>
   }
     
 
@@ -17496,7 +17632,8 @@ export namespace Prisma {
     userId: 'userId',
     token: 'token',
     expiresAt: 'expiresAt',
-    used: 'used'
+    used: 'used',
+    createdAt: 'createdAt'
   };
 
   export type EmailVerificationsScalarFieldEnum = (typeof EmailVerificationsScalarFieldEnum)[keyof typeof EmailVerificationsScalarFieldEnum]
@@ -17507,7 +17644,8 @@ export namespace Prisma {
     userId: 'userId',
     token: 'token',
     expiresAt: 'expiresAt',
-    used: 'used'
+    used: 'used',
+    createdAt: 'createdAt'
   };
 
   export type ResetPasswordsScalarFieldEnum = (typeof ResetPasswordsScalarFieldEnum)[keyof typeof ResetPasswordsScalarFieldEnum]
@@ -17517,7 +17655,9 @@ export namespace Prisma {
     id: 'id',
     tenantId: 'tenantId',
     name: 'name',
-    description: 'description'
+    description: 'description',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type PropertyCategoriesScalarFieldEnum = (typeof PropertyCategoriesScalarFieldEnum)[keyof typeof PropertyCategoriesScalarFieldEnum]
@@ -17561,7 +17701,9 @@ export namespace Prisma {
     roomId: 'roomId',
     date: 'date',
     isAvailable: 'isAvailable',
-    priceOverride: 'priceOverride'
+    priceOverride: 'priceOverride',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type RoomAvailabilitiesScalarFieldEnum = (typeof RoomAvailabilitiesScalarFieldEnum)[keyof typeof RoomAvailabilitiesScalarFieldEnum]
@@ -17575,7 +17717,8 @@ export namespace Prisma {
     endDate: 'endDate',
     priceIncreaseType: 'priceIncreaseType',
     value: 'value',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type PeakSeasonsScalarFieldEnum = (typeof PeakSeasonsScalarFieldEnum)[keyof typeof PeakSeasonsScalarFieldEnum]
@@ -17619,7 +17762,10 @@ export namespace Prisma {
     reservationId: 'reservationId',
     rating: 'rating',
     comment: 'comment',
-    createdAt: 'createdAt'
+    tenantReply: 'tenantReply',
+    repliedAt: 'repliedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ReviewsScalarFieldEnum = (typeof ReviewsScalarFieldEnum)[keyof typeof ReviewsScalarFieldEnum]
@@ -18020,6 +18166,7 @@ export namespace Prisma {
     token?: StringFilter<"EmailVerifications"> | string
     expiresAt?: DateTimeFilter<"EmailVerifications"> | Date | string
     used?: BoolFilter<"EmailVerifications"> | boolean
+    createdAt?: DateTimeFilter<"EmailVerifications"> | Date | string
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
   }
 
@@ -18029,6 +18176,7 @@ export namespace Prisma {
     token?: SortOrder
     expiresAt?: SortOrder
     used?: SortOrder
+    createdAt?: SortOrder
     user?: UsersOrderByWithRelationInput
   }
 
@@ -18041,6 +18189,7 @@ export namespace Prisma {
     token?: StringFilter<"EmailVerifications"> | string
     expiresAt?: DateTimeFilter<"EmailVerifications"> | Date | string
     used?: BoolFilter<"EmailVerifications"> | boolean
+    createdAt?: DateTimeFilter<"EmailVerifications"> | Date | string
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
   }, "id">
 
@@ -18050,6 +18199,7 @@ export namespace Prisma {
     token?: SortOrder
     expiresAt?: SortOrder
     used?: SortOrder
+    createdAt?: SortOrder
     _count?: EmailVerificationsCountOrderByAggregateInput
     _avg?: EmailVerificationsAvgOrderByAggregateInput
     _max?: EmailVerificationsMaxOrderByAggregateInput
@@ -18066,6 +18216,7 @@ export namespace Prisma {
     token?: StringWithAggregatesFilter<"EmailVerifications"> | string
     expiresAt?: DateTimeWithAggregatesFilter<"EmailVerifications"> | Date | string
     used?: BoolWithAggregatesFilter<"EmailVerifications"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"EmailVerifications"> | Date | string
   }
 
   export type ResetPasswordsWhereInput = {
@@ -18077,6 +18228,7 @@ export namespace Prisma {
     token?: StringFilter<"ResetPasswords"> | string
     expiresAt?: DateTimeFilter<"ResetPasswords"> | Date | string
     used?: BoolFilter<"ResetPasswords"> | boolean
+    createdAt?: DateTimeFilter<"ResetPasswords"> | Date | string
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
   }
 
@@ -18086,6 +18238,7 @@ export namespace Prisma {
     token?: SortOrder
     expiresAt?: SortOrder
     used?: SortOrder
+    createdAt?: SortOrder
     user?: UsersOrderByWithRelationInput
   }
 
@@ -18098,6 +18251,7 @@ export namespace Prisma {
     token?: StringFilter<"ResetPasswords"> | string
     expiresAt?: DateTimeFilter<"ResetPasswords"> | Date | string
     used?: BoolFilter<"ResetPasswords"> | boolean
+    createdAt?: DateTimeFilter<"ResetPasswords"> | Date | string
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
   }, "id">
 
@@ -18107,6 +18261,7 @@ export namespace Prisma {
     token?: SortOrder
     expiresAt?: SortOrder
     used?: SortOrder
+    createdAt?: SortOrder
     _count?: ResetPasswordsCountOrderByAggregateInput
     _avg?: ResetPasswordsAvgOrderByAggregateInput
     _max?: ResetPasswordsMaxOrderByAggregateInput
@@ -18123,6 +18278,7 @@ export namespace Prisma {
     token?: StringWithAggregatesFilter<"ResetPasswords"> | string
     expiresAt?: DateTimeWithAggregatesFilter<"ResetPasswords"> | Date | string
     used?: BoolWithAggregatesFilter<"ResetPasswords"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ResetPasswords"> | Date | string
   }
 
   export type PropertyCategoriesWhereInput = {
@@ -18133,6 +18289,8 @@ export namespace Prisma {
     tenantId?: IntFilter<"PropertyCategories"> | number
     name?: StringFilter<"PropertyCategories"> | string
     description?: StringFilter<"PropertyCategories"> | string
+    createdAt?: DateTimeFilter<"PropertyCategories"> | Date | string
+    updatedAt?: DateTimeFilter<"PropertyCategories"> | Date | string
     tenant?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     properties?: PropertiesListRelationFilter
   }
@@ -18142,6 +18300,8 @@ export namespace Prisma {
     tenantId?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     tenant?: UsersOrderByWithRelationInput
     properties?: PropertiesOrderByRelationAggregateInput
   }
@@ -18154,6 +18314,8 @@ export namespace Prisma {
     tenantId?: IntFilter<"PropertyCategories"> | number
     name?: StringFilter<"PropertyCategories"> | string
     description?: StringFilter<"PropertyCategories"> | string
+    createdAt?: DateTimeFilter<"PropertyCategories"> | Date | string
+    updatedAt?: DateTimeFilter<"PropertyCategories"> | Date | string
     tenant?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     properties?: PropertiesListRelationFilter
   }, "id">
@@ -18163,6 +18325,8 @@ export namespace Prisma {
     tenantId?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: PropertyCategoriesCountOrderByAggregateInput
     _avg?: PropertyCategoriesAvgOrderByAggregateInput
     _max?: PropertyCategoriesMaxOrderByAggregateInput
@@ -18178,6 +18342,8 @@ export namespace Prisma {
     tenantId?: IntWithAggregatesFilter<"PropertyCategories"> | number
     name?: StringWithAggregatesFilter<"PropertyCategories"> | string
     description?: StringWithAggregatesFilter<"PropertyCategories"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"PropertyCategories"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PropertyCategories"> | Date | string
   }
 
   export type PropertiesWhereInput = {
@@ -18379,6 +18545,8 @@ export namespace Prisma {
     date?: DateTimeFilter<"RoomAvailabilities"> | Date | string
     isAvailable?: BoolFilter<"RoomAvailabilities"> | boolean
     priceOverride?: DecimalNullableFilter<"RoomAvailabilities"> | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFilter<"RoomAvailabilities"> | Date | string
+    updatedAt?: DateTimeFilter<"RoomAvailabilities"> | Date | string
     room?: XOR<RoomsScalarRelationFilter, RoomsWhereInput>
   }
 
@@ -18388,6 +18556,8 @@ export namespace Prisma {
     date?: SortOrder
     isAvailable?: SortOrder
     priceOverride?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     room?: RoomsOrderByWithRelationInput
   }
 
@@ -18401,6 +18571,8 @@ export namespace Prisma {
     date?: DateTimeFilter<"RoomAvailabilities"> | Date | string
     isAvailable?: BoolFilter<"RoomAvailabilities"> | boolean
     priceOverride?: DecimalNullableFilter<"RoomAvailabilities"> | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFilter<"RoomAvailabilities"> | Date | string
+    updatedAt?: DateTimeFilter<"RoomAvailabilities"> | Date | string
     room?: XOR<RoomsScalarRelationFilter, RoomsWhereInput>
   }, "id" | "roomId_date">
 
@@ -18410,6 +18582,8 @@ export namespace Prisma {
     date?: SortOrder
     isAvailable?: SortOrder
     priceOverride?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: RoomAvailabilitiesCountOrderByAggregateInput
     _avg?: RoomAvailabilitiesAvgOrderByAggregateInput
     _max?: RoomAvailabilitiesMaxOrderByAggregateInput
@@ -18426,6 +18600,8 @@ export namespace Prisma {
     date?: DateTimeWithAggregatesFilter<"RoomAvailabilities"> | Date | string
     isAvailable?: BoolWithAggregatesFilter<"RoomAvailabilities"> | boolean
     priceOverride?: DecimalNullableWithAggregatesFilter<"RoomAvailabilities"> | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"RoomAvailabilities"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RoomAvailabilities"> | Date | string
   }
 
   export type PeakSeasonsWhereInput = {
@@ -18440,6 +18616,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFilter<"PeakSeasons"> | string
     value?: DecimalFilter<"PeakSeasons"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"PeakSeasons"> | Date | string
+    updatedAt?: DateTimeFilter<"PeakSeasons"> | Date | string
     room?: XOR<RoomsScalarRelationFilter, RoomsWhereInput>
   }
 
@@ -18452,6 +18629,7 @@ export namespace Prisma {
     priceIncreaseType?: SortOrder
     value?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     room?: RoomsOrderByWithRelationInput
   }
 
@@ -18467,6 +18645,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFilter<"PeakSeasons"> | string
     value?: DecimalFilter<"PeakSeasons"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"PeakSeasons"> | Date | string
+    updatedAt?: DateTimeFilter<"PeakSeasons"> | Date | string
     room?: XOR<RoomsScalarRelationFilter, RoomsWhereInput>
   }, "id">
 
@@ -18479,6 +18658,7 @@ export namespace Prisma {
     priceIncreaseType?: SortOrder
     value?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: PeakSeasonsCountOrderByAggregateInput
     _avg?: PeakSeasonsAvgOrderByAggregateInput
     _max?: PeakSeasonsMaxOrderByAggregateInput
@@ -18498,6 +18678,7 @@ export namespace Prisma {
     priceIncreaseType?: StringWithAggregatesFilter<"PeakSeasons"> | string
     value?: DecimalWithAggregatesFilter<"PeakSeasons"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeWithAggregatesFilter<"PeakSeasons"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PeakSeasons"> | Date | string
   }
 
   export type ReservationsWhereInput = {
@@ -18681,7 +18862,10 @@ export namespace Prisma {
     reservationId?: IntFilter<"Reviews"> | number
     rating?: IntFilter<"Reviews"> | number
     comment?: StringFilter<"Reviews"> | string
+    tenantReply?: StringNullableFilter<"Reviews"> | string | null
+    repliedAt?: DateTimeNullableFilter<"Reviews"> | Date | string | null
     createdAt?: DateTimeFilter<"Reviews"> | Date | string
+    updatedAt?: DateTimeFilter<"Reviews"> | Date | string
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     property?: XOR<PropertiesScalarRelationFilter, PropertiesWhereInput>
     reservation?: XOR<ReservationsScalarRelationFilter, ReservationsWhereInput>
@@ -18694,7 +18878,10 @@ export namespace Prisma {
     reservationId?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    tenantReply?: SortOrderInput | SortOrder
+    repliedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     user?: UsersOrderByWithRelationInput
     property?: PropertiesOrderByWithRelationInput
     reservation?: ReservationsOrderByWithRelationInput
@@ -18711,7 +18898,10 @@ export namespace Prisma {
     reservationId?: IntFilter<"Reviews"> | number
     rating?: IntFilter<"Reviews"> | number
     comment?: StringFilter<"Reviews"> | string
+    tenantReply?: StringNullableFilter<"Reviews"> | string | null
+    repliedAt?: DateTimeNullableFilter<"Reviews"> | Date | string | null
     createdAt?: DateTimeFilter<"Reviews"> | Date | string
+    updatedAt?: DateTimeFilter<"Reviews"> | Date | string
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     property?: XOR<PropertiesScalarRelationFilter, PropertiesWhereInput>
     reservation?: XOR<ReservationsScalarRelationFilter, ReservationsWhereInput>
@@ -18724,7 +18914,10 @@ export namespace Prisma {
     reservationId?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    tenantReply?: SortOrderInput | SortOrder
+    repliedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ReviewsCountOrderByAggregateInput
     _avg?: ReviewsAvgOrderByAggregateInput
     _max?: ReviewsMaxOrderByAggregateInput
@@ -18742,7 +18935,10 @@ export namespace Prisma {
     reservationId?: IntWithAggregatesFilter<"Reviews"> | number
     rating?: IntWithAggregatesFilter<"Reviews"> | number
     comment?: StringWithAggregatesFilter<"Reviews"> | string
+    tenantReply?: StringNullableWithAggregatesFilter<"Reviews"> | string | null
+    repliedAt?: DateTimeNullableWithAggregatesFilter<"Reviews"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Reviews"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Reviews"> | Date | string
   }
 
   export type UsersCreateInput = {
@@ -18994,6 +19190,7 @@ export namespace Prisma {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
     user: UsersCreateNestedOneWithoutEmailVerificationsInput
   }
 
@@ -19003,12 +19200,14 @@ export namespace Prisma {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
   }
 
   export type EmailVerificationsUpdateInput = {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutEmailVerificationsNestedInput
   }
 
@@ -19018,6 +19217,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmailVerificationsCreateManyInput = {
@@ -19026,12 +19226,14 @@ export namespace Prisma {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
   }
 
   export type EmailVerificationsUpdateManyMutationInput = {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmailVerificationsUncheckedUpdateManyInput = {
@@ -19040,12 +19242,14 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResetPasswordsCreateInput = {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
     user: UsersCreateNestedOneWithoutResetPasswordsInput
   }
 
@@ -19055,12 +19259,14 @@ export namespace Prisma {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
   }
 
   export type ResetPasswordsUpdateInput = {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutResetPasswordsNestedInput
   }
 
@@ -19070,6 +19276,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResetPasswordsCreateManyInput = {
@@ -19078,12 +19285,14 @@ export namespace Prisma {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
   }
 
   export type ResetPasswordsUpdateManyMutationInput = {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResetPasswordsUncheckedUpdateManyInput = {
@@ -19092,11 +19301,14 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PropertyCategoriesCreateInput = {
     name: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     tenant: UsersCreateNestedOneWithoutPropertyCategoriesInput
     properties?: PropertiesCreateNestedManyWithoutCategoryInput
   }
@@ -19106,12 +19318,16 @@ export namespace Prisma {
     tenantId: number
     name: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     properties?: PropertiesUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type PropertyCategoriesUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tenant?: UsersUpdateOneRequiredWithoutPropertyCategoriesNestedInput
     properties?: PropertiesUpdateManyWithoutCategoryNestedInput
   }
@@ -19121,6 +19337,8 @@ export namespace Prisma {
     tenantId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     properties?: PropertiesUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
@@ -19129,11 +19347,15 @@ export namespace Prisma {
     tenantId: number
     name: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PropertyCategoriesUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PropertyCategoriesUncheckedUpdateManyInput = {
@@ -19141,6 +19363,8 @@ export namespace Prisma {
     tenantId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PropertiesCreateInput = {
@@ -19351,6 +19575,8 @@ export namespace Prisma {
     date: Date | string
     isAvailable?: boolean
     priceOverride?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     room: RoomsCreateNestedOneWithoutRoomAvailabilitiesInput
   }
 
@@ -19360,12 +19586,16 @@ export namespace Prisma {
     date: Date | string
     isAvailable?: boolean
     priceOverride?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type RoomAvailabilitiesUpdateInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     priceOverride?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     room?: RoomsUpdateOneRequiredWithoutRoomAvailabilitiesNestedInput
   }
 
@@ -19375,6 +19605,8 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     priceOverride?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RoomAvailabilitiesCreateManyInput = {
@@ -19383,12 +19615,16 @@ export namespace Prisma {
     date: Date | string
     isAvailable?: boolean
     priceOverride?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type RoomAvailabilitiesUpdateManyMutationInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     priceOverride?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RoomAvailabilitiesUncheckedUpdateManyInput = {
@@ -19397,6 +19633,8 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     priceOverride?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PeakSeasonsCreateInput = {
@@ -19406,6 +19644,7 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
+    updatedAt?: Date | string
     room: RoomsCreateNestedOneWithoutPeakSeasonsInput
   }
 
@@ -19418,6 +19657,7 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PeakSeasonsUpdateInput = {
@@ -19427,6 +19667,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     room?: RoomsUpdateOneRequiredWithoutPeakSeasonsNestedInput
   }
 
@@ -19439,6 +19680,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PeakSeasonsCreateManyInput = {
@@ -19450,6 +19692,7 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PeakSeasonsUpdateManyMutationInput = {
@@ -19459,6 +19702,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PeakSeasonsUncheckedUpdateManyInput = {
@@ -19470,6 +19714,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReservationsCreateInput = {
@@ -19648,7 +19893,10 @@ export namespace Prisma {
   export type ReviewsCreateInput = {
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutReviewsInput
     property: PropertiesCreateNestedOneWithoutReviewsInput
     reservation: ReservationsCreateNestedOneWithoutReviewsInput
@@ -19661,13 +19909,19 @@ export namespace Prisma {
     reservationId: number
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ReviewsUpdateInput = {
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutReviewsNestedInput
     property?: PropertiesUpdateOneRequiredWithoutReviewsNestedInput
     reservation?: ReservationsUpdateOneRequiredWithoutReviewsNestedInput
@@ -19680,7 +19934,10 @@ export namespace Prisma {
     reservationId?: IntFieldUpdateOperationsInput | number
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewsCreateManyInput = {
@@ -19690,13 +19947,19 @@ export namespace Prisma {
     reservationId: number
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ReviewsUpdateManyMutationInput = {
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewsUncheckedUpdateManyInput = {
@@ -19706,7 +19969,10 @@ export namespace Prisma {
     reservationId?: IntFieldUpdateOperationsInput | number
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -20060,6 +20326,7 @@ export namespace Prisma {
     token?: SortOrder
     expiresAt?: SortOrder
     used?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type EmailVerificationsAvgOrderByAggregateInput = {
@@ -20073,6 +20340,7 @@ export namespace Prisma {
     token?: SortOrder
     expiresAt?: SortOrder
     used?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type EmailVerificationsMinOrderByAggregateInput = {
@@ -20081,6 +20349,7 @@ export namespace Prisma {
     token?: SortOrder
     expiresAt?: SortOrder
     used?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type EmailVerificationsSumOrderByAggregateInput = {
@@ -20094,6 +20363,7 @@ export namespace Prisma {
     token?: SortOrder
     expiresAt?: SortOrder
     used?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type ResetPasswordsAvgOrderByAggregateInput = {
@@ -20107,6 +20377,7 @@ export namespace Prisma {
     token?: SortOrder
     expiresAt?: SortOrder
     used?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type ResetPasswordsMinOrderByAggregateInput = {
@@ -20115,6 +20386,7 @@ export namespace Prisma {
     token?: SortOrder
     expiresAt?: SortOrder
     used?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type ResetPasswordsSumOrderByAggregateInput = {
@@ -20127,6 +20399,8 @@ export namespace Prisma {
     tenantId?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PropertyCategoriesAvgOrderByAggregateInput = {
@@ -20139,6 +20413,8 @@ export namespace Prisma {
     tenantId?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PropertyCategoriesMinOrderByAggregateInput = {
@@ -20146,6 +20422,8 @@ export namespace Prisma {
     tenantId?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PropertyCategoriesSumOrderByAggregateInput = {
@@ -20419,6 +20697,8 @@ export namespace Prisma {
     date?: SortOrder
     isAvailable?: SortOrder
     priceOverride?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type RoomAvailabilitiesAvgOrderByAggregateInput = {
@@ -20433,6 +20713,8 @@ export namespace Prisma {
     date?: SortOrder
     isAvailable?: SortOrder
     priceOverride?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type RoomAvailabilitiesMinOrderByAggregateInput = {
@@ -20441,6 +20723,8 @@ export namespace Prisma {
     date?: SortOrder
     isAvailable?: SortOrder
     priceOverride?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type RoomAvailabilitiesSumOrderByAggregateInput = {
@@ -20458,6 +20742,7 @@ export namespace Prisma {
     priceIncreaseType?: SortOrder
     value?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PeakSeasonsAvgOrderByAggregateInput = {
@@ -20475,6 +20760,7 @@ export namespace Prisma {
     priceIncreaseType?: SortOrder
     value?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PeakSeasonsMinOrderByAggregateInput = {
@@ -20486,6 +20772,7 @@ export namespace Prisma {
     priceIncreaseType?: SortOrder
     value?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PeakSeasonsSumOrderByAggregateInput = {
@@ -20666,7 +20953,10 @@ export namespace Prisma {
     reservationId?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    tenantReply?: SortOrder
+    repliedAt?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ReviewsAvgOrderByAggregateInput = {
@@ -20684,7 +20974,10 @@ export namespace Prisma {
     reservationId?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    tenantReply?: SortOrder
+    repliedAt?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ReviewsMinOrderByAggregateInput = {
@@ -20694,7 +20987,10 @@ export namespace Prisma {
     reservationId?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    tenantReply?: SortOrder
+    repliedAt?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ReviewsSumOrderByAggregateInput = {
@@ -22031,6 +22327,8 @@ export namespace Prisma {
   export type PropertyCategoriesCreateWithoutTenantInput = {
     name: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     properties?: PropertiesCreateNestedManyWithoutCategoryInput
   }
 
@@ -22038,6 +22336,8 @@ export namespace Prisma {
     id?: number
     name: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     properties?: PropertiesUncheckedCreateNestedManyWithoutCategoryInput
   }
 
@@ -22095,7 +22395,10 @@ export namespace Prisma {
   export type ReviewsCreateWithoutUserInput = {
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     property: PropertiesCreateNestedOneWithoutReviewsInput
     reservation: ReservationsCreateNestedOneWithoutReviewsInput
   }
@@ -22106,7 +22409,10 @@ export namespace Prisma {
     reservationId: number
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ReviewsCreateOrConnectWithoutUserInput = {
@@ -22123,6 +22429,7 @@ export namespace Prisma {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
   }
 
   export type EmailVerificationsUncheckedCreateWithoutUserInput = {
@@ -22130,6 +22437,7 @@ export namespace Prisma {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
   }
 
   export type EmailVerificationsCreateOrConnectWithoutUserInput = {
@@ -22146,6 +22454,7 @@ export namespace Prisma {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
   }
 
   export type ResetPasswordsUncheckedCreateWithoutUserInput = {
@@ -22153,6 +22462,7 @@ export namespace Prisma {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
   }
 
   export type ResetPasswordsCreateOrConnectWithoutUserInput = {
@@ -22274,6 +22584,8 @@ export namespace Prisma {
     tenantId?: IntFilter<"PropertyCategories"> | number
     name?: StringFilter<"PropertyCategories"> | string
     description?: StringFilter<"PropertyCategories"> | string
+    createdAt?: DateTimeFilter<"PropertyCategories"> | Date | string
+    updatedAt?: DateTimeFilter<"PropertyCategories"> | Date | string
   }
 
   export type ReservationsUpsertWithWhereUniqueWithoutUserInput = {
@@ -22336,7 +22648,10 @@ export namespace Prisma {
     reservationId?: IntFilter<"Reviews"> | number
     rating?: IntFilter<"Reviews"> | number
     comment?: StringFilter<"Reviews"> | string
+    tenantReply?: StringNullableFilter<"Reviews"> | string | null
+    repliedAt?: DateTimeNullableFilter<"Reviews"> | Date | string | null
     createdAt?: DateTimeFilter<"Reviews"> | Date | string
+    updatedAt?: DateTimeFilter<"Reviews"> | Date | string
   }
 
   export type EmailVerificationsUpsertWithWhereUniqueWithoutUserInput = {
@@ -22364,6 +22679,7 @@ export namespace Prisma {
     token?: StringFilter<"EmailVerifications"> | string
     expiresAt?: DateTimeFilter<"EmailVerifications"> | Date | string
     used?: BoolFilter<"EmailVerifications"> | boolean
+    createdAt?: DateTimeFilter<"EmailVerifications"> | Date | string
   }
 
   export type ResetPasswordsUpsertWithWhereUniqueWithoutUserInput = {
@@ -22391,6 +22707,7 @@ export namespace Prisma {
     token?: StringFilter<"ResetPasswords"> | string
     expiresAt?: DateTimeFilter<"ResetPasswords"> | Date | string
     used?: BoolFilter<"ResetPasswords"> | boolean
+    createdAt?: DateTimeFilter<"ResetPasswords"> | Date | string
   }
 
   export type SocialLoginsUpsertWithWhereUniqueWithoutUserInput = {
@@ -23018,6 +23335,8 @@ export namespace Prisma {
   export type PropertyCategoriesCreateWithoutPropertiesInput = {
     name: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     tenant: UsersCreateNestedOneWithoutPropertyCategoriesInput
   }
 
@@ -23026,6 +23345,8 @@ export namespace Prisma {
     tenantId: number
     name: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PropertyCategoriesCreateOrConnectWithoutPropertiesInput = {
@@ -23114,7 +23435,10 @@ export namespace Prisma {
   export type ReviewsCreateWithoutPropertyInput = {
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutReviewsInput
     reservation: ReservationsCreateNestedOneWithoutReviewsInput
   }
@@ -23125,7 +23449,10 @@ export namespace Prisma {
     reservationId: number
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ReviewsCreateOrConnectWithoutPropertyInput = {
@@ -23204,6 +23531,8 @@ export namespace Prisma {
   export type PropertyCategoriesUpdateWithoutPropertiesInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tenant?: UsersUpdateOneRequiredWithoutPropertyCategoriesNestedInput
   }
 
@@ -23212,6 +23541,8 @@ export namespace Prisma {
     tenantId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RoomsUpsertWithWhereUniqueWithoutPropertyInput = {
@@ -23360,6 +23691,8 @@ export namespace Prisma {
     date: Date | string
     isAvailable?: boolean
     priceOverride?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type RoomAvailabilitiesUncheckedCreateWithoutRoomInput = {
@@ -23367,6 +23700,8 @@ export namespace Prisma {
     date: Date | string
     isAvailable?: boolean
     priceOverride?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type RoomAvailabilitiesCreateOrConnectWithoutRoomInput = {
@@ -23386,6 +23721,7 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PeakSeasonsUncheckedCreateWithoutRoomInput = {
@@ -23396,6 +23732,7 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PeakSeasonsCreateOrConnectWithoutRoomInput = {
@@ -23493,6 +23830,8 @@ export namespace Prisma {
     date?: DateTimeFilter<"RoomAvailabilities"> | Date | string
     isAvailable?: BoolFilter<"RoomAvailabilities"> | boolean
     priceOverride?: DecimalNullableFilter<"RoomAvailabilities"> | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFilter<"RoomAvailabilities"> | Date | string
+    updatedAt?: DateTimeFilter<"RoomAvailabilities"> | Date | string
   }
 
   export type PeakSeasonsUpsertWithWhereUniqueWithoutRoomInput = {
@@ -23523,6 +23862,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFilter<"PeakSeasons"> | string
     value?: DecimalFilter<"PeakSeasons"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"PeakSeasons"> | Date | string
+    updatedAt?: DateTimeFilter<"PeakSeasons"> | Date | string
   }
 
   export type RoomsCreateWithoutRoomAvailabilitiesInput = {
@@ -23811,7 +24151,10 @@ export namespace Prisma {
   export type ReviewsCreateWithoutReservationInput = {
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutReviewsInput
     property: PropertiesCreateNestedOneWithoutReviewsInput
   }
@@ -23822,7 +24165,10 @@ export namespace Prisma {
     propertyId: number
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ReviewsCreateOrConnectWithoutReservationInput = {
@@ -24368,6 +24714,8 @@ export namespace Prisma {
     id?: number
     name: string
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ReservationsCreateManyUserInput = {
@@ -24390,7 +24738,10 @@ export namespace Prisma {
     reservationId: number
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type EmailVerificationsCreateManyUserInput = {
@@ -24398,6 +24749,7 @@ export namespace Prisma {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
   }
 
   export type ResetPasswordsCreateManyUserInput = {
@@ -24405,6 +24757,7 @@ export namespace Prisma {
     token: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
   }
 
   export type SocialLoginsCreateManyUserInput = {
@@ -24464,6 +24817,8 @@ export namespace Prisma {
   export type PropertyCategoriesUpdateWithoutTenantInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     properties?: PropertiesUpdateManyWithoutCategoryNestedInput
   }
 
@@ -24471,6 +24826,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     properties?: PropertiesUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
@@ -24478,6 +24835,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReservationsUpdateWithoutUserInput = {
@@ -24528,7 +24887,10 @@ export namespace Prisma {
   export type ReviewsUpdateWithoutUserInput = {
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     property?: PropertiesUpdateOneRequiredWithoutReviewsNestedInput
     reservation?: ReservationsUpdateOneRequiredWithoutReviewsNestedInput
   }
@@ -24539,7 +24901,10 @@ export namespace Prisma {
     reservationId?: IntFieldUpdateOperationsInput | number
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewsUncheckedUpdateManyWithoutUserInput = {
@@ -24548,13 +24913,17 @@ export namespace Prisma {
     reservationId?: IntFieldUpdateOperationsInput | number
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmailVerificationsUpdateWithoutUserInput = {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmailVerificationsUncheckedUpdateWithoutUserInput = {
@@ -24562,6 +24931,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmailVerificationsUncheckedUpdateManyWithoutUserInput = {
@@ -24569,12 +24939,14 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResetPasswordsUpdateWithoutUserInput = {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResetPasswordsUncheckedUpdateWithoutUserInput = {
@@ -24582,6 +24954,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResetPasswordsUncheckedUpdateManyWithoutUserInput = {
@@ -24589,6 +24962,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SocialLoginsUpdateWithoutUserInput = {
@@ -24703,7 +25077,10 @@ export namespace Prisma {
     reservationId: number
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type RoomsUpdateWithoutPropertyInput = {
@@ -24792,7 +25169,10 @@ export namespace Prisma {
   export type ReviewsUpdateWithoutPropertyInput = {
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutReviewsNestedInput
     reservation?: ReservationsUpdateOneRequiredWithoutReviewsNestedInput
   }
@@ -24803,7 +25183,10 @@ export namespace Prisma {
     reservationId?: IntFieldUpdateOperationsInput | number
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewsUncheckedUpdateManyWithoutPropertyInput = {
@@ -24812,7 +25195,10 @@ export namespace Prisma {
     reservationId?: IntFieldUpdateOperationsInput | number
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReservationsCreateManyRoomInput = {
@@ -24834,6 +25220,8 @@ export namespace Prisma {
     date: Date | string
     isAvailable?: boolean
     priceOverride?: Decimal | DecimalJsLike | number | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PeakSeasonsCreateManyRoomInput = {
@@ -24844,6 +25232,7 @@ export namespace Prisma {
     priceIncreaseType: string
     value: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ReservationsUpdateWithoutRoomInput = {
@@ -24895,6 +25284,8 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     priceOverride?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RoomAvailabilitiesUncheckedUpdateWithoutRoomInput = {
@@ -24902,6 +25293,8 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     priceOverride?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RoomAvailabilitiesUncheckedUpdateManyWithoutRoomInput = {
@@ -24909,6 +25302,8 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     priceOverride?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PeakSeasonsUpdateWithoutRoomInput = {
@@ -24918,6 +25313,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PeakSeasonsUncheckedUpdateWithoutRoomInput = {
@@ -24928,6 +25324,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PeakSeasonsUncheckedUpdateManyWithoutRoomInput = {
@@ -24938,6 +25335,7 @@ export namespace Prisma {
     priceIncreaseType?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaymentProofsCreateManyReservationInput = {
@@ -24955,7 +25353,10 @@ export namespace Prisma {
     propertyId: number
     rating: number
     comment: string
+    tenantReply?: string | null
+    repliedAt?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PaymentProofsUpdateWithoutReservationInput = {
@@ -24987,7 +25388,10 @@ export namespace Prisma {
   export type ReviewsUpdateWithoutReservationInput = {
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutReviewsNestedInput
     property?: PropertiesUpdateOneRequiredWithoutReviewsNestedInput
   }
@@ -24998,7 +25402,10 @@ export namespace Prisma {
     propertyId?: IntFieldUpdateOperationsInput | number
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewsUncheckedUpdateManyWithoutReservationInput = {
@@ -25007,7 +25414,10 @@ export namespace Prisma {
     propertyId?: IntFieldUpdateOperationsInput | number
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    tenantReply?: NullableStringFieldUpdateOperationsInput | string | null
+    repliedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

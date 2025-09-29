@@ -162,3 +162,18 @@
 {"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-28T04:53:04.477Z"}
 {"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-28T04:53:04.477Z"}
 {"level":"info","message":"🔄 Shutting down gracefully...","service":"property-renting-auth","timestamp":"2025-09-28T04:54:41.387Z"}
+{"level":"info","message":"✅ Database connected successfully","service":"property-renting-auth","timestamp":"2025-09-29T04:41:46.539Z"}
+{"level":"info","message":"🚀 Server running on port 8000","service":"property-renting-auth","timestamp":"2025-09-29T04:41:46.567Z"}
+{"level":"info","message":"📱 Environment: development","service":"property-renting-auth","timestamp":"2025-09-29T04:41:46.569Z"}
+{"level":"info","message":"🌐 Frontend URL: http://localhost:3000","service":"property-renting-auth","timestamp":"2025-09-29T04:41:46.570Z"}
+{"level":"info","message":"Verification email sent to wahiya7372@bitmens.com","service":"property-renting-auth","timestamp":"2025-09-29T04:44:45.433Z"}
+{"level":"info","message":"User registered: wahiya7372@bitmens.com as tenant","service":"property-renting-auth","timestamp":"2025-09-29T04:44:45.435Z"}
+{"level":"info","message":"Welcome email sent to wahiya7372@bitmens.com","service":"property-renting-auth","timestamp":"2025-09-29T04:47:07.300Z"}
+{"level":"info","message":"User verified and password set: wahiya7372@bitmens.com","service":"property-renting-auth","timestamp":"2025-09-29T04:47:07.302Z"}
+{"level":"info","message":"User logged in: wahiya7372@bitmens.com","service":"property-renting-auth","timestamp":"2025-09-29T04:47:31.008Z"}
+{"level":"info","message":"User logged in: wahiya7372@bitmens.com","service":"property-renting-auth","timestamp":"2025-09-29T04:48:02.155Z"}
+{"level":"info","message":"Verification email sent to yavil71183@bitmens.com","service":"property-renting-auth","timestamp":"2025-09-29T04:51:54.545Z"}
+{"level":"info","message":"User registered: yavil71183@bitmens.com as user","service":"property-renting-auth","timestamp":"2025-09-29T04:51:54.546Z"}
+{"level":"info","message":"Welcome email sent to yavil71183@bitmens.com","service":"property-renting-auth","timestamp":"2025-09-29T04:52:33.248Z"}
+{"level":"info","message":"User verified and password set: yavil71183@bitmens.com","service":"property-renting-auth","timestamp":"2025-09-29T04:52:33.248Z"}
+{"level":"info","message":"🔄 Shutting down gracefully...","service":"property-renting-auth","timestamp":"2025-09-29T05:17:27.519Z"}
