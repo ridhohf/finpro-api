@@ -220,3 +220,18 @@
   "path": "/api/transactions/3/reviews",
   "ip": "::1"
 }
+[2025-09-26 14:20:05] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/transactions/1/review",
+  "ip": "::1"
+}
+[2025-09-26 14:20:31] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/transactions/1/review",
+  "ip": "::1"
+}
+[2025-09-26 14:23:09] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/transactions/1/reply",
+  "ip": "::1"
+}

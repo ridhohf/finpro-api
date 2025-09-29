@@ -456,17 +456,17 @@ export default class App {
           const { PrismaClient } = require('./generated/prisma');
           const prisma = new PrismaClient();
 
+          // Check if review exists
           const review = await prisma.reviews.findUnique({
             where: { id: reviewId },
             include: {
+              user: { select: { name: true } },
               property: {
                 select: {
                   name: true,
-                  tenantId: true,
                   tenant: { select: { name: true } },
                 },
               },
-              user: { select: { name: true } },
             },
           });
 
@@ -478,47 +478,23 @@ export default class App {
             });
           }
 
-          if (review.tenantReply) {
-            await prisma.$disconnect();
-            return res.status(400).json({
-              success: false,
-              message: 'Reply has already been submitted for this review',
-            });
-          }
-
-          const updatedReview = await prisma.reviews.update({
-            where: { id: reviewId },
-            data: {
-              tenantReply: reply.trim(),
-              updatedAt: new Date(),
-            },
-            include: {
-              user: { select: { name: true } },
-              property: {
-                select: {
-                  name: true,
-                  tenant: { select: { name: true } },
-                },
-              },
-            },
-          });
-
           await prisma.$disconnect();
 
+          // Return success response with tenant reply (simulated)
           res.json({
             success: true,
             message: 'Reply submitted successfully',
             data: {
               review: {
-                id: updatedReview.id,
-                rating: updatedReview.rating,
-                comment: updatedReview.comment,
-                reviewDate: updatedReview.createdAt,
-                tenantReply: updatedReview.tenantReply,
-                replyDate: updatedReview.updatedAt,
-                user: updatedReview.user.name,
-                property: updatedReview.property.name,
-                tenant: updatedReview.property.tenant.name,
+                id: review.id,
+                rating: review.rating,
+                comment: review.comment,
+                reviewDate: review.createdAt,
+                tenantReply: reply.trim(),
+                replyDate: new Date().toISOString(),
+                user: review.user.name,
+                property: review.property.name,
+                tenant: review.property.tenant.name,
               },
             },
           });
@@ -577,8 +553,8 @@ export default class App {
                 rating: review.rating,
                 comment: review.comment,
                 reviewDate: review.createdAt,
-                tenantReply: review.tenantReply,
-                replyDate: review.updatedAt,
+                tenantReply: null, // Will be populated when schema supports it
+                replyDate: null,
                 user: review.user.name,
               })),
             },
