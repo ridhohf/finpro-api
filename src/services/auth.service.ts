@@ -1,306 +1,595 @@
-import { AppError } from '../utils/app.error';
-import logger from '../utils/logger';
-import emailService from './email.service';
-import userService from './user.service';
-import tokenService from './token.service';
-import verificationService from './verification.service';
+import prisma from "../utils/prisma";
+import { AppError } from "../utils/app.error";
+import { HashUtil } from "../utils/hash.util";
+import { TokenUtil } from "../utils/token.util";
+import { EmailUtil } from "../utils/email.util";
+import { JwtUtil } from "../utils/jwt.util";
+import { CloudinaryUtil } from "../utils/cloudinary.util";
 
-interface RegisterData {
+interface RegisterDTO {
   name: string;
   email: string;
-  role: 'user' | 'tenant';
+  role: string;
   companyName?: string;
   phone?: string;
   address?: string;
 }
 
-interface LoginData {
-  email: string;
-  password: string;
-  role: 'user' | 'tenant';
-}
-
-interface SocialLoginData {
-  email: string;
-  name: string;
+interface SocialLoginDTO {
   provider: string;
   providerId: string;
+  email: string;
+  name: string;
+  role: string;
   avatar?: string;
-  role: 'user' | 'tenant';
 }
 
-class AuthService {
-  async register(data: RegisterData) {
-    const { name, email, role, companyName, phone, address } = data;
+interface VerifyEmailDTO {
+  token: string;
+  password: string;
+}
 
-    // Check if user already exists
-    const existingUser = await userService.findByEmail(email);
+interface LoginDTO {
+  email: string;
+  password: string;
+}
+
+interface UpdateProfileDTO {
+  name?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  companyName?: string;
+}
+
+export class AuthService {
+  async register(data: RegisterDTO) {
+    // Check if email already exists
+    const existingUser = await prisma.users.findUnique({
+      where: { email: data.email },
+    });
+
     if (existingUser) {
-      throw new AppError('User with this email already exists', 409);
+      throw new AppError("Email already registered", 400);
     }
 
     // Create user
-    const user = await userService.createUser({
-      name,
-      email,
-      role,
-      isVerified: false,
+    const user = await prisma.users.create({
+      data: {
+        name: data.name,
+        email: data.email,
+        role: data.role,
+        isVerified: false,
+      },
     });
 
     // Create tenant profile if role is tenant
-    if (role === 'tenant' && companyName) {
-      await userService.createTenantProfile({
-        userId: user.id,
-        companyName,
-        phone,
-        address,
+    if (data.role === "tenant") {
+      await prisma.tenantProfile.create({
+        data: {
+          userId: user.id,
+          companyName: data.companyName!,
+          phone: data.phone,
+          address: data.address,
+        },
       });
     }
 
-    // Generate and store verification token
-    const verificationToken = tokenService.generateVerificationToken();
-    await verificationService.createVerification(user.id, verificationToken);
+    // Generate verification token
+    const token = TokenUtil.generate();
+    const expiresAt = TokenUtil.getExpiry(1); // 1 hour
 
-    // Send verification email
-    await emailService.sendVerificationEmail(email, verificationToken, name);
-
-    logger.info(`User registered: ${email} as ${role}`);
-
-    return {
-      message: 'Registration successful. Please check your email to verify your account.',
-      userId: user.id,
-    };
-  }
-
-  async verifyEmailAndSetPassword(token: string, password: string) {
-    // Verify token format
-    try {
-      tokenService.verifyToken(token);
-    } catch (error) {
-      throw new AppError('Invalid or expired verification token', 400);
-    }
-
-    // Find verification record
-    const verification = await verificationService.findVerification(token);
-    if (!verification) {
-      throw new AppError('Invalid or expired verification token', 400);
-    }
-
-    // Hash password and update user
-    const hashedPassword = await userService.hashPassword(password);
-    const user = await userService.updateUser(verification.userId, {
-      password: hashedPassword,
-      isVerified: true,
+    await prisma.emailVerifications.create({
+      data: {
+        userId: user.id,
+        token,
+        expiresAt,
+      },
     });
 
-    // Mark verification as used
-    await verificationService.markVerificationUsed(verification.id);
-
-    // Send welcome email
-    await emailService.sendWelcomeEmail(user.email, user.name, user.role);
-
-    logger.info(`User verified and password set: ${user.email}`);
+    // Send verification email
+    await EmailUtil.send({
+      to: user.email,
+      subject: "Verify Your Email",
+      html: EmailUtil.generateVerificationEmail(user.name, token),
+    });
 
     return {
-      message: 'Email verified and password set successfully. You can now login.',
+      message:
+        "Registration successful. Please check your email to verify your account.",
     };
   }
 
-  async login(data: LoginData) {
-    const { email, password, role } = data;
+  async socialLogin(data: SocialLoginDTO) {
+    // Check if social login exists
+    const socialLogin = await prisma.socialLogins.findUnique({
+      where: {
+        provider_providerId: {
+          provider: data.provider,
+          providerId: data.providerId,
+        },
+      },
+      include: {
+        user: {
+          include: {
+            tenantProfile: true,
+          },
+        },
+      },
+    });
 
-    // Find user with role check
-    const user = await userService.findByEmailAndRole(email, role);
-    if (!user || !user.password) {
-      throw new AppError('Invalid credentials', 401);
+    let user;
+
+    if (socialLogin) {
+      user = socialLogin.user;
+    } else {
+      // Check if email already exists
+      const existingUser = await prisma.users.findUnique({
+        where: { email: data.email },
+      });
+
+      if (existingUser && !existingUser.provider) {
+        throw new AppError(
+          "Email already registered with password. Please login with password.",
+          400
+        );
+      }
+
+      // Create new user
+      user = await prisma.users.create({
+        data: {
+          name: data.name,
+          email: data.email,
+          role: data.role,
+          provider: data.provider,
+          providerId: data.providerId,
+          isVerified: true,
+          avatar: data.avatar,
+        },
+      });
+
+      // Create social login entry
+      await prisma.socialLogins.create({
+        data: {
+          userId: user.id,
+          provider: data.provider,
+          providerId: data.providerId,
+        },
+      });
+
+      // Create tenant profile if needed
+      if (data.role === "tenant") {
+        await prisma.tenantProfile.create({
+          data: {
+            userId: user.id,
+            companyName: data.name,
+          },
+        });
+      }
     }
 
-    // Check if user is verified
+    // Generate JWT
+    const token = JwtUtil.generateToken({
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    });
+
+    return {
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        avatar: user.avatar,
+        isVerified: user.isVerified,
+      },
+    };
+  }
+
+  async verifyEmail(data: VerifyEmailDTO) {
+    const verification = await prisma.emailVerifications.findFirst({
+      where: {
+        token: data.token,
+        used: false,
+      },
+      include: {
+        user: true,
+      },
+    });
+
+    if (!verification) {
+      throw new AppError("Invalid or already used verification token", 400);
+    }
+
+    if (new Date() > verification.expiresAt) {
+      throw new AppError("Verification token has expired", 400);
+    }
+
+    // Hash password
+    const hashedPassword = await HashUtil.hash(data.password);
+
+    // Update user
+    await prisma.users.update({
+      where: { id: verification.userId },
+      data: {
+        password: hashedPassword,
+        isVerified: true,
+      },
+    });
+
+    // Mark token as used
+    await prisma.emailVerifications.update({
+      where: { id: verification.id },
+      data: { used: true },
+    });
+
+    return {
+      message: "Email verified successfully. You can now login.",
+    };
+  }
+
+  async login(data: LoginDTO) {
+    const user = await prisma.users.findUnique({
+      where: { email: data.email },
+      include: {
+        tenantProfile: true,
+      },
+    });
+
+    if (!user) {
+      throw new AppError("Invalid email or password", 401);
+    }
+
+    if (user.provider) {
+      throw new AppError(`Please login with ${user.provider}`, 400);
+    }
+
+    if (!user.password) {
+      throw new AppError("Please verify your email first", 403);
+    }
+
     if (!user.isVerified) {
-      throw new AppError('Please verify your email before logging in', 401);
+      throw new AppError("Please verify your email first", 403);
     }
 
     // Verify password
-    const isPasswordValid = await userService.verifyPassword(password, user.password);
+    const isPasswordValid = await HashUtil.compare(
+      data.password,
+      user.password
+    );
+
     if (!isPasswordValid) {
-      throw new AppError('Invalid credentials', 401);
+      throw new AppError("Invalid email or password", 401);
     }
 
-    // Generate tokens
-    const tokenPayload = { userId: user.id, role: user.role };
-    const accessToken = tokenService.generateAccessToken(tokenPayload);
-    const refreshToken = tokenService.generateRefreshToken(tokenPayload);
+    // Generate JWT
+    const token = JwtUtil.generateToken({
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    });
 
-    logger.info(`User logged in: ${email}`);
-
-    return {
-      accessToken,
-      refreshToken,
+    const result = {
+      token,
       user: {
         id: user.id,
         name: user.name,
         email: user.email,
         role: user.role,
         avatar: user.avatar,
+        isVerified: user.isVerified,
         tenantProfile: user.tenantProfile,
-      }
+      },
     };
-  }
 
-  async socialLogin(data: SocialLoginData) {
-    const { email, name, provider, providerId, avatar, role } = data;
-
-    // Check if user exists
-    let user = await userService.findByEmail(email);
-
-    if (user) {
-      // Check if social login exists
-      const socialLogin = user.socialLogins.find(
-        sl => sl.provider === provider && sl.providerId === providerId
-      );
-
-      if (!socialLogin) {
-        // Add social login
-        await userService.createSocialLogin(user.id, provider, providerId);
-      }
-    } else {
-      // Create new user
-      user = await userService.createUser({
-        name,
-        email,
-        role,
-        provider,
-        providerId,
-        avatar,
-        isVerified: true, // Social logins are auto-verified
-      });
-
-      // Create social login record
-      await userService.createSocialLogin(user.id, provider, providerId);
-
-      // Send welcome email
-      await emailService.sendWelcomeEmail(email, name, role);
-    }
-
-    // Generate tokens
-    const tokenPayload = { userId: user.id, role: user.role };
-    const accessToken = tokenService.generateAccessToken(tokenPayload);
-    const refreshToken = tokenService.generateRefreshToken(tokenPayload);
-
-    logger.info(`Social login: ${email} via ${provider}`);
-
-    return {
-      accessToken,
-      refreshToken,
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        avatar: user.avatar,
-        tenantProfile: user.tenantProfile,
-      }
-    };
-  }
-
-  async requestPasswordReset(email: string) {
-    const user = await userService.findByEmail(email);
-
-    if (!user) {
-      // Don't reveal that user doesn't exist
-      return { message: 'If an account with this email exists, a password reset link has been sent.' };
-    }
-
-    // Don't allow reset for social login users
-    if (user.provider && !user.password) {
-      throw new AppError('Cannot reset password for social login accounts', 400);
-    }
-
-    // Generate and store reset token
-    const resetToken = tokenService.generateResetToken(user.id);
-    await verificationService.createPasswordReset(user.id, resetToken);
-
-    // Send reset email
-    await emailService.sendPasswordResetEmail(email, resetToken, user.name);
-
-    logger.info(`Password reset requested for: ${email}`);
-
-    return {
-      message: 'If an account with this email exists, a password reset link has been sent.'
-    };
-  }
-
-  async resetPassword(token: string, newPassword: string) {
-    let decoded: any;
-    try {
-      decoded = tokenService.verifyToken(token);
-    } catch (error) {
-      throw new AppError('Invalid or expired reset token', 400);
-    }
-
-    // Find reset record
-    const resetRecord = await verificationService.findPasswordReset(token, decoded.userId);
-    if (!resetRecord) {
-      throw new AppError('Invalid or expired reset token', 400);
-    }
-
-    // Hash new password and update user
-    const hashedPassword = await userService.hashPassword(newPassword);
-    await userService.updateUser(resetRecord.userId, { password: hashedPassword });
-
-    // Mark reset token as used
-    await verificationService.markPasswordResetUsed(resetRecord.id);
-
-    logger.info(`Password reset completed for: ${resetRecord.user.email}`);
-
-    return { message: 'Password reset successfully' };
-  }
-
-  async refreshToken(refreshToken: string) {
-    try {
-      const decoded = tokenService.verifyToken(refreshToken, process.env.JWT_REFRESH_SECRET!) as any;
-      
-      const user = await userService.findById(decoded.userId);
-      if (!user) {
-        throw new AppError('User not found', 404);
-      }
-
-      const accessToken = tokenService.generateAccessToken({
-        userId: user.id,
-        role: user.role
-      });
-
-      return { accessToken };
-    } catch (error) {
-      throw new AppError('Invalid refresh token', 401);
-    }
+    return result;
   }
 
   async resendVerification(email: string) {
-    const user = await userService.findByEmail(email);
+    const user = await prisma.users.findUnique({
+      where: { email },
+    });
 
     if (!user) {
-      throw new AppError('User not found', 404);
+      throw new AppError("User not found", 404);
     }
 
     if (user.isVerified) {
-      throw new AppError('User is already verified', 400);
+      throw new AppError("Email already verified", 400);
     }
 
-    // Delete old verification tokens
-    await verificationService.deleteUserVerifications(user.id);
+    if (user.provider) {
+      throw new AppError(
+        "Social login accounts do not require verification",
+        400
+      );
+    }
 
-    // Generate and store new verification token
-    const verificationToken = tokenService.generateVerificationToken();
-    await verificationService.createVerification(user.id, verificationToken);
+    // Mark old tokens as used
+    await prisma.emailVerifications.updateMany({
+      where: {
+        userId: user.id,
+        used: false,
+      },
+      data: {
+        used: true,
+      },
+    });
 
-    // Send verification email
-    await emailService.sendVerificationEmail(email, verificationToken, user.name);
+    // Generate new token
+    const token = TokenUtil.generate();
+    const expiresAt = TokenUtil.getExpiry(1);
 
-    logger.info(`Verification email resent to: ${email}`);
+    await prisma.emailVerifications.create({
+      data: {
+        userId: user.id,
+        token,
+        expiresAt,
+      },
+    });
 
-    return { message: 'Verification email sent successfully' };
+    // Send email
+    await EmailUtil.send({
+      to: user.email,
+      subject: "Verify Your Email",
+      html: EmailUtil.generateVerificationEmail(user.name, token),
+    });
+
+    return {
+      message: "Verification email sent. Please check your inbox.",
+    };
+  }
+
+  async resetPassword(email: string) {
+    const user = await prisma.users.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      // Don't reveal if email exists
+      return {
+        message: "If the email exists, a reset link has been sent.",
+      };
+    }
+
+    if (user.provider) {
+      throw new AppError("Social login accounts cannot reset password", 400);
+    }
+
+    // Mark old tokens as used
+    await prisma.resetPasswords.updateMany({
+      where: {
+        userId: user.id,
+        used: false,
+      },
+      data: {
+        used: true,
+      },
+    });
+
+    // Generate reset token
+    const token = TokenUtil.generate();
+    const expiresAt = TokenUtil.getExpiry(1);
+
+    await prisma.resetPasswords.create({
+      data: {
+        userId: user.id,
+        token,
+        expiresAt,
+      },
+    });
+
+    // Send email
+    await EmailUtil.send({
+      to: user.email,
+      subject: "Reset Your Password",
+      html: EmailUtil.generateResetPasswordEmail(user.name, token),
+    });
+
+    return {
+      message: "If the email exists, a reset link has been sent.",
+    };
+  }
+
+  async confirmResetPassword(token: string, newPassword: string) {
+    const resetToken = await prisma.resetPasswords.findFirst({
+      where: {
+        token,
+        used: false,
+      },
+      include: {
+        user: true,
+      },
+    });
+
+    if (!resetToken) {
+      throw new AppError("Invalid or already used reset token", 400);
+    }
+
+    if (new Date() > resetToken.expiresAt) {
+      throw new AppError("Reset token has expired", 400);
+    }
+
+    // Hash new password
+    const hashedPassword = await HashUtil.hash(newPassword);
+
+    // Update password
+    await prisma.users.update({
+      where: { id: resetToken.userId },
+      data: {
+        password: hashedPassword,
+      },
+    });
+
+    // Mark token as used
+    await prisma.resetPasswords.update({
+      where: { id: resetToken.id },
+      data: { used: true },
+    });
+
+    return {
+      message:
+        "Password reset successfully. You can now login with your new password.",
+    };
+  }
+
+  async getProfile(userId: number) {
+    const user = await prisma.users.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        avatar: true,
+        isVerified: true,
+        provider: true,
+        createdAt: true,
+        tenantProfile: true,
+      },
+    });
+
+    if (!user) {
+      throw new AppError("User not found", 404);
+    }
+
+    return user;
+  }
+
+  async updateProfile(
+    userId: number,
+    data: UpdateProfileDTO,
+    avatar?: Express.Multer.File
+  ) {
+    const user = await prisma.users.findUnique({
+      where: { id: userId },
+      include: {
+        tenantProfile: true,
+      },
+    });
+
+    if (!user) {
+      throw new AppError("User not found", 404);
+    }
+
+    // Check if email is being updated
+    let emailChanged = false;
+    if (data.email && data.email !== user.email) {
+      const existingUser = await prisma.users.findUnique({
+        where: { email: data.email },
+      });
+
+      if (existingUser) {
+        throw new AppError("Email already in use", 400);
+      }
+
+      emailChanged = true;
+    }
+
+    // Upload avatar if provided
+    let avatarUrl = user.avatar;
+    if (avatar) {
+      avatarUrl = await CloudinaryUtil.uploadImage(avatar, "avatars");
+    }
+
+    // Update user
+    const updatedUser = await prisma.users.update({
+      where: { id: userId },
+      data: {
+        name: data.name || user.name,
+        email: data.email || user.email,
+        avatar: avatarUrl,
+        isVerified: emailChanged ? false : user.isVerified,
+      },
+    });
+
+    // Update tenant profile if tenant
+    if (user.role === "tenant" && user.tenantProfile) {
+      await prisma.tenantProfile.update({
+        where: { userId: user.id },
+        data: {
+          companyName: data.companyName || user.tenantProfile.companyName,
+          phone:
+            data.phone !== undefined ? data.phone : user.tenantProfile.phone,
+          address:
+            data.address !== undefined
+              ? data.address
+              : user.tenantProfile.address,
+        },
+      });
+    }
+
+    // Send verification email if email changed
+    if (emailChanged) {
+      const token = TokenUtil.generate();
+      const expiresAt = TokenUtil.getExpiry(1);
+
+      await prisma.emailVerifications.create({
+        data: {
+          userId: user.id,
+          token,
+          expiresAt,
+        },
+      });
+
+      await EmailUtil.send({
+        to: data.email!,
+        subject: "Verify Your New Email",
+        html: EmailUtil.generateVerificationEmail(user.name, token),
+      });
+    }
+
+    return {
+      message: emailChanged
+        ? "Profile updated. Please verify your new email address."
+        : "Profile updated successfully",
+      emailChanged,
+    };
+  }
+
+  async updatePassword(
+    userId: number,
+    oldPassword: string,
+    newPassword: string
+  ) {
+    const user = await prisma.users.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      throw new AppError("User not found", 404);
+    }
+
+    if (user.provider) {
+      throw new AppError("Social login accounts cannot change password", 400);
+    }
+
+    if (!user.password) {
+      throw new AppError("No password set for this account", 400);
+    }
+
+    // Verify old password
+    const isPasswordValid = await HashUtil.compare(oldPassword, user.password);
+
+    if (!isPasswordValid) {
+      throw new AppError("Current password is incorrect", 400);
+    }
+
+    // Hash new password
+    const hashedPassword = await HashUtil.hash(newPassword);
+
+    // Update password
+    await prisma.users.update({
+      where: { id: userId },
+      data: {
+        password: hashedPassword,
+      },
+    });
+
+    return {
+      message: "Password updated successfully",
+    };
   }
 }
-
-export default new AuthService();

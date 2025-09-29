@@ -1,22 +1,19 @@
 import { Request, Response, NextFunction } from "express";
-import { validationResult } from "express-validator";
+import { validationResult, ValidationChain } from "express-validator";
 import { AppError } from "../utils/app.error";
 
-export const handleValidationErrors = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const errors = validationResult(req);
+export class ValidationMiddleware {
+  static validate(validations: ValidationChain[]) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      await Promise.all(validations.map((validation) => validation.run(req)));
 
-  if (!errors.isEmpty()) {
-    const errorMessages = errors
-      .array()
-      .map((error) => error.msg)
-      .join(", ");
-    return next(new AppError(errorMessages, 400));
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        const errorMessages = errors.array().map((err) => err.msg);
+        throw new AppError(errorMessages.join(", "), 400);
+      }
+
+      next();
+    };
   }
-
-  next();
-};
-
+}

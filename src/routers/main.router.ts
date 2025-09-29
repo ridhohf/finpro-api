@@ -1,23 +1,22 @@
 import { Router } from "express";
-import authRoutes from "./auth.router";
-import profileRoutes from "./profile.router";
-import propertyCategoryRouter from "./property-category.router";
-import propertyRouter from "./property.router";
+import { AuthRouter } from "./auth.router";
 
-const router = Router();
+export class MainRouter {
+  private router: Router;
+  private authRouter: AuthRouter;
 
-router.use("/auth", authRoutes);
-router.use("/profile", profileRoutes);
-router.use("/property-categories", propertyCategoryRouter);
-router.use("/properties", propertyRouter);
+  constructor() {
+    this.router = Router();
+    this.authRouter = new AuthRouter();
 
-// Health check endpoint
-router.get("/health", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "Server is running properly",
-    timestamp: new Date().toISOString(),
-  });
-});
+    this.initializeRoutes();
+  }
 
-export default router;
+  private initializeRoutes(): void {
+    this.router.use("/api/auth", this.authRouter.getRouter());
+  }
+
+  public getRouter(): Router {
+    return this.router;
+  }
+}
