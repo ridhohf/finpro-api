@@ -157,7 +157,8 @@ exports.Prisma.EmailVerificationsScalarFieldEnum = {
   userId: 'userId',
   token: 'token',
   expiresAt: 'expiresAt',
-  used: 'used'
+  used: 'used',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.ResetPasswordsScalarFieldEnum = {
@@ -165,14 +166,17 @@ exports.Prisma.ResetPasswordsScalarFieldEnum = {
   userId: 'userId',
   token: 'token',
   expiresAt: 'expiresAt',
-  used: 'used'
+  used: 'used',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.PropertyCategoriesScalarFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.PropertiesScalarFieldEnum = {
@@ -207,7 +211,9 @@ exports.Prisma.RoomAvailabilitiesScalarFieldEnum = {
   roomId: 'roomId',
   date: 'date',
   isAvailable: 'isAvailable',
-  priceOverride: 'priceOverride'
+  priceOverride: 'priceOverride',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.PeakSeasonsScalarFieldEnum = {
@@ -218,7 +224,8 @@ exports.Prisma.PeakSeasonsScalarFieldEnum = {
   endDate: 'endDate',
   priceIncreaseType: 'priceIncreaseType',
   value: 'value',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ReservationsScalarFieldEnum = {
@@ -253,7 +260,10 @@ exports.Prisma.ReviewsScalarFieldEnum = {
   reservationId: 'reservationId',
   rating: 'rating',
   comment: 'comment',
-  createdAt: 'createdAt'
+  tenantReply: 'tenantReply',
+  repliedAt: 'repliedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
