@@ -30,11 +30,12 @@ export const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME || "";
 export const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY || "";
 export const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET || "";
 
+// OpenCage Geocoding API
+export const OPENCAGE_API_KEY = process.env.OPENCAGE_API_KEY || "";
+
 // OAuth
 export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || "";
 export const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || "";
-export const FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID || "";
-export const FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET || "";
 
 // Client URL
 export const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
