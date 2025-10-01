@@ -1,0 +1,25 @@
+[2025-10-01 10:23:00] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/transactions/6/reject",
+  "ip": "::1"
+}
+[2025-10-01 11:39:32] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/7/reply",
+  "ip": "::1"
+}
+[2025-10-01 12:03:15] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/7/reply",
+  "ip": "::1"
+}
+[2025-10-01 12:03:17] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/7/reply",
+  "ip": "::1"
+}
+[2025-10-01 12:03:17] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/7/reply",
+  "ip": "::1"
+}

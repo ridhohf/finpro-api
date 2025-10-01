@@ -100,3 +100,9 @@
   "ip": "::1",
   "statusCode": 500
 }
+[2025-09-30 09:42:28] ERROR: POST /api/transactions/1/payment-proof - Internal server error. Please try again later!  {
+  "path": "/api/transactions/1/payment-proof",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}

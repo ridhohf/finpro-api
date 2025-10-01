@@ -134,6 +134,16 @@ exports.Prisma.UsersScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.TenantProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  companyName: 'companyName',
+  phone: 'phone',
+  address: 'address',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SocialLoginsScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -147,7 +157,8 @@ exports.Prisma.EmailVerificationsScalarFieldEnum = {
   userId: 'userId',
   token: 'token',
   expiresAt: 'expiresAt',
-  used: 'used'
+  used: 'used',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.ResetPasswordsScalarFieldEnum = {
@@ -155,14 +166,17 @@ exports.Prisma.ResetPasswordsScalarFieldEnum = {
   userId: 'userId',
   token: 'token',
   expiresAt: 'expiresAt',
-  used: 'used'
+  used: 'used',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.PropertyCategoriesScalarFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.PropertiesScalarFieldEnum = {
@@ -197,7 +211,9 @@ exports.Prisma.RoomAvailabilitiesScalarFieldEnum = {
   roomId: 'roomId',
   date: 'date',
   isAvailable: 'isAvailable',
-  priceOverride: 'priceOverride'
+  priceOverride: 'priceOverride',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.PeakSeasonsScalarFieldEnum = {
@@ -209,7 +225,7 @@ exports.Prisma.PeakSeasonsScalarFieldEnum = {
   priceIncreaseType: 'priceIncreaseType',
   value: 'value',
   createdAt: 'createdAt',
-  propertiesId: 'propertiesId'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ReservationsScalarFieldEnum = {
@@ -244,12 +260,19 @@ exports.Prisma.ReviewsScalarFieldEnum = {
   reservationId: 'reservationId',
   rating: 'rating',
   comment: 'comment',
-  createdAt: 'createdAt'
+  tenantReply: 'tenantReply',
+  repliedAt: 'repliedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -261,6 +284,12 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
 exports.ReservationStatus = exports.$Enums.ReservationStatus = {
   PENDING_PAYMENT: 'PENDING_PAYMENT',
   PENDING_CONFIRMATION: 'PENDING_CONFIRMATION',
@@ -271,6 +300,7 @@ exports.ReservationStatus = exports.$Enums.ReservationStatus = {
 
 exports.Prisma.ModelName = {
   Users: 'Users',
+  TenantProfile: 'TenantProfile',
   SocialLogins: 'SocialLogins',
   EmailVerifications: 'EmailVerifications',
   ResetPasswords: 'ResetPasswords',

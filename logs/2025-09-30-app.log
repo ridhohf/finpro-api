@@ -1,0 +1,81 @@
+[2025-09-30 09:42:28] ERROR: POST /api/transactions/1/payment-proof - Internal server error. Please try again later!  {
+  "path": "/api/transactions/1/payment-proof",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-30 11:04:06] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/transactions/1/reply",
+  "ip": "::1"
+}
+[2025-09-30 11:27:20] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/properties/1/reviews",
+  "ip": "::1"
+}
+[2025-09-30 13:24:28] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/transactions/2/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:24:53] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/2/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:25:07] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/3/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:30:26] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/5/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:30:49] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/5/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:30:51] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/5/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:31:10] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/4/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:31:13] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/4/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:31:17] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/5/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:31:18] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/5/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:31:19] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/5/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:31:20] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/5/reply",
+  "ip": "::1"
+}
+[2025-09-30 13:33:28] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/reviews/5/reply",
+  "ip": "::1"
+}
