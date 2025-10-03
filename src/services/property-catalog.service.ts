@@ -20,7 +20,8 @@ export class PropertyCatalogService {
     const limit = filter.limit || 10;
     const skip = (page - 1) * limit;
 
-    const where: Prisma.PropertiesWhereInput = {
+    // Build base where clause for properties
+    const propertyWhere: Prisma.PropertiesWhereInput = {
       ...(filter.city && {
         city: {
           equals: filter.city,
@@ -48,9 +49,14 @@ export class PropertyCatalogService {
       }),
     };
 
-    // Get properties with rooms
-    let properties = await prisma.properties.findMany({
-      where,
+    // First, get total count of properties matching base criteria
+    const totalProperties = await prisma.properties.count({
+      where: propertyWhere,
+    });
+
+    // Get properties with all necessary relations
+    const properties = await prisma.properties.findMany({
+      where: propertyWhere,
       include: {
         category: {
           select: {
@@ -59,6 +65,14 @@ export class PropertyCatalogService {
           },
         },
         rooms: {
+          where: {
+            // Filter rooms by guest capacity at query level
+            ...(filter.guests && {
+              maxGuests: {
+                gte: filter.guests,
+              },
+            }),
+          },
           include: {
             peakSeasons: true,
             roomAvailabilities:
@@ -72,44 +86,39 @@ export class PropertyCatalogService {
                     },
                   }
                 : false,
-            _count: {
-              select: {
-                reservations:
-                  filter.checkIn && filter.checkOut
-                    ? {
-                        where: {
-                          OR: [
-                            {
-                              AND: [
-                                { checkIn: { lte: new Date(filter.checkIn) } },
-                                { checkOut: { gte: new Date(filter.checkIn) } },
-                              ],
-                            },
-                            {
-                              AND: [
-                                { checkIn: { lte: new Date(filter.checkOut) } },
-                                {
-                                  checkOut: { gte: new Date(filter.checkOut) },
-                                },
-                              ],
-                            },
-                            {
-                              AND: [
-                                { checkIn: { gte: new Date(filter.checkIn) } },
-                                {
-                                  checkOut: { lte: new Date(filter.checkOut) },
-                                },
-                              ],
-                            },
+            reservations:
+              filter.checkIn && filter.checkOut
+                ? {
+                    where: {
+                      OR: [
+                        {
+                          AND: [
+                            { checkIn: { lte: new Date(filter.checkIn) } },
+                            { checkOut: { gte: new Date(filter.checkIn) } },
                           ],
-                          status: {
-                            notIn: ["CANCELLED"],
-                          },
                         },
-                      }
-                    : undefined,
-              },
-            },
+                        {
+                          AND: [
+                            { checkIn: { lte: new Date(filter.checkOut) } },
+                            { checkOut: { gte: new Date(filter.checkOut) } },
+                          ],
+                        },
+                        {
+                          AND: [
+                            { checkIn: { gte: new Date(filter.checkIn) } },
+                            { checkOut: { lte: new Date(filter.checkOut) } },
+                          ],
+                        },
+                      ],
+                      status: {
+                        notIn: ["CANCELLED"],
+                      },
+                    },
+                    select: {
+                      id: true,
+                    },
+                  }
+                : false,
           },
         },
         reviews: {
@@ -118,30 +127,25 @@ export class PropertyCatalogService {
           },
         },
       },
-      skip,
-      take: limit,
+      orderBy:
+        filter.sortBy === "name"
+          ? { name: filter.sortOrder || "asc" }
+          : { id: "asc" }, // Default ordering for consistent results
     });
 
-    // Filter and calculate prices
+    // Process properties and calculate prices
     const propertiesWithPrices = properties
       .map((property) => {
-        // Filter rooms based on availability and guest count
-        let availableRooms = property.rooms.filter((room) => {
-          // Check guest capacity
-          if (filter.guests && room.maxGuests < filter.guests) {
-            return false;
+        // Filter available rooms
+        const availableRooms = property.rooms.filter((room) => {
+          // Check if room is reserved during the date range
+          if (filter.checkIn && filter.checkOut && room.reservations) {
+            if (room.reservations.length > 0) {
+              return false;
+            }
           }
 
-          // Check if room is reserved
-          if (
-            filter.checkIn &&
-            filter.checkOut &&
-            room._count.reservations > 0
-          ) {
-            return false;
-          }
-
-          // Check availability settings
+          // Check room availability settings (dates marked as unavailable)
           if (filter.checkIn && filter.checkOut && room.roomAvailabilities) {
             const unavailableDates = room.roomAvailabilities.filter(
               (avail: any) => !avail.isAvailable
@@ -159,31 +163,14 @@ export class PropertyCatalogService {
           return null;
         }
 
-        // Calculate lowest price
+        // Calculate lowest price among available rooms
         const lowestPrice = Math.min(
           ...availableRooms.map((room) => {
-            let price = Number(room.basePrice);
-
-            // Apply peak season pricing if dates provided
-            if (filter.checkIn && filter.checkOut) {
-              const checkInDate = new Date(filter.checkIn);
-              const checkOutDate = new Date(filter.checkOut);
-
-              room.peakSeasons.forEach((season) => {
-                if (
-                  season.startDate <= checkOutDate &&
-                  season.endDate >= checkInDate
-                ) {
-                  if (season.priceIncreaseType === "percentage") {
-                    price += price * (Number(season.value) / 100);
-                  } else {
-                    price += Number(season.value);
-                  }
-                }
-              });
-            }
-
-            return price;
+            return this.calculateRoomPrice(
+              room,
+              filter.checkIn,
+              filter.checkOut
+            );
           })
         );
 
@@ -212,7 +199,7 @@ export class PropertyCatalogService {
       })
       .filter((p) => p !== null);
 
-    // Sort by price if requested
+    // Sort by price if requested (must be done after price calculation)
     if (filter.sortBy === "price") {
       propertiesWithPrices.sort((a, b) => {
         if (filter.sortOrder === "desc") {
@@ -220,24 +207,19 @@ export class PropertyCatalogService {
         }
         return a!.lowestPrice - b!.lowestPrice;
       });
-    } else if (filter.sortBy === "name") {
-      propertiesWithPrices.sort((a, b) => {
-        if (filter.sortOrder === "desc") {
-          return b!.name.localeCompare(a!.name);
-        }
-        return a!.name.localeCompare(b!.name);
-      });
     }
 
-    const total = propertiesWithPrices.length;
+    // Apply pagination after filtering and sorting
+    const paginatedProperties = propertiesWithPrices.slice(skip, skip + limit);
 
     return {
-      properties: propertiesWithPrices,
+      properties: paginatedProperties,
       pagination: {
         page,
         limit,
-        total,
-        totalPages: Math.ceil(total / limit),
+        total: propertiesWithPrices.length,
+        totalPages: Math.ceil(propertiesWithPrices.length / limit),
+        totalPropertiesBeforeFilter: totalProperties,
       },
       filters: {
         city: filter.city,
@@ -268,40 +250,50 @@ export class PropertyCatalogService {
         rooms: {
           include: {
             peakSeasons: true,
-            _count: {
-              select: {
-                reservations:
-                  checkIn && checkOut
-                    ? {
-                        where: {
-                          OR: [
-                            {
-                              AND: [
-                                { checkIn: { lte: new Date(checkIn) } },
-                                { checkOut: { gte: new Date(checkIn) } },
-                              ],
-                            },
-                            {
-                              AND: [
-                                { checkIn: { lte: new Date(checkOut) } },
-                                { checkOut: { gte: new Date(checkOut) } },
-                              ],
-                            },
-                            {
-                              AND: [
-                                { checkIn: { gte: new Date(checkIn) } },
-                                { checkOut: { lte: new Date(checkOut) } },
-                              ],
-                            },
+            reservations:
+              checkIn && checkOut
+                ? {
+                    where: {
+                      OR: [
+                        {
+                          AND: [
+                            { checkIn: { lte: new Date(checkIn) } },
+                            { checkOut: { gte: new Date(checkIn) } },
                           ],
-                          status: {
-                            notIn: ["CANCELLED"],
-                          },
                         },
-                      }
-                    : undefined,
-              },
-            },
+                        {
+                          AND: [
+                            { checkIn: { lte: new Date(checkOut) } },
+                            { checkOut: { gte: new Date(checkOut) } },
+                          ],
+                        },
+                        {
+                          AND: [
+                            { checkIn: { gte: new Date(checkIn) } },
+                            { checkOut: { lte: new Date(checkOut) } },
+                          ],
+                        },
+                      ],
+                      status: {
+                        notIn: ["CANCELLED"],
+                      },
+                    },
+                    select: {
+                      id: true,
+                    },
+                  }
+                : false,
+            roomAvailabilities:
+              checkIn && checkOut
+                ? {
+                    where: {
+                      date: {
+                        gte: new Date(checkIn),
+                        lte: new Date(checkOut),
+                      },
+                    },
+                  }
+                : false,
           },
         },
         reviews: {
@@ -327,36 +319,33 @@ export class PropertyCatalogService {
 
     // Calculate room prices and availability
     const roomsWithPrices = property.rooms.map((room) => {
-      let price = Number(room.basePrice);
       let isAvailable = true;
 
       // Check if reserved
-      if (checkIn && checkOut && room._count.reservations > 0) {
+      if (
+        checkIn &&
+        checkOut &&
+        room.reservations &&
+        room.reservations.length > 0
+      ) {
         isAvailable = false;
       }
 
-      // Apply peak season pricing
-      if (checkIn && checkOut) {
-        const checkInDate = new Date(checkIn);
-        const checkOutDate = new Date(checkOut);
-
-        room.peakSeasons.forEach((season) => {
-          if (
-            season.startDate <= checkOutDate &&
-            season.endDate >= checkInDate
-          ) {
-            if (season.priceIncreaseType === "percentage") {
-              price += price * (Number(season.value) / 100);
-            } else {
-              price += Number(season.value);
-            }
-          }
-        });
+      // Check room availability settings
+      if (checkIn && checkOut && room.roomAvailabilities) {
+        const unavailableDates = room.roomAvailabilities.filter(
+          (avail: any) => !avail.isAvailable
+        );
+        if (unavailableDates.length > 0) {
+          isAvailable = false;
+        }
       }
+
+      const currentPrice = this.calculateRoomPrice(room, checkIn, checkOut);
 
       return {
         ...room,
-        currentPrice: price,
+        currentPrice,
         isAvailable,
       };
     });
@@ -436,20 +425,22 @@ export class PropertyCatalogService {
         isAvailable = false;
       }
 
-      // Apply peak season pricing
-      room.peakSeasons.forEach((season) => {
-        if (date >= season.startDate && date <= season.endDate) {
-          if (season.priceIncreaseType === "percentage") {
-            price += price * (Number(season.value) / 100);
-          } else {
-            price += Number(season.value);
+      // Apply peak season pricing (only if no price override)
+      if (!availability?.priceOverride) {
+        room.peakSeasons.forEach((season) => {
+          if (date >= season.startDate && date <= season.endDate) {
+            if (season.priceIncreaseType === "percentage") {
+              price += price * (Number(season.value) / 100);
+            } else {
+              price += Number(season.value);
+            }
           }
-        }
-      });
+        });
+      }
 
       calendar.push({
         date: date.toISOString().split("T")[0],
-        price,
+        price: Math.round(price * 100) / 100, // Round to 2 decimal places
         isAvailable,
       });
     }
@@ -460,5 +451,32 @@ export class PropertyCatalogService {
       basePrice: Number(room.basePrice),
       calendar,
     };
+  }
+
+  // Helper method to calculate room price with peak seasons
+  private calculateRoomPrice(
+    room: any,
+    checkIn?: string,
+    checkOut?: string
+  ): number {
+    let price = Number(room.basePrice);
+
+    // Apply peak season pricing if dates provided
+    if (checkIn && checkOut && room.peakSeasons) {
+      const checkInDate = new Date(checkIn);
+      const checkOutDate = new Date(checkOut);
+
+      room.peakSeasons.forEach((season: any) => {
+        if (season.startDate <= checkOutDate && season.endDate >= checkInDate) {
+          if (season.priceIncreaseType === "percentage") {
+            price += price * (Number(season.value) / 100);
+          } else {
+            price += Number(season.value);
+          }
+        }
+      });
+    }
+
+    return Math.round(price * 100) / 100; // Round to 2 decimal places
   }
 }

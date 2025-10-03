@@ -52,8 +52,7 @@ export class EmailUtil {
             .button { 
               display: inline-block; 
               padding: 12px 24px; 
-              background-color: #4F46E5; 
-              color: white; 
+              color: black; 
               text-decoration: none; 
               border-radius: 6px; 
               margin: 20px 0;
@@ -91,8 +90,7 @@ export class EmailUtil {
             .button { 
               display: inline-block; 
               padding: 12px 24px; 
-              background-color: #4F46E5; 
-              color: white; 
+              color: black; 
               text-decoration: none; 
               border-radius: 6px; 
               margin: 20px 0;
