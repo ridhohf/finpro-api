@@ -40,29 +40,17 @@ export default class App {
   }
 
   private handleError(): void {
-    /*
-      🔒 Docs:
-      This is a not found error handler.
-    */
+    // Not found error handler
     this.app.use(NotFoundMiddleware.handle());
 
-    /*
-        🔒 Docs:
-        This is a centralized error-handling middleware.
-    */
+    // Centralized error-handling middleware
     this.app.use(ErrorHandlerMiddleware.handle());
   }
 
   private routes(): void {
     const mainRouter = new MainRouter();
 
-    this.app.get("/api", (req: Request, res: Response) => {
-      res.send(
-        `Hello, Purwadhika student 👋. Have fun working on your mini project ☺️`
-      );
-    });
-
-    this.app.use(mainRouter.getRouter());
+    this.app.use("/", mainRouter.getRouter());
   }
 
   public start(): void {

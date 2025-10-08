@@ -201,4 +201,14 @@ export class AuthValidator {
         ),
     ];
   }
+
+  static googleLogin() {
+    return [
+      body("credential")
+        .notEmpty()
+        .withMessage("Google credential is required")
+        .isString()
+        .withMessage("Credential must be a string"),
+    ];
+  }
 }

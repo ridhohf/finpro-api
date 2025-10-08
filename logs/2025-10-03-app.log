@@ -30,3 +30,67 @@
   "ip": "::1",
   "statusCode": 401
 }
+[2025-10-03 14:20:05] ERROR: GET /api/tenant/properties/cities - Internal server error. Please try again later!  {
+  "name": "PrismaClientKnownRequestError",
+  "stack": "PrismaClientKnownRequestError: \nInvalid `prisma.properties.findMany()` invocation in\nD:\\Ridho\\finpro\\finpro-api\\src\\services\\property.service.ts:298:44\n\n  295 }\n  296 \n  297 async getCities() {\n→ 298   const cities = await prisma.properties.findMany(\nCan't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:6543`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:6543`.\n    at ei.handleRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:7268)\n    at ei.handleAndLogRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6593)\n    at ei.request (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6300)\n    at async a (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:133:9551)",
+  "path": "/api/tenant/properties/cities",
+  "method": "GET",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-10-03 14:20:05] ERROR: GET /api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12 - Internal server error. Please try again later!  {
+  "name": "PrismaClientKnownRequestError",
+  "stack": "PrismaClientKnownRequestError: \nInvalid `prisma.properties.count()` invocation in\nD:\\Ridho\\finpro\\finpro-api\\src\\services\\property-catalog.service.ts:53:53\n\n  50 };\n  51 \n  52 // First, get total count of properties matching base criteria\n→ 53 const totalProperties = await prisma.properties.count(\nCan't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:6543`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:6543`.\n    at ei.handleRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:7268)\n    at ei.handleAndLogRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6593)\n    at ei.request (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6300)\n    at async a (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:133:9551)",
+  "path": "/api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12",
+  "method": "GET",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-10-03 14:20:10] ERROR: GET /api/tenant/properties/cities - Internal server error. Please try again later!  {
+  "name": "PrismaClientKnownRequestError",
+  "stack": "PrismaClientKnownRequestError: \nInvalid `prisma.properties.findMany()` invocation in\nD:\\Ridho\\finpro\\finpro-api\\src\\services\\property.service.ts:298:44\n\n  295 }\n  296 \n  297 async getCities() {\n→ 298   const cities = await prisma.properties.findMany(\nCan't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:6543`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:6543`.\n    at ei.handleRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:7268)\n    at ei.handleAndLogRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6593)\n    at ei.request (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6300)\n    at async a (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:133:9551)",
+  "path": "/api/tenant/properties/cities",
+  "method": "GET",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-10-03 14:20:10] ERROR: GET /api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12 - Internal server error. Please try again later!  {
+  "name": "PrismaClientKnownRequestError",
+  "stack": "PrismaClientKnownRequestError: \nInvalid `prisma.properties.count()` invocation in\nD:\\Ridho\\finpro\\finpro-api\\src\\services\\property-catalog.service.ts:53:53\n\n  50 };\n  51 \n  52 // First, get total count of properties matching base criteria\n→ 53 const totalProperties = await prisma.properties.count(\nCan't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:6543`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:6543`.\n    at ei.handleRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:7268)\n    at ei.handleAndLogRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6593)\n    at ei.request (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6300)\n    at async a (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:133:9551)",
+  "path": "/api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12",
+  "method": "GET",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-10-03 14:20:27] ERROR: GET /api/tenant/properties/cities - Internal server error. Please try again later!  {
+  "name": "PrismaClientKnownRequestError",
+  "stack": "PrismaClientKnownRequestError: \nInvalid `prisma.properties.findMany()` invocation in\nD:\\Ridho\\finpro\\finpro-api\\src\\services\\property.service.ts:298:44\n\n  295 }\n  296 \n  297 async getCities() {\n→ 298   const cities = await prisma.properties.findMany(\nCan't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:6543`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:6543`.\n    at ei.handleRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:7268)\n    at ei.handleAndLogRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6593)\n    at ei.request (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6300)\n    at async a (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:133:9551)",
+  "path": "/api/tenant/properties/cities",
+  "method": "GET",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-10-03 14:20:27] ERROR: GET /api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12 - Internal server error. Please try again later!  {
+  "name": "PrismaClientKnownRequestError",
+  "stack": "PrismaClientKnownRequestError: \nInvalid `prisma.properties.count()` invocation in\nD:\\Ridho\\finpro\\finpro-api\\src\\services\\property-catalog.service.ts:53:53\n\n  50 };\n  51 \n  52 // First, get total count of properties matching base criteria\n→ 53 const totalProperties = await prisma.properties.count(\nCan't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:6543`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:6543`.\n    at ei.handleRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:7268)\n    at ei.handleAndLogRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6593)\n    at ei.request (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6300)\n    at async a (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:133:9551)",
+  "path": "/api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12",
+  "method": "GET",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-10-03 14:20:32] ERROR: GET /api/tenant/properties/cities - Internal server error. Please try again later!  {
+  "name": "PrismaClientKnownRequestError",
+  "stack": "PrismaClientKnownRequestError: \nInvalid `prisma.properties.findMany()` invocation in\nD:\\Ridho\\finpro\\finpro-api\\src\\services\\property.service.ts:298:44\n\n  295 }\n  296 \n  297 async getCities() {\n→ 298   const cities = await prisma.properties.findMany(\nCan't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:6543`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:6543`.\n    at ei.handleRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:7268)\n    at ei.handleAndLogRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6593)\n    at ei.request (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6300)\n    at async a (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:133:9551)",
+  "path": "/api/tenant/properties/cities",
+  "method": "GET",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-10-03 14:20:33] ERROR: GET /api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12 - Internal server error. Please try again later!  {
+  "name": "PrismaClientKnownRequestError",
+  "stack": "PrismaClientKnownRequestError: \nInvalid `prisma.properties.count()` invocation in\nD:\\Ridho\\finpro\\finpro-api\\src\\services\\property-catalog.service.ts:53:53\n\n  50 };\n  51 \n  52 // First, get total count of properties matching base criteria\n→ 53 const totalProperties = await prisma.properties.count(\nCan't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:6543`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:6543`.\n    at ei.handleRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:7268)\n    at ei.handleAndLogRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6593)\n    at ei.request (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6300)\n    at async a (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:133:9551)",
+  "path": "/api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12",
+  "method": "GET",
+  "ip": "::1",
+  "statusCode": 500
+}

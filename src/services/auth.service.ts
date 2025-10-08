@@ -5,6 +5,7 @@ import { TokenUtil } from "../utils/token.util";
 import { EmailUtil } from "../utils/email.util";
 import { JwtUtil } from "../utils/jwt.util";
 import { CloudinaryUtil } from "../utils/cloudinary.util";
+import { GoogleUtil } from "../utils/google.util";
 
 interface RegisterDTO {
   name: string;
@@ -43,6 +44,119 @@ interface UpdateProfileDTO {
 }
 
 export class AuthService {
+  async googleLogin(credential: string) {
+    try {
+      // Verify Google token using GoogleUtil
+      const googleUser = await GoogleUtil.verifyIdToken(credential);
+
+      const { sub: providerId, email, picture } = googleUser;
+      const displayName = GoogleUtil.getDisplayName(googleUser);
+
+      // Check if user exists with this Google account
+      const socialLogin = await prisma.socialLogins.findUnique({
+        where: {
+          provider_providerId: {
+            provider: "google",
+            providerId: providerId,
+          },
+        },
+        include: {
+          user: {
+            include: {
+              tenantProfile: true,
+            },
+          },
+        },
+      });
+
+      let user;
+
+      if (socialLogin) {
+        // User exists, return existing user
+        user = socialLogin.user;
+
+        // Optional: Update avatar if changed
+        if (picture && user.avatar !== picture) {
+          await prisma.users.update({
+            where: { id: user.id },
+            data: { avatar: picture },
+          });
+          user.avatar = picture;
+        }
+      } else {
+        // Check if email already exists with password login
+        const existingUser = await prisma.users.findUnique({
+          where: { email },
+        });
+
+        if (existingUser && !existingUser.provider) {
+          throw new AppError(
+            "This email is already registered with password. Please login with your password or reset it.",
+            400
+          );
+        }
+
+        if (existingUser && existingUser.provider !== "google") {
+          throw new AppError(
+            `This email is already registered with ${existingUser.provider}. Please use that method to login.`,
+            400
+          );
+        }
+
+        // Create new user with Google account
+        user = await prisma.users.create({
+          data: {
+            name: displayName,
+            email,
+            role: "user", // Default to user role
+            provider: "google",
+            providerId: providerId,
+            isVerified: true, // Google accounts are pre-verified
+            avatar: picture,
+          },
+        });
+
+        // Create social login entry
+        await prisma.socialLogins.create({
+          data: {
+            userId: user.id,
+            provider: "google",
+            providerId: providerId,
+          },
+        });
+      }
+
+      // Generate JWT
+      const token = JwtUtil.generateToken({
+        id: user.id,
+        email: user.email,
+        role: user.role,
+      });
+
+      return {
+        token,
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          avatar: user.avatar,
+          isVerified: user.isVerified,
+          tenantProfile: (user as any).tenantProfile || null,
+        },
+      };
+    } catch (error: any) {
+      // Re-throw AppError as is
+      if (error instanceof AppError) {
+        throw error;
+      }
+
+      // Log unexpected errors
+      console.error("Google login error:", error);
+      throw new AppError("Failed to authenticate with Google", 500);
+    }
+  }
+
   async register(data: RegisterDTO) {
     // Check if email already exists
     const existingUser = await prisma.users.findUnique({

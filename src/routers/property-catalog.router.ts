@@ -2,20 +2,24 @@ import { Router } from "express";
 import { PropertyCatalogController } from "../controllers/property-catalog.controller";
 import { PropertyCatalogValidator } from "../validators/property-catalog.validator";
 import { ValidationMiddleware } from "../middlewares/validation.middleware";
-import { AuthMiddleware } from "../middlewares/auth.middleware";
+import { PropertyController } from "../controllers/property.controller";
 
 export class PropertyCatalogRouter {
   private router: Router;
   private propertyCatalogController: PropertyCatalogController;
+  private propertyController: PropertyController;
 
   constructor() {
     this.propertyCatalogController = new PropertyCatalogController();
+    this.propertyController = new PropertyController();
     this.router = Router();
     this.initializeRoutes();
   }
 
   private initializeRoutes(): void {
-    // Public routes - no authentication required
+    
+    this.router.get("/cities", this.propertyController.getCities);
+    
     this.router.get(
       "/search",
       ValidationMiddleware.validate(PropertyCatalogValidator.search()),
