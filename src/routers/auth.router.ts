@@ -17,6 +17,11 @@ export class AuthRouter {
 
   private initializeRoutes(): void {
     this.router.post(
+      "/google-login",
+      ValidationMiddleware.validate(AuthValidator.googleLogin()),
+      this.authController.googleLogin
+    );
+    this.router.post(
       "/register",
       ValidationMiddleware.validate(AuthValidator.register()),
       this.authController.register

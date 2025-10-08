@@ -6,10 +6,12 @@ import { RoomRouter } from "./room.router";
 import { RoomAvailabilityRouter } from "./room-availability.router";
 import { PeakSeasonRouter } from "./peak-season.router";
 import { PropertyCatalogRouter } from "./property-catalog.router";
+import { DashboardRouter } from "./dashboard.router";
 
 export class MainRouter {
   private router: Router;
   private authRouter: AuthRouter;
+  private dashboardRouter: DashboardRouter;
   private propertyCategoryRouter: PropertyCategoryRouter;
   private propertyRouter: PropertyRouter;
   private roomRouter: RoomRouter;
@@ -20,6 +22,7 @@ export class MainRouter {
   constructor() {
     this.router = Router();
     this.authRouter = new AuthRouter();
+    this.dashboardRouter = new DashboardRouter();
     this.propertyCategoryRouter = new PropertyCategoryRouter();
     this.propertyRouter = new PropertyRouter();
     this.roomRouter = new RoomRouter();
@@ -32,26 +35,27 @@ export class MainRouter {
 
   private initializeRoutes(): void {
     // Authentication routes
-    this.router.use("/api/auth", this.authRouter.getRouter());
+    this.router.use("/auth", this.authRouter.getRouter());
 
     // Tenant routes (protected)
+    this.router.use("/tenant/dashboard", this.dashboardRouter.getRouter());
     this.router.use(
-      "/api/tenant/categories",
+      "/tenant/categories",
       this.propertyCategoryRouter.getRouter()
     );
-    this.router.use("/api/tenant/properties", this.propertyRouter.getRouter());
-    this.router.use("/api/tenant/rooms", this.roomRouter.getRouter());
+    this.router.use("/tenant/properties", this.propertyRouter.getRouter());
+    this.router.use("/tenant/rooms", this.roomRouter.getRouter());
     this.router.use(
-      "/api/tenant/room-availability",
+      "/tenant/room-availability",
       this.roomAvailabilityRouter.getRouter()
     );
     this.router.use(
-      "/api/tenant/peak-seasons",
+      "/tenant/peak-seasons",
       this.peakSeasonRouter.getRouter()
     );
 
     // Public routes
-    this.router.use("/api/properties", this.propertyCatalogRouter.getRouter());
+    this.router.use("/properties", this.propertyCatalogRouter.getRouter());
   }
 
   public getRouter(): Router {
