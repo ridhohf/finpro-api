@@ -296,7 +296,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma",
+      "value": "/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -305,12 +305,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Ridho\\finpro\\finpro-api\\prisma\\schema.prisma",
+    "sourceFilePath": "/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -324,7 +324,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {

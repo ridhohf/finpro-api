@@ -1,34 +1,33 @@
 import { Router } from 'express';
 import { TransactionController } from '../controllers/transaction.controller';
+import { JwtVerify } from '../middlewares/jwt-verify.middleware';
 import { upload } from '../utils/upload.util';
-// Import sesuai nama middleware dari Feature 1
-import { jwtVerify } from '../middlewares/jwt-verify.middleware';
 
 const router = Router();
-const controller = new TransactionController();
+const transactionController = new TransactionController();
 
-// All routes require authentication
-router.use(jwtVerify);
+// JWT Secret Key - pastikan ini sesuai dengan konfigurasi Anda
+const JWT_SECRET = process.env.JWT_SECRET || 'ccb3f75b4ab7d102dd2926444a71d029';
 
-// User routes - Create booking
-router.post('/', controller.create);
+// Middleware untuk verifikasi JWT
+const verifyToken = JwtVerify.verifyToken(JWT_SECRET);
 
-// User & Tenant routes - Get transactions
-router.get('/', controller.getAll);
-router.get('/:id', controller.getById);
-
-// User routes - Upload payment proof
+// Routes untuk transactions
+router.post('/', verifyToken, transactionController.create);
+router.get('/', verifyToken, transactionController.getAll);
+router.get('/:id', verifyToken, transactionController.getById);
 router.post(
-  '/:id/payment-proof',
-  upload.single('payment_proof'),
-  controller.uploadPaymentProof
+  '/:id/upload-payment',
+  verifyToken,
+  upload.single('paymentProof'),
+  transactionController.uploadPaymentProof
 );
-
-// Tenant routes - Confirm/Reject payment
-router.put('/:id/confirm', controller.confirmPayment);
-router.put('/:id/reject', controller.rejectPayment);
-
-// User & Tenant routes - Cancel transaction
-router.put('/:id/cancel', controller.cancelTransaction);
+router.patch('/:id/confirm', verifyToken, transactionController.confirmPayment);
+router.patch('/:id/reject', verifyToken, transactionController.rejectPayment);
+router.patch(
+  '/:id/cancel',
+  verifyToken,
+  transactionController.cancelTransaction
+);
 
 export default router;

@@ -2,7 +2,7 @@ import { OAuth2Client } from 'google-auth-library';
 import { AppError } from './app.error';
 
 interface GoogleUserPayload {
-  sub: string;          
+  sub: string;
   email: string;
   email_verified: boolean;
   name?: string;
@@ -17,7 +17,7 @@ export class GoogleUtil {
   private static getClient(): OAuth2Client {
     if (!this.client) {
       const clientId = process.env.GOOGLE_CLIENT_ID;
-      
+
       if (!clientId) {
         throw new AppError(
           'GOOGLE_CLIENT_ID is not configured in environment variables',

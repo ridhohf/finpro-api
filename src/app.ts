@@ -84,25 +84,25 @@ export default class App {
         version: '1.0.0',
         documentation: '/api/docs',
         endpoints: {
-          health: '/api/health',
-          auth: '/api/auth',
-          properties: '/api/properties',
-          transactions: '/api/transactions',
-          reviews: '/api/reviews',
+          health: '/health',
+          auth: '/auth',
+          properties: '/properties',
+          transactions: '/transactions',
+          reviews: '/reviews',
           tenant: {
-            categories: '/api/tenant/categories',
-            properties: '/api/tenant/properties',
-            rooms: '/api/tenant/rooms',
-            availability: '/api/tenant/room-availability',
-            peakSeasons: '/api/tenant/peak-seasons',
-            reports: '/api/tenant/reports',
+            categories: '/tenant/categories',
+            properties: '/tenant/properties',
+            rooms: '/tenant/rooms',
+            availability: '/tenant/room-availability',
+            peakSeasons: '/tenant/peak-seasons',
+            reports: '/tenant/reports',
           },
         },
       });
     });
 
-    // Mount all routes with /api prefix
-    this.app.use('/api', this.mainRouter.getRouter());
+    // Mount all routes with / prefix
+    this.app.use('/', this.mainRouter.getRouter());
   }
 
   /**
@@ -125,8 +125,6 @@ export default class App {
       console.log(`🚀 Property Renting API Server Started`);
       console.log(`🚀 ====================================`);
       console.log(`➜ Local:   http://localhost:${PORT}`);
-      console.log(`➜ Health:  http://localhost:${PORT}/api/health`);
-      console.log(`➜ Docs:    http://localhost:${PORT}/api/docs`);
       console.log('🚀 ====================================\n');
     });
   }
