@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "pwd-template-api",
   "version": "1.0.0",
   "description": "",
@@ -16,11 +17,23 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
     "migrate:dev": "dotenv -e .env -- npx prisma migrate dev"
+=======
+  "name": "finpro-api",
+  "version": "1.0.0",
+  "description": "This project uses Express.js and Prisma as the ORM. It is used to build both a mini-project and a final-project for students of the Job Connector Web Development program.",
+  "main": "commitlint.config.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> feat/feature-2
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "@prisma/client": "^6.7.0",
     "@types/bcrypt": "^6.0.0",
     "@types/jsonwebtoken": "^9.0.10",
@@ -40,10 +53,29 @@
     "morgan": "^1.10.1",
     "multer": "^2.0.2",
     "nodemailer": "^7.0.6",
+=======
+    "@prisma/client": "^6.13.0",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^7.0.6",
+    "pg": "^8.16.3",
+    "validator": "^13.15.15",
+>>>>>>> feat/feature-2
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "@types/cors": "^2.8.17",
@@ -69,5 +101,22 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+=======
+    "@types/bcrypt": "^6.0.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.3.1",
+    "@types/node-cron": "^3.0.11",
+    "@types/nodemailer": "^7.0.1",
+    "@types/pg": "^8.15.5",
+    "@types/winston": "^2.4.4",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.13.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+>>>>>>> feat/feature-2
   }
 }

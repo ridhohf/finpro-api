@@ -124,7 +124,11 @@ model Properties {
   categoryId  Int      @map("category_id")
   name        String   @db.VarChar(255)
   description String   @db.Text
+<<<<<<< HEAD
   picture     Json     /// Array of image URLs
+=======
+  picture     Json /// Array of image URLs
+>>>>>>> feat/feature-2
   address     String   @db.Text
   city        String   @db.VarChar(100)
   lat         Decimal? @db.Decimal(10, 7)
@@ -152,7 +156,11 @@ model Rooms {
   description String   @db.Text
   basePrice   Decimal  @map("base_price") @db.Decimal(10, 2)
   maxGuests   Int      @default(1) @map("max_guests")
+<<<<<<< HEAD
   picture     Json     /// Array of image URLs
+=======
+  picture     Json /// Array of image URLs
+>>>>>>> feat/feature-2
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 

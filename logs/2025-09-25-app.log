@@ -1,0 +1,33 @@
+[2025-09-25 10:59:12] ERROR: POST /api/transactions/2/payment-proof - Internal server error. Please try again later!  {
+  "name": "MulterError",
+  "stack": "MulterError: Unexpected field\n    at wrappedFileFilter (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/multer/index.js:40:19)\n    at Multipart.<anonymous> (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/multer/lib/make-middleware.js:132:7)\n    at Multipart.emit (node:events:517:28)\n    at Multipart.emit (node:domain:489:12)\n    at HeaderParser.cb (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/busboy/lib/types/multipart.js:358:14)\n    at HeaderParser.push (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/busboy/lib/types/multipart.js:162:20)\n    at SBMH.ssCb [as _cb] (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/busboy/lib/types/multipart.js:394:37)\n    at feed (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/streamsearch/lib/sbmh.js:248:10)\n    at SBMH.push (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/streamsearch/lib/sbmh.js:104:16)\n    at Multipart._write (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/busboy/lib/types/multipart.js:567:19)",
+  "path": "/api/transactions/2/payment-proof",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-09-25 11:17:53] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/transactions/3/review",
+  "ip": "::1"
+}
+[2025-09-25 11:18:19] WARN: 404 Not Found  {
+  "method": "PUT",
+  "path": "/api/transactions/3/reply",
+  "ip": "::1"
+}
+[2025-09-25 11:18:45] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/transactions/3/review",
+  "ip": "::1"
+}
+[2025-09-25 11:19:21] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/transactions/3/review",
+  "ip": "::1"
+}
+[2025-09-25 11:19:41] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/transactions/3/reviews",
+  "ip": "::1"
+}

@@ -1,0 +1,424 @@
+[2025-10-09 11:45:00] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 11:45:00] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 11:45:00] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 11:45:00] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 11:45:00] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 11:45:00] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:50:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:50:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 13:50:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:50:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 13:50:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:50:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:57:31] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 13:57:31] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:57:31] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 13:57:31] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:57:31] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:57:31] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:58:22] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:58:22] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 13:58:22] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:58:22] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 13:58:22] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 13:58:22] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:02:24] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:02:24] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:02:24] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:02:24] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:02:24] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:02:24] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:07:30] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:07:30] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:07:30] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:07:30] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:07:30] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:07:30] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:09:12] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:09:12] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:09:12] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:09:12] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:09:12] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:09:12] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:12:03] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:12:03] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:12:03] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:12:03] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:12:03] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:12:03] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:12:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:12:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:12:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:12:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:12:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:12:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:18:50] ERROR: POST /api/auth/login - Internal server error. Please try again later!  {
+  "name": "PrismaClientInitializationError",
+  "stack": "PrismaClientInitializationError: \nInvalid `prisma.users.findUnique()` invocation in\n/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:317:37\n\n  314 }\n  315 \n  316 async login(data: LoginDTO) {\n→ 317   const user = await prisma.users.findUnique(\nCan't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:6543`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:6543`.\n    at ri.handleRequestError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/generated/prisma/runtime/library.js:124:7759)\n    at ri.handleAndLogRequestError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/generated/prisma/runtime/library.js:124:6784)\n    at ri.request (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/generated/prisma/runtime/library.js:124:6491)\n    at async l (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/generated/prisma/runtime/library.js:133:9812)\n    at async AuthService.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:317:18)\n    at async AuthController.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/controllers/auth.controller.ts:87:22)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 500
+}
+[2025-10-09 14:19:58] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:19:58] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:19:58] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:19:58] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:19:58] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:19:58] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:20:11] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12",
+  "ip": "::1"
+}
+[2025-10-09 14:20:11] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:20:11] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12",
+  "ip": "::1"
+}
+[2025-10-09 14:20:11] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:20:27] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12",
+  "ip": "::1"
+}
+[2025-10-09 14:20:27] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:20:27] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?sortBy=name&sortOrder=asc&page=1&limit=12",
+  "ip": "::1"
+}
+[2025-10-09 14:20:27] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:20:49] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:20:49] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:20:49] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:20:49] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:20:49] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:20:49] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:22:22] ERROR: POST /api/auth/register - Email already registered  {
+  "name": "AppError",
+  "stack": "AppError: Email already registered\n    at new AppError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/utils/app.error.ts:14:11)\n    at AuthService.register (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:136:13)\n    at async AuthController.register (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/controllers/auth.controller.ts:24:22)",
+  "path": "/api/auth/register",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 400
+}
+[2025-10-09 14:24:29] ERROR: POST /api/auth/login - Please verify your email first  {
+  "name": "AppError",
+  "stack": "AppError: Please verify your email first\n    at new AppError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/utils/app.error.ts:14:11)\n    at AuthService.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:337:13)\n    at async AuthController.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/controllers/auth.controller.ts:87:22)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 403
+}
+[2025-10-09 14:33:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:33:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:33:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/search?limit=6&sortBy=price&sortOrder=desc",
+  "ip": "::1"
+}
+[2025-10-09 14:33:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:33:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}
+[2025-10-09 14:33:10] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties/cities",
+  "ip": "::1"
+}

@@ -1,11 +1,21 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "target": "ES6",
+=======
+    "target": "ES2020",
+>>>>>>> feat/feature-2
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true
+<<<<<<< HEAD
   }
+=======
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+>>>>>>> feat/feature-2
 }

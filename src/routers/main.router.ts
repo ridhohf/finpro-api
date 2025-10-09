@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Router } from "express";
 import { AuthRouter } from "./auth.router";
 import { PropertyCategoryRouter } from "./property-category.router";
@@ -29,11 +30,24 @@ export class MainRouter {
     this.roomAvailabilityRouter = new RoomAvailabilityRouter();
     this.peakSeasonRouter = new PeakSeasonRouter();
     this.propertyCatalogRouter = new PropertyCatalogRouter();
+=======
+import { Router, Request, Response } from 'express';
+import transactionRoutes from './transaction.routes';
+import reviewRoutes from './review.routes';
+import reportRoutes from './report.routes';
+
+export class MainRouter {
+  private router: Router;
+
+  constructor() {
+    this.router = Router();
+>>>>>>> feat/feature-2
 
     this.initializeRoutes();
   }
 
   private initializeRoutes(): void {
+<<<<<<< HEAD
     // Authentication routes
     this.router.use("/auth", this.authRouter.getRouter());
 
@@ -56,9 +70,25 @@ export class MainRouter {
 
     // Public routes
     this.router.use("/properties", this.propertyCatalogRouter.getRouter());
+=======
+    // Health check endpoint
+    this.router.get('/health', (req: Request, res: Response) => {
+      res.json({ status: 'OK', timestamp: new Date().toISOString() });
+    });
+
+    // User routes (protected - requires user authentication)
+    this.router.use('/transactions', transactionRoutes);
+
+    // Public routes (accessible without authentication)
+    this.router.use('/reviews', reviewRoutes);
+>>>>>>> feat/feature-2
   }
 
   public getRouter(): Router {
     return this.router;
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> feat/feature-2

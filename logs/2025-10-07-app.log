@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2025-10-07 10:40:59] ERROR: GET /api/properties/search?limit=6&sortBy=price&sortOrder=desc - Internal server error. Please try again later!  {
   "name": "PrismaClientKnownRequestError",
   "stack": "PrismaClientKnownRequestError: \nInvalid `prisma.properties.count()` invocation in\nD:\\Ridho\\finpro\\finpro-api\\src\\services\\property-catalog.service.ts:53:53\n\n  50 };\n  51 \n  52 // First, get total count of properties matching base criteria\n→ 53 const totalProperties = await prisma.properties.count(\nCan't reach database server at `aws-1-ap-southeast-1.pooler.supabase.com:6543`\n\nPlease make sure your database server is running at `aws-1-ap-southeast-1.pooler.supabase.com:6543`.\n    at ei.handleRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:7268)\n    at ei.handleAndLogRequestError (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6593)\n    at ei.request (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:124:6300)\n    at async a (D:\\Ridho\\finpro\\finpro-api\\src\\generated\\prisma\\runtime\\library.js:133:9551)",
@@ -448,4 +449,35 @@
   "method": "POST",
   "ip": "::1",
   "statusCode": 500
+=======
+[2025-10-07 11:03:39] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/auth/login",
+  "ip": "::1"
+}
+[2025-10-07 11:11:10] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/auth/login",
+  "ip": "::1"
+}
+[2025-10-07 11:36:26] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/auth/login",
+  "ip": "::1"
+}
+[2025-10-07 15:56:06] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/auth/login",
+  "ip": "::1"
+}
+[2025-10-07 16:02:16] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/auth/login",
+  "ip": "::1"
+}
+[2025-10-07 20:52:06] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/auth",
+  "ip": "::1"
+>>>>>>> feat/feature-2
 }

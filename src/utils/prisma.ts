@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { PrismaClient } from "../generated/prisma";
 
 const prisma = new PrismaClient({
@@ -12,3 +13,19 @@ process.on("beforeExit", async () => {
 });
 
 export default prisma;
+=======
+import { PrismaClient } from "../generated/prisma";
+
+const prisma = new PrismaClient({
+  log:
+    process.env.NODE_ENV === "development"
+      ? ["query", "error", "warn"]
+      : ["error"],
+});
+
+process.on("beforeExit", async () => {
+  await prisma.$disconnect();
+});
+
+export default prisma;
+>>>>>>> feat/feature-2
