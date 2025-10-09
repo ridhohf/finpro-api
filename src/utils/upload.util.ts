@@ -1,5 +1,5 @@
 import multer from 'multer';
-import { cloudinaryStorage } from './cloudinary.util';
+import { cloudinaryStorage } from './cloudinary.util2';
 
 export const upload = multer({
   storage: cloudinaryStorage,

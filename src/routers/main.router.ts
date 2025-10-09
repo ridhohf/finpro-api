@@ -1,24 +1,31 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import transactionRoutes from './transaction.routes';
 import reviewRoutes from './review.routes';
 import reportRoutes from './report.routes';
-import { TestDataController } from '../controllers/test-data.controller';
 
-const router = Router();
-const testDataController = new TestDataController();
+export class MainRouter {
+  private router: Router;
 
-// Health check
-router.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
-});
+  constructor() {
+    this.router = Router();
 
-// Test data endpoints
-router.get('/check-data', testDataController.checkData);
-router.post('/setup-test-data', testDataController.setupTestData);
+    this.initializeRoutes();
+  }
 
-// Feature routes
-router.use('/transactions', transactionRoutes);
-router.use('/', reviewRoutes);
-router.use('/reports', reportRoutes);
+  private initializeRoutes(): void {
+    // Health check endpoint
+    this.router.get('/health', (req: Request, res: Response) => {
+      res.json({ status: 'OK', timestamp: new Date().toISOString() });
+    });
 
-export default router;
+    // User routes (protected - requires user authentication)
+    this.router.use('/transactions', transactionRoutes);
+
+    // Public routes (accessible without authentication)
+    this.router.use('/reviews', reviewRoutes);
+  }
+
+  public getRouter(): Router {
+    return this.router;
+  }
+}

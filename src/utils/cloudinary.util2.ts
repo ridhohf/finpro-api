@@ -7,6 +7,12 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+export class CloudinaryUtil {
+  static initialize(): void {
+    console.log('☁️  Cloudinary initialized');
+  }
+}
+
 export const cloudinaryStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {

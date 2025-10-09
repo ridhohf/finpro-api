@@ -1,0 +1,30 @@
+[2025-10-07 11:03:39] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/auth/login",
+  "ip": "::1"
+}
+[2025-10-07 11:11:10] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/auth/login",
+  "ip": "::1"
+}
+[2025-10-07 11:36:26] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/auth/login",
+  "ip": "::1"
+}
+[2025-10-07 15:56:06] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/auth/login",
+  "ip": "::1"
+}
+[2025-10-07 16:02:16] WARN: 404 Not Found  {
+  "method": "POST",
+  "path": "/api/auth/login",
+  "ip": "::1"
+}
+[2025-10-07 20:52:06] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/auth",
+  "ip": "::1"
+}

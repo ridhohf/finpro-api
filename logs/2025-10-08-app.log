@@ -1,0 +1,97 @@
+[2025-10-08 09:37:44] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/properties",
+  "ip": "::1"
+}
+[2025-10-08 09:46:30] ERROR: POST /api/auth/login - Invalid email or password  {
+  "name": "AppError",
+  "stack": "AppError: Invalid email or password\n    at new AppError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/utils/app.error.ts:14:11)\n    at AuthService.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:325:13)\n    at async AuthController.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/controllers/auth.controller.ts:87:22)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 401
+}
+[2025-10-08 09:57:21] ERROR: POST /api/auth/login - Please verify your email first  {
+  "name": "AppError",
+  "stack": "AppError: Please verify your email first\n    at new AppError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/utils/app.error.ts:14:11)\n    at AuthService.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:333:13)\n    at async AuthController.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/controllers/auth.controller.ts:87:22)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 403
+}
+[2025-10-08 10:04:48] ERROR: POST /api/auth/login - Please verify your email first  {
+  "name": "AppError",
+  "stack": "AppError: Please verify your email first\n    at new AppError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/utils/app.error.ts:14:11)\n    at AuthService.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:333:13)\n    at async AuthController.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/controllers/auth.controller.ts:87:22)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 403
+}
+[2025-10-08 10:05:23] ERROR: POST /api/auth/login - Please verify your email first  {
+  "name": "AppError",
+  "stack": "AppError: Please verify your email first\n    at new AppError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/utils/app.error.ts:14:11)\n    at AuthService.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:333:13)\n    at async AuthController.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/controllers/auth.controller.ts:87:22)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 403
+}
+[2025-10-08 10:05:47] ERROR: POST /api/auth/login - Please verify your email first  {
+  "name": "AppError",
+  "stack": "AppError: Please verify your email first\n    at new AppError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/utils/app.error.ts:14:11)\n    at AuthService.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:333:13)\n    at async AuthController.login (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/controllers/auth.controller.ts:87:22)",
+  "path": "/api/auth/login",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 403
+}
+[2025-10-08 13:20:31] ERROR: POST /api/auth/resend-verification - User not found  {
+  "name": "AppError",
+  "stack": "AppError: User not found\n    at new AppError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/utils/app.error.ts:14:11)\n    at AuthService.resendVerification (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:379:13)\n    at async AuthController.resendVerification (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/controllers/auth.controller.ts:106:22)",
+  "path": "/api/auth/resend-verification",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 404
+}
+[2025-10-08 14:18:18] ERROR: POST /api/auth/resend-verification - User not found  {
+  "name": "AppError",
+  "stack": "AppError: User not found\n    at new AppError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/utils/app.error.ts:14:11)\n    at AuthService.resendVerification (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:379:13)\n    at async AuthController.resendVerification (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/controllers/auth.controller.ts:106:22)",
+  "path": "/api/auth/resend-verification",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 404
+}
+[2025-10-08 14:18:46] ERROR: POST /api/auth/register - Email already registered  {
+  "name": "AppError",
+  "stack": "AppError: Email already registered\n    at new AppError (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/utils/app.error.ts:14:11)\n    at AuthService.register (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/services/auth.service.ts:136:13)\n    at async AuthController.register (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/src/controllers/auth.controller.ts:24:22)",
+  "path": "/api/auth/register",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 400
+}
+[2025-10-08 14:21:15] ERROR: POST /api/auth/resend-verification - Internal server error. Please try again later!  {
+  "name": "SyntaxError",
+  "stack": "SyntaxError: Unexpected token } in JSON at position 36\n    at JSON.parse (<anonymous>)\n    at parse (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/body-parser/lib/types/json.js:77:19)\n    at /Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/body-parser/lib/read.js:123:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at invokeCallback (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/raw-body/index.js:238:16)\n    at done (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/raw-body/index.js:227:7)\n    at IncomingMessage.onEnd (/Users/fachrifatahlukman/Desktop/final-project-1/finpro-api/node_modules/raw-body/index.js:287:7)\n    at IncomingMessage.emit (node:events:517:28)\n    at IncomingMessage.emit (node:domain:489:12)\n    at endReadableNT (node:internal/streams/readable:1400:12)",
+  "path": "/api/auth/resend-verification",
+  "method": "POST",
+  "ip": "::1",
+  "statusCode": 400
+}
+[2025-10-08 15:41:36] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/auth/verify-email/e58b4cfbc1f812d7ef13c58f7858c50a213f25551b0494c9517776618056d089",
+  "ip": "::1"
+}
+[2025-10-08 15:41:36] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/auth/verify-email/e58b4cfbc1f812d7ef13c58f7858c50a213f25551b0494c9517776618056d089",
+  "ip": "::1"
+}
+[2025-10-08 15:42:14] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/auth/verify-email/e58b4cfbc1f812d7ef13c58f7858c50a213f25551b0494c9517776618056d089",
+  "ip": "::1"
+}
+[2025-10-08 15:42:14] WARN: 404 Not Found  {
+  "method": "GET",
+  "path": "/api/auth/verify-email/e58b4cfbc1f812d7ef13c58f7858c50a213f25551b0494c9517776618056d089",
+  "ip": "::1"
+}

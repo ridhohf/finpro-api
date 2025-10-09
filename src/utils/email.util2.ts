@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 
+// Export emailTransporter for backward compatibility
 export const emailTransporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST || 'smtp.gmail.com',
   port: parseInt(process.env.EMAIL_PORT || '587'),
@@ -10,6 +11,22 @@ export const emailTransporter = nodemailer.createTransport({
   },
 });
 
+/**
+ * EmailUtil class for app.ts initialization
+ */
+export class EmailUtil {
+  static initialize(): void {
+    console.log('📧 Email service initialized');
+  }
+}
+
+/**
+ * Send email verification link
+ */
+
+/**
+ * Send order confirmation email
+ */
 export async function sendOrderConfirmationEmail(
   userEmail: string,
   userName: string,
@@ -58,6 +75,9 @@ export async function sendOrderConfirmationEmail(
   }
 }
 
+/**
+ * Send check-in reminder email
+ */
 export async function sendCheckInReminderEmail(
   userEmail: string,
   userName: string,
