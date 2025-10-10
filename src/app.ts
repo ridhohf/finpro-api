@@ -11,7 +11,7 @@ import { PORT } from './config';
 import { MainRouter } from './routers/main.router';
 import { NotFoundMiddleware } from './middlewares/not-found.middleware';
 import { ErrorHandlerMiddleware } from './middlewares/error-handler.middleware';
-import { EmailUtil } from './utils/email.util2';
+import { EmailUtil } from './utils/email.util';
 import { CloudinaryUtil } from './utils/cloudinary.util2';
 import { setupCronJobs } from './utils/cron.util';
 

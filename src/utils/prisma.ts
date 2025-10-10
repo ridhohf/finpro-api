@@ -1,10 +1,7 @@
 import { PrismaClient } from '../generated/prisma';
 
 const prisma = new PrismaClient({
-  log:
-    process.env.NODE_ENV === 'development'
-      ? ['query', 'error', 'warn']
-      : ['error'],
+  log:["error", "warn"],
 });
 
 process.on('beforeExit', async () => {

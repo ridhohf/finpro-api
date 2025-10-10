@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { TransactionService } from '../services/transaction.service';
+import { Request, Response } from "express";
+import { TransactionService } from "../services/transaction.service";
 
 interface AuthRequest extends Request {
   user?: {
@@ -14,28 +14,33 @@ export class TransactionController {
 
   create = async (req: AuthRequest, res: Response) => {
     try {
-      if (!req.user) {
+      const user = res.locals.payload as {
+        id: number;
+        role: string;
+        email: string;
+      };
+      if (!user) {
         return res.status(401).json({
           success: false,
-          message: 'Authentication required',
+          message: "Authentication required",
         });
       }
 
-      if (req.user.role !== 'user') {
+      if (user.role !== "user") {
         return res.status(403).json({
           success: false,
-          message: 'Only users can create bookings',
+          message: "Only users can create bookings",
         });
       }
 
       const reservation = await this.transactionService.createTransaction(
-        req.user.id,
+        user.id,
         req.body
       );
 
       res.status(201).json({
         success: true,
-        message: 'Booking created successfully',
+        message: "Booking created successfully",
         data: reservation,
       });
     } catch (error) {
@@ -45,10 +50,16 @@ export class TransactionController {
 
   getAll = async (req: AuthRequest, res: Response) => {
     try {
-      if (!req.user) {
+      const user = res.locals.payload as {
+        id: number;
+        role: string;
+        email: string;
+      };
+
+      if (!user) {
         return res.status(401).json({
           success: false,
-          message: 'Authentication required',
+          message: "Authentication required",
         });
       }
 
@@ -62,14 +73,14 @@ export class TransactionController {
       };
 
       const reservations = await this.transactionService.getAllTransactions(
-        req.user.id,
-        req.user.role,
+        user.id,
+        user.role,
         filters
       );
 
       res.json({
         success: true,
-        message: 'Transactions retrieved successfully',
+        message: "Transactions retrieved successfully",
         data: reservations,
         count: reservations.length,
       });
@@ -80,23 +91,28 @@ export class TransactionController {
 
   getById = async (req: AuthRequest, res: Response) => {
     try {
-      if (!req.user) {
+      const user = res.locals.payload as {
+        id: number;
+        role: string;
+        email: string;
+      };
+      if (!user) {
         return res.status(401).json({
           success: false,
-          message: 'Authentication required',
+          message: "Authentication required",
         });
       }
 
       const { id } = req.params;
       const reservation = await this.transactionService.getTransactionById(
         parseInt(id),
-        req.user.id,
-        req.user.role
+        user.id,
+        user.role
       );
 
       res.json({
         success: true,
-        message: 'Transaction details retrieved',
+        message: "Transaction details retrieved",
         data: reservation,
       });
     } catch (error) {
@@ -106,31 +122,36 @@ export class TransactionController {
 
   uploadPaymentProof = async (req: AuthRequest, res: Response) => {
     try {
-      if (!req.user) {
+      const user = res.locals.payload as {
+        id: number;
+        role: string;
+        email: string;
+      };
+      if (!user) {
         return res.status(401).json({
           success: false,
-          message: 'Authentication required',
+          message: "Authentication required",
         });
       }
 
       if (!req.file) {
         return res.status(400).json({
           success: false,
-          message: 'No payment proof image uploaded',
+          message: "No payment proof image uploaded",
         });
       }
 
       const { id } = req.params;
 
       const result = await this.transactionService.uploadPaymentProof(
-        req.user.id,
+        user.id,
         parseInt(id),
         req.file.path
       );
 
       res.status(200).json({
         success: true,
-        message: 'Payment proof uploaded successfully',
+        message: "Payment proof uploaded successfully",
         data: {
           transactionId: result.id,
           status: result.status,
@@ -143,29 +164,34 @@ export class TransactionController {
 
   confirmPayment = async (req: AuthRequest, res: Response) => {
     try {
-      if (!req.user) {
+      const user = res.locals.payload as {
+        id: number;
+        role: string;
+        email: string;
+      };
+      if (!user) {
         return res.status(401).json({
           success: false,
-          message: 'Authentication required',
+          message: "Authentication required",
         });
       }
 
-      if (req.user.role !== 'tenant') {
+      if (user.role !== "tenant") {
         return res.status(403).json({
           success: false,
-          message: 'Only tenants can confirm payments',
+          message: "Only tenants can confirm payments",
         });
       }
 
       const { id } = req.params;
       const updatedTransaction = await this.transactionService.confirmPayment(
-        req.user.id,
+        user.id,
         parseInt(id)
       );
 
       res.json({
         success: true,
-        message: 'Payment confirmed and email sent',
+        message: "Payment confirmed and email sent",
         data: {
           transactionId: updatedTransaction.id,
           status: updatedTransaction.status,
@@ -179,17 +205,22 @@ export class TransactionController {
 
   rejectPayment = async (req: AuthRequest, res: Response) => {
     try {
-      if (!req.user) {
+      const user = res.locals.payload as {
+        id: number;
+        role: string;
+        email: string;
+      };
+      if (!user) {
         return res.status(401).json({
           success: false,
-          message: 'Authentication required',
+          message: "Authentication required",
         });
       }
 
-      if (req.user.role !== 'tenant') {
+      if (user.role !== "tenant") {
         return res.status(403).json({
           success: false,
-          message: 'Only tenants can reject payments',
+          message: "Only tenants can reject payments",
         });
       }
 
@@ -197,14 +228,14 @@ export class TransactionController {
       const { reason } = req.body;
 
       const updatedTransaction = await this.transactionService.rejectPayment(
-        req.user.id,
+        user.id,
         parseInt(id),
         reason
       );
 
       res.json({
         success: true,
-        message: 'Payment proof rejected',
+        message: "Payment proof rejected",
         data: {
           transactionId: updatedTransaction.id,
           status: updatedTransaction.status,
@@ -218,10 +249,15 @@ export class TransactionController {
 
   cancelTransaction = async (req: AuthRequest, res: Response) => {
     try {
-      if (!req.user) {
+      const user = res.locals.payload as {
+        id: number;
+        role: string;
+        email: string;
+      };
+      if (!user) {
         return res.status(401).json({
           success: false,
-          message: 'Authentication required',
+          message: "Authentication required",
         });
       }
 
@@ -229,15 +265,15 @@ export class TransactionController {
       const { reason } = req.body;
 
       await this.transactionService.cancelTransaction(
-        req.user.id,
-        req.user.role,
+        user.id,
+        user.role,
         parseInt(id),
         reason
       );
 
       res.json({
         success: true,
-        message: 'Transaction cancelled successfully',
+        message: "Transaction cancelled successfully",
         data: {
           transactionId: parseInt(id),
           cancelledAt: new Date().toISOString(),
@@ -250,14 +286,14 @@ export class TransactionController {
 
   private handleError(res: Response, error: unknown, defaultStatus = 500) {
     const errorMessage =
-      error instanceof Error ? error.message : 'Internal server error';
+      error instanceof Error ? error.message : "Internal server error";
 
     let statusCode = defaultStatus;
 
-    if (errorMessage.includes('not found')) statusCode = 404;
-    if (errorMessage.includes('Unauthorized')) statusCode = 403;
-    if (errorMessage.includes('not available')) statusCode = 409;
-    if (errorMessage.includes('expired')) statusCode = 410;
+    if (errorMessage.includes("not found")) statusCode = 404;
+    if (errorMessage.includes("Unauthorized")) statusCode = 403;
+    if (errorMessage.includes("not available")) statusCode = 409;
+    if (errorMessage.includes("expired")) statusCode = 410;
 
     res.status(statusCode).json({
       success: false,
@@ -267,19 +303,19 @@ export class TransactionController {
 
   private handleFileUploadError(res: Response, error: unknown) {
     const errorMessage =
-      error instanceof Error ? error.message : 'File upload failed';
+      error instanceof Error ? error.message : "File upload failed";
 
-    if (errorMessage.includes('Only .jpg')) {
+    if (errorMessage.includes("Only .jpg")) {
       return res.status(400).json({
         success: false,
-        message: 'Invalid file format. Only .jpg, .jpeg, and .png allowed',
+        message: "Invalid file format. Only .jpg, .jpeg, and .png allowed",
       });
     }
 
-    if (errorMessage.includes('File too large')) {
+    if (errorMessage.includes("File too large")) {
       return res.status(400).json({
         success: false,
-        message: 'File too large. Maximum 1MB',
+        message: "File too large. Maximum 1MB",
       });
     }
 
